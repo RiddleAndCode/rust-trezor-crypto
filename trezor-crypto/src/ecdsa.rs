@@ -1,24 +1,132 @@
-pub struct EcdsaCurve(pub(crate) sys::ecdsa_curve);
+use core::marker::PhantomData;
+use core::mem;
 
-lazy_static! {
-    pub static ref SECP256K1: EcdsaCurve = unsafe { EcdsaCurve(sys::secp256k1) };
-    pub static ref NIST256P1: EcdsaCurve = unsafe { EcdsaCurve(sys::nist256p1) };
+pub const ECDSA_PUBKEY_COMPRESSED_LEN: usize = 33;
+pub const ECDSA_PUBKEY_UNCOMPRESSED_LEN: usize = 65;
+pub const ECDSA_PRIVKEY_LEN: usize = 32;
+pub const ECDSA_SIG_LEN: usize = 64;
+
+pub trait EcdsaCurve {
+    #[doc(hidden)]
+    unsafe fn curve() -> &'static sys::ecdsa_curve;
 }
 
-pub fn get_public_key65(curve: &EcdsaCurve, private_key: &[u8]) -> [u8; 65] {
-    let mut out = [0; 65];
-    unsafe {
-        sys::ecdsa_get_public_key65(&curve.0, private_key.as_ptr(), out.as_mut_ptr());
+trait EcdsaCurveExt: EcdsaCurve {
+    fn get_public_key(priv_key: &[u8; ECDSA_PRIVKEY_LEN]) -> [u8; ECDSA_PUBKEY_COMPRESSED_LEN] {
+        let mut out = [0; ECDSA_PUBKEY_COMPRESSED_LEN];
+        unsafe { sys::ecdsa_get_public_key33(Self::curve(), priv_key.as_ptr(), out.as_mut_ptr()) }
+        out
     }
-    out
+    fn uncompress_public_key(
+        pub_key: &[u8; ECDSA_PUBKEY_COMPRESSED_LEN],
+    ) -> Option<[u8; ECDSA_PUBKEY_UNCOMPRESSED_LEN]> {
+        let mut out = [0; ECDSA_PUBKEY_UNCOMPRESSED_LEN];
+        let res = unsafe {
+            sys::ecdsa_uncompress_pubkey(Self::curve(), pub_key.as_ptr(), out.as_mut_ptr())
+        };
+        if res == 1 {
+            Some(out)
+        } else {
+            None
+        }
+    }
+    fn read_public_key(pub_key: &[u8; ECDSA_PUBKEY_COMPRESSED_LEN]) -> Option<sys::curve_point> {
+        let mut point;
+        let res = unsafe {
+            point = mem::zeroed();
+            sys::ecdsa_read_pubkey(Self::curve(), pub_key.as_ptr(), &mut point)
+        };
+        if res == 1 {
+            Some(point)
+        } else {
+            None
+        }
+    }
 }
 
-pub fn get_public_key33(curve: &EcdsaCurve, private_key: &[u8]) -> [u8; 65] {
-    let mut out = [0; 65];
-    unsafe {
-        sys::ecdsa_get_public_key65(&curve.0, private_key.as_ptr(), out.as_mut_ptr());
+impl<T> EcdsaCurveExt for T where T: EcdsaCurve {}
+
+macro_rules! ecdsa_curve {
+    ($name:ident, $ty:path) => {
+        #[derive(Clone, Copy, Debug)]
+        pub struct $name;
+        impl EcdsaCurve for $name {
+            #[inline]
+            unsafe fn curve() -> &'static sys::ecdsa_curve {
+                &$ty
+            }
+        }
+    };
+}
+ecdsa_curve!(Secp256k1, sys::secp256k1);
+ecdsa_curve!(Nist256p1, sys::nist256p1);
+
+#[derive(Clone)]
+pub struct EcdsaPrivateKey<C: EcdsaCurve> {
+    bytes: [u8; ECDSA_PRIVKEY_LEN],
+    curve: PhantomData<C>,
+}
+
+impl<C: EcdsaCurve> EcdsaPrivateKey<C> {
+    #[inline]
+    pub fn from_bytes(bytes: [u8; ECDSA_PRIVKEY_LEN]) -> Self {
+        Self {
+            bytes,
+            curve: PhantomData,
+        }
     }
-    out
+    pub fn from_slice(slice: &[u8]) -> Option<Self> {
+        if slice.len() == ECDSA_PRIVKEY_LEN {
+            let mut bytes = [0; ECDSA_PRIVKEY_LEN];
+            bytes.copy_from_slice(slice);
+            Some(Self::from_bytes(bytes))
+        } else {
+            None
+        }
+    }
+    pub fn public_key(&self) -> EcdsaPublicKey<C> {
+        unsafe { EcdsaPublicKey::from_bytes_unchecked(C::get_public_key(&self.bytes)) }
+    }
+    #[inline]
+    pub fn cast<U>(self) -> EcdsaPrivateKey<U>
+    where
+        U: EcdsaCurve,
+    {
+        EcdsaPrivateKey::from_bytes(self.bytes)
+    }
+}
+
+#[derive(Clone, Debug)]
+pub struct EcdsaPublicKey<C: EcdsaCurve> {
+    bytes: [u8; ECDSA_PUBKEY_COMPRESSED_LEN],
+    curve: PhantomData<C>,
+}
+
+impl<C: EcdsaCurve> EcdsaPublicKey<C> {
+    #[inline]
+    pub unsafe fn from_bytes_unchecked(bytes: [u8; ECDSA_PUBKEY_COMPRESSED_LEN]) -> Self {
+        Self {
+            bytes,
+            curve: PhantomData,
+        }
+    }
+    pub fn from_bytes(bytes: [u8; ECDSA_PUBKEY_COMPRESSED_LEN]) -> Option<Self> {
+        let pub_key = unsafe { Self::from_bytes_unchecked(bytes) };
+        if pub_key.is_valid() {
+            Some(pub_key)
+        } else {
+            None
+        }
+    }
+    pub fn is_valid(&self) -> bool {
+        C::read_public_key(&self.bytes).is_some()
+    }
+    pub fn serialize(&self) -> [u8; ECDSA_PUBKEY_COMPRESSED_LEN] {
+        self.bytes.clone()
+    }
+    pub fn serialize_uncompressed(&self) -> [u8; ECDSA_PUBKEY_UNCOMPRESSED_LEN] {
+        C::uncompress_public_key(&self.bytes).unwrap()
+    }
 }
 
 #[cfg(test)]
@@ -30,8 +138,12 @@ mod tests {
         x_hex: impl AsRef<str>,
         y_hex: impl AsRef<str>,
     ) {
-        let priv_key = hex::decode(priv_key_hex.as_ref()).unwrap();
-        let pub_key = get_public_key65(&SECP256K1, &priv_key);
+        let priv_key =
+            EcdsaPrivateKey::<Secp256k1>::from_slice(&hex::decode(priv_key_hex.as_ref()).unwrap())
+                .unwrap();
+        let pub_key = priv_key.public_key();
+        assert!(pub_key.is_valid());
+        let pub_key = pub_key.serialize_uncompressed();
         assert_eq!(hex::encode(&pub_key[1..33]), x_hex.as_ref().to_lowercase());
         assert_eq!(hex::encode(&pub_key[33..]), y_hex.as_ref().to_lowercase());
     }
