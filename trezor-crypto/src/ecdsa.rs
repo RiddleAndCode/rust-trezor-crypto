@@ -1,5 +1,6 @@
+use crate::hasher::{Digest, HashingAlgorithm, DIGEST_LEN};
 use core::marker::PhantomData;
-use core::mem;
+use core::{mem, ops};
 
 pub const ECDSA_PUBKEY_COMPRESSED_LEN: usize = 33;
 pub const ECDSA_PUBKEY_UNCOMPRESSED_LEN: usize = 65;
@@ -38,6 +39,53 @@ trait EcdsaCurveExt: EcdsaCurve {
         };
         if res == 1 {
             Some(point)
+        } else {
+            None
+        }
+    }
+    fn sign_digest(
+        priv_key: &[u8; ECDSA_PRIVKEY_LEN],
+        digest: &[u8; DIGEST_LEN],
+    ) -> Option<([u8; ECDSA_SIG_LEN], u8)> {
+        let mut sig = [0; ECDSA_SIG_LEN];
+        let mut by = 0;
+        let res = unsafe {
+            sys::ecdsa_sign_digest(
+                Self::curve(),
+                priv_key.as_ptr(),
+                digest.as_ptr(),
+                sig.as_mut_ptr(),
+                &mut by,
+                None,
+            )
+        };
+        if res == 1 {
+            Some((sig, by))
+        } else {
+            None
+        }
+    }
+    fn sign(
+        priv_key: &[u8; ECDSA_PRIVKEY_LEN],
+        hasher_type: sys::HasherType,
+        data: &[u8],
+    ) -> Option<([u8; ECDSA_SIG_LEN], u8)> {
+        let mut sig = [0; ECDSA_SIG_LEN];
+        let mut by = 0;
+        let res = unsafe {
+            sys::ecdsa_sign(
+                Self::curve(),
+                hasher_type,
+                priv_key.as_ptr(),
+                data.as_ptr(),
+                data.len() as u32,
+                sig.as_mut_ptr(),
+                &mut by,
+                None,
+            )
+        };
+        if res == 1 {
+            Some((sig, by))
         } else {
             None
         }
@@ -94,6 +142,17 @@ impl<C: EcdsaCurve> EcdsaPrivateKey<C> {
     {
         EcdsaPrivateKey::from_bytes(self.bytes)
     }
+    pub fn sign<H: HashingAlgorithm, D: AsRef<[u8]>>(
+        &self,
+        data: D,
+    ) -> Option<RecoverableSignature> {
+        C::sign(&self.bytes, H::hasher_type(), data.as_ref())
+            .map(|(sig, by)| RecoverableSignature::new(Signature::from_bytes(sig), by))
+    }
+    pub fn sign_digest(&self, digest: &Digest) -> Option<RecoverableSignature> {
+        C::sign_digest(&self.bytes, digest.as_bytes())
+            .map(|(sig, by)| RecoverableSignature::new(Signature::from_bytes(sig), by))
+    }
 }
 
 #[derive(Clone, Debug)]
@@ -126,6 +185,42 @@ impl<C: EcdsaCurve> EcdsaPublicKey<C> {
     }
     pub fn serialize_uncompressed(&self) -> [u8; ECDSA_PUBKEY_UNCOMPRESSED_LEN] {
         C::uncompress_public_key(&self.bytes).unwrap()
+    }
+}
+
+pub struct Signature {
+    bytes: [u8; ECDSA_SIG_LEN],
+}
+
+impl Signature {
+    #[inline]
+    pub fn from_bytes(bytes: [u8; ECDSA_SIG_LEN]) -> Self {
+        Self { bytes }
+    }
+    pub fn serialize(&self) -> &[u8; ECDSA_SIG_LEN] {
+        &self.bytes
+    }
+}
+
+pub struct RecoverableSignature {
+    signature: Signature,
+    recovery_byte: u8,
+}
+
+impl RecoverableSignature {
+    #[inline]
+    pub fn new(signature: Signature, recovery_byte: u8) -> Self {
+        Self {
+            signature,
+            recovery_byte,
+        }
+    }
+}
+
+impl ops::Deref for RecoverableSignature {
+    type Target = Signature;
+    fn deref(&self) -> &Signature {
+        &self.signature
     }
 }
 

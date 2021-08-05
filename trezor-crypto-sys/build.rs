@@ -78,21 +78,21 @@ fn main() {
     }
 
     let mut builder = cc::Build::new();
+    builder.include(BASE_DIR).flag("-std=gnu99").opt_level(3);
     for &file in SRC_LIST {
         builder.file(&format!("{}/{}", BASE_DIR, file));
     }
     for &(var, val) in DEFINITIONS {
         builder.define(var, val);
     }
-    builder
-        .include("./trezor-firmware/crypto")
-        .flag("-std=gnu99")
-        .opt_level(3)
-        .compile("trezor-crypto");
+    builder.compile("trezor-crypto");
 
     #[cfg(feature = "generate-bindings")]
     {
-        let mut builder = bindgen::Builder::default();
+        let mut builder = bindgen::Builder::default()
+            .header("wrapper.h")
+            .clang_arg("-std=gnu99")
+            .clang_arg(format!("-I{}", BASE_DIR));
         for &(var, val) in DEFINITIONS {
             if let Some(val) = val {
                 builder = builder.clang_arg(format!("-D{}={}", var, val));
@@ -100,12 +100,7 @@ fn main() {
                 builder = builder.clang_arg(format!("-D{}", var));
             }
         }
-        let bindings = builder
-            .clang_arg("-std=gnu99")
-            .clang_arg(format!("-I{}", BASE_DIR))
-            .header("wrapper.h")
-            .generate()
-            .expect("unable to generate bindings");
+        let bindings = builder.generate().expect("unable to generate bindings");
 
         let out_path = if cfg!(feature = "update-bindings") {
             std::path::PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap()).join("generated")
