@@ -3,66 +3,62 @@ use std::env;
 
 const BASE_DIR: &str = "trezor-firmware/crypto";
 const SRC_LIST: &[&str] = &[
-    "bignum",
-    "ecdsa",
-    "curves",
-    "secp256k1",
-    "nist256p1",
-    "rand",
-    "hmac",
-    "bip32",
-    "bip39",
-    "pbkdf2",
-    "base58",
-    "base32",
-    "address",
-    "script",
-    "ripemd160",
-    "sha2",
-    "sha3",
-    "hasher",
-    // "aes/aescrypt",
-    // "aes/aeskey",
-    // "aes/aestab",
-    // "aes/aes_modes",
-    // "ed25519-donna/curve25519-donna-32bit",
-    // "ed25519-donna/curve25519-donna-helpers",
-    // "ed25519-donna/modm-donna-32bit",
-    // "ed25519-donna/ed25519-donna-basepoint-table",
-    // "ed25519-donna/ed25519-donna-32bit-tables",
-    // "ed25519-donna/ed25519-donna-impl-base",
-    // "ed25519-donna/ed25519",
-    // "ed25519-donna/curve25519-donna-scalarmult-base",
-    // "ed25519-donna/ed25519-sha3",
-    // "ed25519-donna/ed25519-keccak",
-    "monero/base58",
-    "monero/serialize",
-    "monero/xmr",
-    "monero/range_proof",
-    "blake256",
-    "blake2b",
-    "blake2s",
-    "chacha_drbg",
-    "groestl",
-    "chacha20poly1305/chacha20poly1305",
-    "chacha20poly1305/chacha_merged",
-    "chacha20poly1305/poly1305-donna",
-    "chacha20poly1305/rfc7539",
-    "rc4",
-    "nem",
-    "segwit_addr",
-    "cash_addr",
-    "memzero",
-    "shamir",
-    "hmac_drbg",
-    "rfc6979",
-    "slip39",
-    "schnorr",
+    "bignum.c",
+    "ecdsa.c",
+    "curves.c",
+    "secp256k1.c",
+    "nist256p1.c",
+    "rand.c",
+    "hmac.c",
+    "bip32.c",
+    "bip39.c",
+    "pbkdf2.c",
+    "base58.c",
+    "base32.c",
+    "address.c",
+    "script.c",
+    "ripemd160.c",
+    "sha2.c",
+    "sha3.c",
+    "hasher.c",
+    "aes/aescrypt.c",
+    "aes/aeskey.c",
+    "aes/aestab.c",
+    "aes/aes_modes.c",
+    "ed25519-donna/curve25519-donna-32bit.c",
+    "ed25519-donna/curve25519-donna-helpers.c",
+    "ed25519-donna/modm-donna-32bit.c",
+    "ed25519-donna/ed25519-donna-basepoint-table.c",
+    "ed25519-donna/ed25519-donna-32bit-tables.c",
+    "ed25519-donna/ed25519-donna-impl-base.c",
+    "ed25519-donna/ed25519.c",
+    "ed25519-donna/curve25519-donna-scalarmult-base.c",
+    "ed25519-donna/ed25519-sha3.c",
+    "ed25519-donna/ed25519-keccak.c",
+    "monero/base58.c",
+    "monero/serialize.c",
+    "monero/xmr.c",
+    "monero/range_proof.c",
+    "blake256.c",
+    "blake2b.c",
+    "blake2s.c",
+    "chacha_drbg.c",
+    "groestl.c",
+    "chacha20poly1305/chacha20poly1305.c",
+    "chacha20poly1305/chacha_merged.c",
+    "chacha20poly1305/poly1305-donna.c",
+    "chacha20poly1305/rfc7539.c",
+    "rc4.c",
+    "nem.c",
+    "segwit_addr.c",
+    "cash_addr.c",
+    "memzero.c",
+    "shamir.c",
+    "hmac_drbg.c",
+    "rfc6979.c",
+    "slip39.c",
+    "schnorr.c",
 ];
-
-#[cfg(feature = "generate-bindings")]
-const OPT_HEADERS: &[&str] = &["options"];
-
 const DEFINITIONS: &[(&str, Option<&str>)] = &[
     ("USE_ETHEREUM", Some("1")),
     ("USE_GRAPHENE", Some("1")),
@@ -75,34 +71,28 @@ const DEFINITIONS: &[(&str, Option<&str>)] = &[
 ];
 
 fn main() {
+    println!("cargo:rerun-if-changed=wrapper.h");
     println!("cargo:rerun-if-changed={}", BASE_DIR);
     if cfg!(feature = "update-bindings") {
         println!("cargo:rerun-if-changed=generated");
     }
 
-    // let openssl = pkg_config::probe_library("openssl").unwrap();
-
     let mut builder = cc::Build::new();
     for &file in SRC_LIST {
-        builder.file(&format!("{}/{}.c", BASE_DIR, file));
+        builder.file(&format!("{}/{}", BASE_DIR, file));
     }
     for &(var, val) in DEFINITIONS {
         builder.define(var, val);
     }
     builder
         .include("./trezor-firmware/crypto")
+        .flag("-std=gnu99")
         .opt_level(3)
         .compile("trezor-crypto");
 
     #[cfg(feature = "generate-bindings")]
     {
         let mut builder = bindgen::Builder::default();
-        for &file in SRC_LIST.into_iter().chain(OPT_HEADERS.into_iter()) {
-            let filename = format!("{}/{}.h", BASE_DIR, file);
-            if std::path::Path::new(&filename).exists() {
-                builder = builder.header(filename);
-            }
-        }
         for &(var, val) in DEFINITIONS {
             if let Some(val) = val {
                 builder = builder.clang_arg(format!("-D{}={}", var, val));
@@ -111,7 +101,9 @@ fn main() {
             }
         }
         let bindings = builder
+            .clang_arg("-std=gnu99")
             .clang_arg(format!("-I{}", BASE_DIR))
+            .header("wrapper.h")
             .generate()
             .expect("unable to generate bindings");
 
