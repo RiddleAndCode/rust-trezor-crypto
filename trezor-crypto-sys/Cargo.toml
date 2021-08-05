@@ -3,4 +3,15 @@ name = "trezor-crypto-sys"
 version = "0.1.0"
 edition = "2018"
 
-[dependencies]
+[features]
+default = []
+update-bindings = ["generate-bindings"]
+generate-bindings = ["bindgen"]
+
+[build-dependencies]
+bindgen = { version = "0.59.0", optional = true }
+pkg-config = "0.3.19"
+cc = "1.0.59"
+
+[dev-dependencies]
+hex = "0.4.3"

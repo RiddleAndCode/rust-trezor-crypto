@@ -1,0 +1,3 @@
+[submodule "trezor-crypto-sys/trezor-firmware"]
+	path = trezor-crypto-sys/trezor-firmware
+	url = https://github.com/trezor/trezor-firmware.git
