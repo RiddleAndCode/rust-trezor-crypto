@@ -88,7 +88,7 @@ trait EcdsaCurveExt: EcdsaCurve {
                 None,
             )
         };
-        if res == 1 {
+        if res == 0 {
             Some((sig, by))
         } else {
             None
@@ -260,6 +260,7 @@ impl ops::Deref for RecoverableSignature {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::hasher::*;
 
     fn secp256k1_public_key_test_vector(
         priv_key_hex: impl AsRef<str>,
@@ -343,6 +344,33 @@ mod tests {
             "C9AFA9D845BA75166B5C215767B1D6934E50C3DB36E89B127B8A622B120F6721",
             "60FED4BA255A9D31C961EB74C6356D68C049B8923B61FA6CE669622E60F29FB6",
             "7903FE1008B8BC99A41AE9E95628BC64F2F1B20C2D7E9F5177A3C294D4462299",
+        )
+    }
+
+    fn nist256p1_signature_test_vector(
+        priv_key_hex: impl AsRef<str>,
+        message: impl AsRef<[u8]>,
+        r_hex: impl AsRef<str>,
+        s_hex: impl AsRef<str>,
+    ) {
+        let priv_key =
+            EcdsaPrivateKey::<Nist256p1>::from_slice(&hex::decode(priv_key_hex.as_ref()).unwrap())
+                .unwrap();
+        let digest = digest::<Sha2, _>(message);
+        let sig = priv_key.sign_digest(&digest).unwrap();
+        let sig = sig.serialize();
+        println!("{:?}", hex::encode(&sig));
+        assert_eq!(hex::encode(&sig[..32]), r_hex.as_ref().to_lowercase());
+        assert_eq!(hex::encode(&sig[32..]), s_hex.as_ref().to_lowercase());
+    }
+
+    #[test]
+    fn nist256p1_signature_test_vectors() {
+        nist256p1_signature_test_vector(
+            "C9AFA9D845BA75166B5C215767B1D6934E50C3DB36E89B127B8A622B120F6721",
+            b"test",
+            "F1ABB023518351CD71D881567B1EA663ED3EFCF6C5132B354F28D3B0B7D38367",
+            "019F4113742A2B14BD25926B49C649155F267E60D3814B4C0CC84250E46F0083",
         )
     }
 }
