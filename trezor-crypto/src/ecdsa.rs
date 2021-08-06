@@ -13,6 +13,7 @@ lazy_static! {
     static ref ECDSA_CURVE_LOCK: Mutex<()> = Mutex::new(());
 }
 
+#[doc(hidden)]
 pub struct EcdsaCurveLock {
     curve: &'static sys::ecdsa_curve,
     _lock: MutexGuard<'static, ()>,
@@ -65,7 +66,21 @@ trait EcdsaCurveExt: EcdsaCurve {
             None
         }
     }
-    fn read_public_key(pub_key: &[u8; ECDSA_PUBKEY_COMPRESSED_LEN]) -> Option<sys::curve_point> {
+    fn read_public_key(pub_key: &[u8]) -> Option<sys::curve_point> {
+        let key_len = pub_key.len();
+        if key_len < 1 {
+            return None;
+        }
+        let expected_key_len = match pub_key[0] {
+            0x02 | 0x03 => ECDSA_PUBKEY_COMPRESSED_LEN,
+            0x04 => ECDSA_PUBKEY_UNCOMPRESSED_LEN,
+            _ => {
+                return None;
+            }
+        };
+        if key_len != expected_key_len {
+            return None;
+        }
         let mut point;
         let res = unsafe {
             point = mem::zeroed();
@@ -211,19 +226,20 @@ pub struct EcdsaPublicKey<C: EcdsaCurve> {
 }
 
 impl<C: EcdsaCurve> EcdsaPublicKey<C> {
+    pub fn from_slice(slice: &[u8]) -> Option<Self> {
+        C::read_public_key(slice).map(|point| {
+            let mut out = [0; ECDSA_PUBKEY_COMPRESSED_LEN];
+            unsafe {
+                sys::compress_coords(&point, out.as_mut_ptr());
+                Self::from_bytes_unchecked(out)
+            }
+        })
+    }
     #[inline]
     pub unsafe fn from_bytes_unchecked(bytes: [u8; ECDSA_PUBKEY_COMPRESSED_LEN]) -> Self {
         Self {
             bytes,
             curve: PhantomData,
-        }
-    }
-    pub fn from_bytes(bytes: [u8; ECDSA_PUBKEY_COMPRESSED_LEN]) -> Option<Self> {
-        let pub_key = unsafe { Self::from_bytes_unchecked(bytes) };
-        if pub_key.is_valid() {
-            Some(pub_key)
-        } else {
-            None
         }
     }
     pub fn is_valid(&self) -> bool {
@@ -273,7 +289,6 @@ impl RecoverableSignature {
             recovery_byte,
         }
     }
-
     pub fn recovery_byte(&self) -> u8 {
         self.recovery_byte
     }
@@ -290,7 +305,6 @@ impl ops::Deref for RecoverableSignature {
 mod tests {
     use super::*;
     use crate::hasher::*;
-    use std::sync::atomic;
 
     fn secp256k1_public_key_test_vector(
         priv_key_hex: impl AsRef<str>,
@@ -333,6 +347,22 @@ mod tests {
             "1B22644A7BE026548810C378D0B2994EEFA6D2B9881803CB02CEFF865287D1B9",
             "F73C65EAD01C5126F28F442D087689BFA08E12763E0CEC1D35B01751FD735ED3",
             "F449A8376906482A84ED01479BD18882B919C140D638307F0C0934BA12590BDE",
+        );
+    }
+
+    #[test]
+    fn secp256k1_public_key_from_slice() {
+        let public_key_compressed =
+            hex::decode("02F73C65EAD01C5126F28F442D087689BFA08E12763E0CEC1D35B01751FD735ED3")
+                .unwrap();
+        let public_key_uncompressed = hex::decode("04F73C65EAD01C5126F28F442D087689BFA08E12763E0CEC1D35B01751FD735ED3F449A8376906482A84ED01479BD18882B919C140D638307F0C0934BA12590BDE").unwrap();
+        let public_key1 = EcdsaPublicKey::<Secp256k1>::from_slice(&public_key_compressed).unwrap();
+        let public_key2 =
+            EcdsaPublicKey::<Secp256k1>::from_slice(&public_key_uncompressed).unwrap();
+        assert_eq!(public_key1.serialize(), public_key2.serialize());
+        assert_eq!(
+            public_key1.serialize_uncompressed(),
+            public_key2.serialize_uncompressed()
         );
     }
 

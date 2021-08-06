@@ -30,3 +30,15 @@ impl EcdsaCurveLock {
         }
     }
 }
+
+pub fn is_canonical_ethereum(sig: &RecoverableSignature) -> bool {
+    return (sig.recovery_byte() & 2) == 0;
+}
+
+pub fn is_canonical_eos(sig: &RecoverableSignature) -> bool {
+    let signature = sig.serialize();
+    return (signature[0] & 0x80) == 0
+        && !(signature[0] == 0 && (signature[1] & 0x80) == 0)
+        && (signature[32] & 0x80) == 0
+        && !(signature[32] == 0 && (signature[33] & 0x80) == 0);
+}
