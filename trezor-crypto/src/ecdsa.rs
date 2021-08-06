@@ -32,12 +32,6 @@ impl ops::Deref for EcdsaCurveLock {
     }
 }
 
-impl ops::Drop for EcdsaCurveLock {
-    fn drop(&mut self) {
-        self.set_is_canonical_func(None)
-    }
-}
-
 pub trait EcdsaCurve {
     #[doc(hidden)]
     unsafe fn curve_lock() -> EcdsaCurveLock;
@@ -146,6 +140,63 @@ trait EcdsaCurveExt: EcdsaCurve {
             None
         }
     }
+    fn verify_digest(
+        pub_key: &[u8; ECDSA_PUBKEY_COMPRESSED_LEN],
+        sig: &[u8; ECDSA_SIG_LEN],
+        digest: &[u8; DIGEST_LEN],
+    ) -> bool {
+        let res = unsafe {
+            let curve = Self::curve_lock();
+            sys::ecdsa_verify_digest(
+                curve.as_ptr(),
+                pub_key.as_ptr(),
+                sig.as_ptr(),
+                digest.as_ptr(),
+            )
+        };
+        res == 0
+    }
+    fn verify(
+        pub_key: &[u8; ECDSA_PUBKEY_COMPRESSED_LEN],
+        hasher_type: sys::HasherType,
+        sig: &[u8; ECDSA_SIG_LEN],
+        data: &[u8],
+    ) -> bool {
+        let res = unsafe {
+            let curve = Self::curve_lock();
+            sys::ecdsa_verify(
+                curve.as_ptr(),
+                hasher_type,
+                pub_key.as_ptr(),
+                sig.as_ptr(),
+                data.as_ptr(),
+                data.len() as u32,
+            )
+        };
+        res == 0
+    }
+    // fn recover_pub_from_sig(
+    //     sig: &[u8; ECDSA_SIG_LEN],
+    //     digest: &[u8; DIGEST_LEN],
+    //     recid: u8,
+    // ) -> Option<[u8; ECDSA_PUBKEY_UNCOMPRESSED_LEN]> {
+    //     let mut out = [0; ECDSA_PUBKEY_UNCOMPRESSED_LEN];
+    //     let res = unsafe {
+    //         let curve = Self::curve_lock();
+    //         sys::ecdsa_recover_pub_from_sig(
+    //             curve.as_ptr(),
+    //             out.as_mut_ptr(),
+    //             sig.as_ptr(),
+    //             digest.as_ptr(),
+    //             recid as i32,
+    //         )
+    //     };
+    //     if res == 0 {
+    //         Some(out)
+    //     } else {
+    //         None
+    //     }
+    // }
 }
 
 impl<T> EcdsaCurveExt for T where T: EcdsaCurve {}
@@ -251,6 +302,21 @@ impl<C: EcdsaCurve> EcdsaPublicKey<C> {
     pub fn serialize_uncompressed(&self) -> [u8; ECDSA_PUBKEY_UNCOMPRESSED_LEN] {
         C::uncompress_public_key(&self.bytes).unwrap()
     }
+    pub fn verify_digest(&self, signature: &Signature, digest: &Digest) -> bool {
+        C::verify_digest(&self.bytes, &signature.serialize(), digest.as_bytes())
+    }
+    pub fn verify<H: HashingAlgorithm, D: AsRef<[u8]>>(
+        &self,
+        signature: &Signature,
+        data: D,
+    ) -> bool {
+        C::verify(
+            &self.bytes,
+            H::hasher_type(),
+            &signature.serialize(),
+            data.as_ref(),
+        )
+    }
 }
 
 pub struct Signature {
@@ -292,6 +358,14 @@ impl RecoverableSignature {
     pub fn recovery_byte(&self) -> u8 {
         self.recovery_byte
     }
+    // pub fn recover_public_key<C: EcdsaCurve>(&self, digest: &Digest) -> Option<EcdsaPublicKey<C>> {
+    //     C::recover_pub_from_sig(
+    //         self.signature.serialize(),
+    //         digest.as_bytes(),
+    //         self.recovery_byte,
+    //     )
+    //     .and_then(|bytes| EcdsaPublicKey::from_slice(&bytes))
+    // }
 }
 
 impl ops::Deref for RecoverableSignature {
@@ -417,14 +491,16 @@ mod tests {
             EcdsaPrivateKey::<Nist256p1>::from_slice(&hex::decode(priv_key_hex.as_ref()).unwrap())
                 .unwrap();
         let digest = digest::<Sha2, _>(message.as_ref());
-        let sig = priv_key.sign_digest(&digest, None).unwrap();
-        let sig = sig.serialize();
-        let sig2 = priv_key.sign::<Sha2, _>(message, None).unwrap();
-        let sig2 = sig2.serialize();
+        let signature = priv_key.sign_digest(&digest, None).unwrap();
+        let sig = signature.serialize();
         assert_eq!(hex::encode(&sig[..32]), r_hex.as_ref().to_lowercase());
         assert_eq!(hex::encode(&sig[32..]), s_hex.as_ref().to_lowercase());
-        assert_eq!(hex::encode(&sig2[..32]), r_hex.as_ref().to_lowercase());
-        assert_eq!(hex::encode(&sig2[32..]), s_hex.as_ref().to_lowercase());
+        let signature2 = priv_key.sign::<Sha2, _>(message.as_ref(), None).unwrap();
+        assert_eq!(signature.serialize(), signature2.serialize());
+        let pub_key = priv_key.public_key();
+        assert!(pub_key.verify::<Sha2, _>(&signature, message));
+        assert!(pub_key.verify_digest(&signature, &digest));
+        // let pub_key2 = signature.recover_public_key::<Secp256k1>(&digest).unwrap();
     }
 
     #[test]
