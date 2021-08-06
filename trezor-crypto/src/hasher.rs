@@ -1,4 +1,3 @@
-use core::marker::PhantomData;
 use core::mem;
 
 pub const DIGEST_LEN: usize = 32;
@@ -137,8 +136,24 @@ mod tests {
             "41c0dba2a9d6240849100376a8235e2c82e1b9998a999e21db32dd97496d3376",
         );
         sha3_test_vector(
-        b"abcdefghbcdefghicdefghijdefghijkefghijklfghijklmghijklmnhijklmnoijklmnopjklmnopqklmnopqrlmnopqrsmnopqrstnopqrstu",
-        "916f6061fe879741ca6469b43971dfdb28b1a32dc36cb3254e812be27aad1d18"
-    );
+            b"abcdefghbcdefghicdefghijdefghijkefghijklfghijklmghijklmnhijklmnoijklmnopjklmnopqklmnopqrlmnopqrsmnopqrstnopqrstu",
+            "916f6061fe879741ca6469b43971dfdb28b1a32dc36cb3254e812be27aad1d18"
+        );
+    }
+
+    #[test]
+    fn sha3_256_multi_threaded() {
+        let mut children = Vec::new();
+        for _ in 0..10 {
+            children.push(std::thread::spawn(|| {
+                sha3_test_vector(
+                    b"abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq",
+                    "41c0dba2a9d6240849100376a8235e2c82e1b9998a999e21db32dd97496d3376",
+                );
+            }))
+        }
+        for child in children {
+            child.join().unwrap();
+        }
     }
 }

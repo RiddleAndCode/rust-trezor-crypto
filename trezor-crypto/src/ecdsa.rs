@@ -1,21 +1,47 @@
 use crate::hasher::{Digest, HashingAlgorithm, DIGEST_LEN};
 use core::marker::PhantomData;
 use core::{mem, ops};
+use std::sync::{Mutex, MutexGuard};
 
 pub const ECDSA_PUBKEY_COMPRESSED_LEN: usize = 33;
 pub const ECDSA_PUBKEY_UNCOMPRESSED_LEN: usize = 65;
 pub const ECDSA_PRIVKEY_LEN: usize = 32;
 pub const ECDSA_SIG_LEN: usize = 64;
 
+lazy_static! {
+    static ref ECDSA_CURVE_LOCK: Mutex<()> = Mutex::new(());
+}
+
+pub struct EcdsaCurveLock {
+    curve: &'static sys::ecdsa_curve,
+    _lock: MutexGuard<'static, ()>,
+}
+
+impl EcdsaCurveLock {
+    unsafe fn as_ptr(&self) -> *const sys::ecdsa_curve {
+        self.curve
+    }
+}
+
+impl ops::Deref for EcdsaCurveLock {
+    type Target = sys::ecdsa_curve;
+    fn deref(&self) -> &Self::Target {
+        self.curve
+    }
+}
+
 pub trait EcdsaCurve {
     #[doc(hidden)]
-    unsafe fn curve() -> &'static sys::ecdsa_curve;
+    unsafe fn curve_lock() -> EcdsaCurveLock;
 }
 
 trait EcdsaCurveExt: EcdsaCurve {
     fn get_public_key(priv_key: &[u8; ECDSA_PRIVKEY_LEN]) -> [u8; ECDSA_PUBKEY_COMPRESSED_LEN] {
         let mut out = [0; ECDSA_PUBKEY_COMPRESSED_LEN];
-        unsafe { sys::ecdsa_get_public_key33(Self::curve(), priv_key.as_ptr(), out.as_mut_ptr()) }
+        unsafe {
+            let curve = Self::curve_lock();
+            sys::ecdsa_get_public_key33(curve.as_ptr(), priv_key.as_ptr(), out.as_mut_ptr())
+        }
         out
     }
     fn uncompress_public_key(
@@ -23,7 +49,8 @@ trait EcdsaCurveExt: EcdsaCurve {
     ) -> Option<[u8; ECDSA_PUBKEY_UNCOMPRESSED_LEN]> {
         let mut out = [0; ECDSA_PUBKEY_UNCOMPRESSED_LEN];
         let res = unsafe {
-            sys::ecdsa_uncompress_pubkey(Self::curve(), pub_key.as_ptr(), out.as_mut_ptr())
+            let curve = Self::curve_lock();
+            sys::ecdsa_uncompress_pubkey(curve.as_ptr(), pub_key.as_ptr(), out.as_mut_ptr())
         };
         if res == 1 {
             Some(out)
@@ -35,7 +62,8 @@ trait EcdsaCurveExt: EcdsaCurve {
         let mut point;
         let res = unsafe {
             point = mem::zeroed();
-            sys::ecdsa_read_pubkey(Self::curve(), pub_key.as_ptr(), &mut point)
+            let curve = Self::curve_lock();
+            sys::ecdsa_read_pubkey(curve.as_ptr(), pub_key.as_ptr(), &mut point)
         };
         if res == 1 {
             Some(point)
@@ -50,8 +78,9 @@ trait EcdsaCurveExt: EcdsaCurve {
         let mut sig = [0; ECDSA_SIG_LEN];
         let mut by = 0;
         let res = unsafe {
+            let curve = Self::curve_lock();
             sys::ecdsa_sign_digest(
-                Self::curve(),
+                curve.as_ptr(),
                 priv_key.as_ptr(),
                 digest.as_ptr(),
                 sig.as_mut_ptr(),
@@ -73,8 +102,9 @@ trait EcdsaCurveExt: EcdsaCurve {
         let mut sig = [0; ECDSA_SIG_LEN];
         let mut by = 0;
         let res = unsafe {
+            let curve = Self::curve_lock();
             sys::ecdsa_sign(
-                Self::curve(),
+                curve.as_ptr(),
                 hasher_type,
                 priv_key.as_ptr(),
                 data.as_ptr(),
@@ -100,8 +130,11 @@ macro_rules! ecdsa_curve {
         pub struct $name;
         impl EcdsaCurve for $name {
             #[inline]
-            unsafe fn curve() -> &'static sys::ecdsa_curve {
-                &$ty
+            unsafe fn curve_lock() -> EcdsaCurveLock {
+                EcdsaCurveLock {
+                    curve: &$ty,
+                    _lock: ECDSA_CURVE_LOCK.lock().unwrap(),
+                }
             }
         }
     };
