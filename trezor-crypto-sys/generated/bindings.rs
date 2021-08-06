@@ -10,20 +10,9 @@ pub const BIP32_CACHE_MAXDEPTH: u32 = 8;
 pub const USE_BIP32_25519_CURVES: u32 = 1;
 pub const USE_BIP39_CACHE: u32 = 1;
 pub const BIP39_CACHE_SIZE: u32 = 4;
-pub const USE_ETHEREUM: u32 = 0;
-pub const USE_GRAPHENE: u32 = 0;
-pub const USE_NEM: u32 = 0;
-pub const USE_MONERO: u32 = 0;
-pub const USE_CARDANO: u32 = 0;
-pub const USE_KECCAK: u32 = 1;
-pub const true_: u32 = 1;
-pub const false_: u32 = 0;
-pub const __bool_true_false_are_defined: u32 = 1;
-pub const _STDINT_H: u32 = 1;
 pub const _FEATURES_H: u32 = 1;
 pub const _DEFAULT_SOURCE: u32 = 1;
 pub const __GLIBC_USE_ISOC2X: u32 = 0;
-pub const __USE_ISOC11: u32 = 1;
 pub const __USE_ISOC99: u32 = 1;
 pub const __USE_ISOC95: u32 = 1;
 pub const __USE_POSIX_IMPLICITLY: u32 = 1;
@@ -39,7 +28,7 @@ pub const _ATFILE_SOURCE: u32 = 1;
 pub const __USE_MISC: u32 = 1;
 pub const __USE_ATFILE: u32 = 1;
 pub const __USE_FORTIFY_LEVEL: u32 = 0;
-pub const __GLIBC_USE_DEPRECATED_GETS: u32 = 0;
+pub const __GLIBC_USE_DEPRECATED_GETS: u32 = 1;
 pub const __GLIBC_USE_DEPRECATED_SCANF: u32 = 0;
 pub const _STDC_PREDEF_H: u32 = 1;
 pub const __STDC_IEC_559__: u32 = 1;
@@ -61,6 +50,41 @@ pub const __GLIBC_USE_IEC_60559_BFP_EXT_C2X: u32 = 0;
 pub const __GLIBC_USE_IEC_60559_FUNCS_EXT: u32 = 0;
 pub const __GLIBC_USE_IEC_60559_FUNCS_EXT_C2X: u32 = 0;
 pub const __GLIBC_USE_IEC_60559_TYPES_EXT: u32 = 0;
+pub const _STDLIB_H: u32 = 1;
+pub const WNOHANG: u32 = 1;
+pub const WUNTRACED: u32 = 2;
+pub const WSTOPPED: u32 = 2;
+pub const WEXITED: u32 = 4;
+pub const WCONTINUED: u32 = 8;
+pub const WNOWAIT: u32 = 16777216;
+pub const __WNOTHREAD: u32 = 536870912;
+pub const __WALL: u32 = 1073741824;
+pub const __WCLONE: u32 = 2147483648;
+pub const __ENUM_IDTYPE_T: u32 = 1;
+pub const __W_CONTINUED: u32 = 65535;
+pub const __WCOREFLAG: u32 = 128;
+pub const __HAVE_FLOAT128: u32 = 0;
+pub const __HAVE_DISTINCT_FLOAT128: u32 = 0;
+pub const __HAVE_FLOAT64X: u32 = 1;
+pub const __HAVE_FLOAT64X_LONG_DOUBLE: u32 = 1;
+pub const __HAVE_FLOAT16: u32 = 0;
+pub const __HAVE_FLOAT32: u32 = 1;
+pub const __HAVE_FLOAT64: u32 = 1;
+pub const __HAVE_FLOAT32X: u32 = 1;
+pub const __HAVE_FLOAT128X: u32 = 0;
+pub const __HAVE_DISTINCT_FLOAT16: u32 = 0;
+pub const __HAVE_DISTINCT_FLOAT32: u32 = 0;
+pub const __HAVE_DISTINCT_FLOAT64: u32 = 0;
+pub const __HAVE_DISTINCT_FLOAT32X: u32 = 0;
+pub const __HAVE_DISTINCT_FLOAT64X: u32 = 0;
+pub const __HAVE_DISTINCT_FLOAT128X: u32 = 0;
+pub const __HAVE_FLOATN_NOT_TYPEDEF: u32 = 0;
+pub const __ldiv_t_defined: u32 = 1;
+pub const __lldiv_t_defined: u32 = 1;
+pub const RAND_MAX: u32 = 2147483647;
+pub const EXIT_FAILURE: u32 = 1;
+pub const EXIT_SUCCESS: u32 = 0;
+pub const _SYS_TYPES_H: u32 = 1;
 pub const _BITS_TYPES_H: u32 = 1;
 pub const __TIMESIZE: u32 = 64;
 pub const _BITS_TYPESIZES_H: u32 = 1;
@@ -70,8 +94,50 @@ pub const __RLIM_T_MATCHES_RLIM64_T: u32 = 1;
 pub const __STATFS_MATCHES_STATFS64: u32 = 1;
 pub const __FD_SETSIZE: u32 = 1024;
 pub const _BITS_TIME64_H: u32 = 1;
-pub const _BITS_WCHAR_H: u32 = 1;
+pub const __clock_t_defined: u32 = 1;
+pub const __clockid_t_defined: u32 = 1;
+pub const __time_t_defined: u32 = 1;
+pub const __timer_t_defined: u32 = 1;
 pub const _BITS_STDINT_INTN_H: u32 = 1;
+pub const __BIT_TYPES_DEFINED__: u32 = 1;
+pub const _ENDIAN_H: u32 = 1;
+pub const _BITS_ENDIAN_H: u32 = 1;
+pub const __LITTLE_ENDIAN: u32 = 1234;
+pub const __BIG_ENDIAN: u32 = 4321;
+pub const __PDP_ENDIAN: u32 = 3412;
+pub const _BITS_ENDIANNESS_H: u32 = 1;
+pub const __BYTE_ORDER: u32 = 1234;
+pub const __FLOAT_WORD_ORDER: u32 = 1234;
+pub const LITTLE_ENDIAN: u32 = 1234;
+pub const BIG_ENDIAN: u32 = 4321;
+pub const PDP_ENDIAN: u32 = 3412;
+pub const BYTE_ORDER: u32 = 1234;
+pub const _BITS_BYTESWAP_H: u32 = 1;
+pub const _BITS_UINTN_IDENTITY_H: u32 = 1;
+pub const _SYS_SELECT_H: u32 = 1;
+pub const __FD_ZERO_STOS: &'static [u8; 6usize] = b"stosq\0";
+pub const __sigset_t_defined: u32 = 1;
+pub const __timeval_defined: u32 = 1;
+pub const _STRUCT_TIMESPEC: u32 = 1;
+pub const FD_SETSIZE: u32 = 1024;
+pub const _BITS_PTHREADTYPES_COMMON_H: u32 = 1;
+pub const _THREAD_SHARED_TYPES_H: u32 = 1;
+pub const _BITS_PTHREADTYPES_ARCH_H: u32 = 1;
+pub const __SIZEOF_PTHREAD_MUTEX_T: u32 = 40;
+pub const __SIZEOF_PTHREAD_ATTR_T: u32 = 56;
+pub const __SIZEOF_PTHREAD_RWLOCK_T: u32 = 56;
+pub const __SIZEOF_PTHREAD_BARRIER_T: u32 = 32;
+pub const __SIZEOF_PTHREAD_MUTEXATTR_T: u32 = 4;
+pub const __SIZEOF_PTHREAD_COND_T: u32 = 48;
+pub const __SIZEOF_PTHREAD_CONDATTR_T: u32 = 4;
+pub const __SIZEOF_PTHREAD_RWLOCKATTR_T: u32 = 8;
+pub const __SIZEOF_PTHREAD_BARRIERATTR_T: u32 = 4;
+pub const _THREAD_MUTEX_INTERNAL_H: u32 = 1;
+pub const __PTHREAD_MUTEX_HAVE_PREV: u32 = 1;
+pub const __have_pthread_attr_t: u32 = 1;
+pub const _ALLOCA_H: u32 = 1;
+pub const _STDINT_H: u32 = 1;
+pub const _BITS_WCHAR_H: u32 = 1;
 pub const _BITS_STDINT_UINTN_H: u32 = 1;
 pub const INT8_MIN: i32 = -128;
 pub const INT16_MIN: i32 = -32768;
@@ -110,6 +176,62 @@ pub const SIG_ATOMIC_MAX: u32 = 2147483647;
 pub const SIZE_MAX: i32 = -1;
 pub const WINT_MIN: u32 = 0;
 pub const WINT_MAX: u32 = 4294967295;
+pub const AES_BLOCK_SIZE_P2: u32 = 4;
+pub const AES_BLOCK_SIZE: u32 = 16;
+pub const N_COLS: u32 = 4;
+pub const KS_LENGTH: u32 = 60;
+pub const IS_BIG_ENDIAN: u32 = 4321;
+pub const IS_LITTLE_ENDIAN: u32 = 1234;
+pub const PLATFORM_BYTE_ORDER: u32 = 1234;
+pub const ENCRYPTION_IN_C: u32 = 1;
+pub const DECRYPTION_IN_C: u32 = 2;
+pub const ENC_KEYING_IN_C: u32 = 4;
+pub const DEC_KEYING_IN_C: u32 = 8;
+pub const NO_TABLES: u32 = 0;
+pub const ONE_TABLE: u32 = 1;
+pub const FOUR_TABLES: u32 = 4;
+pub const NONE: u32 = 0;
+pub const PARTIAL: u32 = 1;
+pub const FULL: u32 = 2;
+pub const ALGORITHM_BYTE_ORDER: u32 = 1234;
+pub const ENC_UNROLL: u32 = 2;
+pub const DEC_UNROLL: u32 = 2;
+pub const ENC_ROUND: u32 = 4;
+pub const LAST_ENC_ROUND: u32 = 4;
+pub const DEC_ROUND: u32 = 4;
+pub const LAST_DEC_ROUND: u32 = 4;
+pub const KEY_SCHED: u32 = 4;
+pub const EFUNCS_IN_C: u32 = 5;
+pub const DFUNCS_IN_C: u32 = 10;
+pub const FUNCS_IN_C: u32 = 15;
+pub const RC_LENGTH: u32 = 10;
+pub const WPOLY: u32 = 283;
+pub const BPOLY: u32 = 27;
+pub const gf_c1: u32 = 2155905152;
+pub const gf_c2: u32 = 2139062143;
+pub const _STRING_H: u32 = 1;
+pub const _BITS_TYPES_LOCALE_T_H: u32 = 1;
+pub const _BITS_TYPES___LOCALE_T_H: u32 = 1;
+pub const _STRINGS_H: u32 = 1;
+pub const bignum256modm_bits_per_limb: u32 = 30;
+pub const bignum256modm_limb_size: u32 = 9;
+pub const sha3_224_hash_size: u32 = 28;
+pub const sha3_256_hash_size: u32 = 32;
+pub const sha3_384_hash_size: u32 = 48;
+pub const sha3_512_hash_size: u32 = 64;
+pub const sha3_max_permutation_size: u32 = 25;
+pub const sha3_max_rate_in_qwords: u32 = 24;
+pub const SHA3_224_BLOCK_LENGTH: u32 = 144;
+pub const SHA3_256_BLOCK_LENGTH: u32 = 136;
+pub const SHA3_384_BLOCK_LENGTH: u32 = 104;
+pub const SHA3_512_BLOCK_LENGTH: u32 = 72;
+pub const SHA3_224_DIGEST_LENGTH: u32 = 28;
+pub const SHA3_256_DIGEST_LENGTH: u32 = 32;
+pub const SHA3_384_DIGEST_LENGTH: u32 = 48;
+pub const SHA3_512_DIGEST_LENGTH: u32 = 64;
+pub const true_: u32 = 1;
+pub const false_: u32 = 0;
+pub const __bool_true_false_are_defined: u32 = 1;
 pub const BN_LIMBS: u32 = 9;
 pub const BN_BITS_PER_LIMB: u32 = 29;
 pub const BN_BASE: u32 = 536870912;
@@ -127,113 +249,17 @@ pub const SHA256_DIGEST_STRING_LENGTH: u32 = 65;
 pub const SHA512_BLOCK_LENGTH: u32 = 128;
 pub const SHA512_DIGEST_LENGTH: u32 = 64;
 pub const SHA512_DIGEST_STRING_LENGTH: u32 = 129;
-pub const LITTLE_ENDIAN: u32 = 1234;
-pub const BIG_ENDIAN: u32 = 4321;
-pub const BYTE_ORDER: u32 = 1234;
-pub const sha3_224_hash_size: u32 = 28;
-pub const sha3_256_hash_size: u32 = 32;
-pub const sha3_384_hash_size: u32 = 48;
-pub const sha3_512_hash_size: u32 = 64;
-pub const sha3_max_permutation_size: u32 = 25;
-pub const sha3_max_rate_in_qwords: u32 = 24;
-pub const SHA3_224_BLOCK_LENGTH: u32 = 144;
-pub const SHA3_256_BLOCK_LENGTH: u32 = 136;
-pub const SHA3_384_BLOCK_LENGTH: u32 = 104;
-pub const SHA3_512_BLOCK_LENGTH: u32 = 72;
-pub const SHA3_224_DIGEST_LENGTH: u32 = 28;
-pub const SHA3_256_DIGEST_LENGTH: u32 = 32;
-pub const SHA3_384_DIGEST_LENGTH: u32 = 48;
-pub const SHA3_512_DIGEST_LENGTH: u32 = 64;
 pub const HASHER_DIGEST_LENGTH: u32 = 32;
 pub const MAX_ADDR_RAW_SIZE: u32 = 65;
 pub const MAX_ADDR_SIZE: u32 = 130;
 pub const MAX_WIF_RAW_SIZE: u32 = 37;
 pub const MAX_WIF_SIZE: u32 = 57;
-pub const _STDLIB_H: u32 = 1;
-pub const WNOHANG: u32 = 1;
-pub const WUNTRACED: u32 = 2;
-pub const WSTOPPED: u32 = 2;
-pub const WEXITED: u32 = 4;
-pub const WCONTINUED: u32 = 8;
-pub const WNOWAIT: u32 = 16777216;
-pub const __WNOTHREAD: u32 = 536870912;
-pub const __WALL: u32 = 1073741824;
-pub const __WCLONE: u32 = 2147483648;
-pub const __ENUM_IDTYPE_T: u32 = 1;
-pub const __W_CONTINUED: u32 = 65535;
-pub const __WCOREFLAG: u32 = 128;
-pub const __HAVE_FLOAT128: u32 = 0;
-pub const __HAVE_DISTINCT_FLOAT128: u32 = 0;
-pub const __HAVE_FLOAT64X: u32 = 1;
-pub const __HAVE_FLOAT64X_LONG_DOUBLE: u32 = 1;
-pub const __HAVE_FLOAT16: u32 = 0;
-pub const __HAVE_FLOAT32: u32 = 1;
-pub const __HAVE_FLOAT64: u32 = 1;
-pub const __HAVE_FLOAT32X: u32 = 1;
-pub const __HAVE_FLOAT128X: u32 = 0;
-pub const __HAVE_DISTINCT_FLOAT16: u32 = 0;
-pub const __HAVE_DISTINCT_FLOAT32: u32 = 0;
-pub const __HAVE_DISTINCT_FLOAT64: u32 = 0;
-pub const __HAVE_DISTINCT_FLOAT32X: u32 = 0;
-pub const __HAVE_DISTINCT_FLOAT64X: u32 = 0;
-pub const __HAVE_DISTINCT_FLOAT128X: u32 = 0;
-pub const __HAVE_FLOATN_NOT_TYPEDEF: u32 = 0;
-pub const __ldiv_t_defined: u32 = 1;
-pub const __lldiv_t_defined: u32 = 1;
-pub const RAND_MAX: u32 = 2147483647;
-pub const EXIT_FAILURE: u32 = 1;
-pub const EXIT_SUCCESS: u32 = 0;
-pub const _SYS_TYPES_H: u32 = 1;
-pub const __clock_t_defined: u32 = 1;
-pub const __clockid_t_defined: u32 = 1;
-pub const __time_t_defined: u32 = 1;
-pub const __timer_t_defined: u32 = 1;
-pub const __BIT_TYPES_DEFINED__: u32 = 1;
-pub const _ENDIAN_H: u32 = 1;
-pub const _BITS_ENDIAN_H: u32 = 1;
-pub const __LITTLE_ENDIAN: u32 = 1234;
-pub const __BIG_ENDIAN: u32 = 4321;
-pub const __PDP_ENDIAN: u32 = 3412;
-pub const _BITS_ENDIANNESS_H: u32 = 1;
-pub const __BYTE_ORDER: u32 = 1234;
-pub const __FLOAT_WORD_ORDER: u32 = 1234;
-pub const PDP_ENDIAN: u32 = 3412;
-pub const _BITS_BYTESWAP_H: u32 = 1;
-pub const _BITS_UINTN_IDENTITY_H: u32 = 1;
-pub const _SYS_SELECT_H: u32 = 1;
-pub const __FD_ZERO_STOS: &'static [u8; 6usize] = b"stosq\0";
-pub const __sigset_t_defined: u32 = 1;
-pub const __timeval_defined: u32 = 1;
-pub const _STRUCT_TIMESPEC: u32 = 1;
-pub const FD_SETSIZE: u32 = 1024;
-pub const _BITS_PTHREADTYPES_COMMON_H: u32 = 1;
-pub const _THREAD_SHARED_TYPES_H: u32 = 1;
-pub const _BITS_PTHREADTYPES_ARCH_H: u32 = 1;
-pub const __SIZEOF_PTHREAD_MUTEX_T: u32 = 40;
-pub const __SIZEOF_PTHREAD_ATTR_T: u32 = 56;
-pub const __SIZEOF_PTHREAD_RWLOCK_T: u32 = 56;
-pub const __SIZEOF_PTHREAD_BARRIER_T: u32 = 32;
-pub const __SIZEOF_PTHREAD_MUTEXATTR_T: u32 = 4;
-pub const __SIZEOF_PTHREAD_COND_T: u32 = 48;
-pub const __SIZEOF_PTHREAD_CONDATTR_T: u32 = 4;
-pub const __SIZEOF_PTHREAD_RWLOCKATTR_T: u32 = 8;
-pub const __SIZEOF_PTHREAD_BARRIERATTR_T: u32 = 4;
-pub const _THREAD_MUTEX_INTERNAL_H: u32 = 1;
-pub const __PTHREAD_MUTEX_HAVE_PREV: u32 = 1;
-pub const __have_pthread_attr_t: u32 = 1;
-pub const _ALLOCA_H: u32 = 1;
 pub const XPUB_MAXLEN: u32 = 112;
 pub const ADDRESS_MAXLEN: u32 = 39;
 pub const BIP39_WORDS: u32 = 2048;
 pub const BIP39_PBKDF2_ROUNDS: u32 = 2048;
 pub const RIPEMD160_BLOCK_LENGTH: u32 = 64;
 pub const RIPEMD160_DIGEST_LENGTH: u32 = 20;
-pub const _STRING_H: u32 = 1;
-pub const _BITS_TYPES_LOCALE_T_H: u32 = 1;
-pub const _BITS_TYPES___LOCALE_T_H: u32 = 1;
-pub const _STRINGS_H: u32 = 1;
-pub const bignum256modm_bits_per_limb: u32 = 30;
-pub const bignum256modm_limb_size: u32 = 9;
 pub const XMR_ATOMS: u32 = 64;
 pub const ECRYPT_VARIANT: u32 = 1;
 pub const _LIBC_LIMITS_H_: u32 = 1;
@@ -373,1627 +399,6 @@ pub const SHAMIR_MAX_LEN: u32 = 32;
 pub const SCHNORR_SIG_LENGTH: u32 = 64;
 pub type size_t = ::std::os::raw::c_ulong;
 pub type wchar_t = ::std::os::raw::c_int;
-#[repr(C)]
-#[repr(align(16))]
-#[derive(Debug, Copy, Clone)]
-pub struct max_align_t {
-    pub __clang_max_align_nonce1: ::std::os::raw::c_longlong,
-    pub __bindgen_padding_0: u64,
-    pub __clang_max_align_nonce2: u128,
-}
-#[test]
-fn bindgen_test_layout_max_align_t() {
-    assert_eq!(
-        ::std::mem::size_of::<max_align_t>(),
-        32usize,
-        concat!("Size of: ", stringify!(max_align_t))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<max_align_t>(),
-        16usize,
-        concat!("Alignment of ", stringify!(max_align_t))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<max_align_t>())).__clang_max_align_nonce1 as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(max_align_t),
-            "::",
-            stringify!(__clang_max_align_nonce1)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<max_align_t>())).__clang_max_align_nonce2 as *const _ as usize
-        },
-        16usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(max_align_t),
-            "::",
-            stringify!(__clang_max_align_nonce2)
-        )
-    );
-}
-pub type __u_char = ::std::os::raw::c_uchar;
-pub type __u_short = ::std::os::raw::c_ushort;
-pub type __u_int = ::std::os::raw::c_uint;
-pub type __u_long = ::std::os::raw::c_ulong;
-pub type __int8_t = ::std::os::raw::c_schar;
-pub type __uint8_t = ::std::os::raw::c_uchar;
-pub type __int16_t = ::std::os::raw::c_short;
-pub type __uint16_t = ::std::os::raw::c_ushort;
-pub type __int32_t = ::std::os::raw::c_int;
-pub type __uint32_t = ::std::os::raw::c_uint;
-pub type __int64_t = ::std::os::raw::c_long;
-pub type __uint64_t = ::std::os::raw::c_ulong;
-pub type __int_least8_t = __int8_t;
-pub type __uint_least8_t = __uint8_t;
-pub type __int_least16_t = __int16_t;
-pub type __uint_least16_t = __uint16_t;
-pub type __int_least32_t = __int32_t;
-pub type __uint_least32_t = __uint32_t;
-pub type __int_least64_t = __int64_t;
-pub type __uint_least64_t = __uint64_t;
-pub type __quad_t = ::std::os::raw::c_long;
-pub type __u_quad_t = ::std::os::raw::c_ulong;
-pub type __intmax_t = ::std::os::raw::c_long;
-pub type __uintmax_t = ::std::os::raw::c_ulong;
-pub type __dev_t = ::std::os::raw::c_ulong;
-pub type __uid_t = ::std::os::raw::c_uint;
-pub type __gid_t = ::std::os::raw::c_uint;
-pub type __ino_t = ::std::os::raw::c_ulong;
-pub type __ino64_t = ::std::os::raw::c_ulong;
-pub type __mode_t = ::std::os::raw::c_uint;
-pub type __nlink_t = ::std::os::raw::c_ulong;
-pub type __off_t = ::std::os::raw::c_long;
-pub type __off64_t = ::std::os::raw::c_long;
-pub type __pid_t = ::std::os::raw::c_int;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct __fsid_t {
-    pub __val: [::std::os::raw::c_int; 2usize],
-}
-#[test]
-fn bindgen_test_layout___fsid_t() {
-    assert_eq!(
-        ::std::mem::size_of::<__fsid_t>(),
-        8usize,
-        concat!("Size of: ", stringify!(__fsid_t))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<__fsid_t>(),
-        4usize,
-        concat!("Alignment of ", stringify!(__fsid_t))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<__fsid_t>())).__val as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__fsid_t),
-            "::",
-            stringify!(__val)
-        )
-    );
-}
-pub type __clock_t = ::std::os::raw::c_long;
-pub type __rlim_t = ::std::os::raw::c_ulong;
-pub type __rlim64_t = ::std::os::raw::c_ulong;
-pub type __id_t = ::std::os::raw::c_uint;
-pub type __time_t = ::std::os::raw::c_long;
-pub type __useconds_t = ::std::os::raw::c_uint;
-pub type __suseconds_t = ::std::os::raw::c_long;
-pub type __daddr_t = ::std::os::raw::c_int;
-pub type __key_t = ::std::os::raw::c_int;
-pub type __clockid_t = ::std::os::raw::c_int;
-pub type __timer_t = *mut ::std::os::raw::c_void;
-pub type __blksize_t = ::std::os::raw::c_long;
-pub type __blkcnt_t = ::std::os::raw::c_long;
-pub type __blkcnt64_t = ::std::os::raw::c_long;
-pub type __fsblkcnt_t = ::std::os::raw::c_ulong;
-pub type __fsblkcnt64_t = ::std::os::raw::c_ulong;
-pub type __fsfilcnt_t = ::std::os::raw::c_ulong;
-pub type __fsfilcnt64_t = ::std::os::raw::c_ulong;
-pub type __fsword_t = ::std::os::raw::c_long;
-pub type __ssize_t = ::std::os::raw::c_long;
-pub type __syscall_slong_t = ::std::os::raw::c_long;
-pub type __syscall_ulong_t = ::std::os::raw::c_ulong;
-pub type __loff_t = __off64_t;
-pub type __caddr_t = *mut ::std::os::raw::c_char;
-pub type __intptr_t = ::std::os::raw::c_long;
-pub type __socklen_t = ::std::os::raw::c_uint;
-pub type __sig_atomic_t = ::std::os::raw::c_int;
-pub type int_least8_t = __int_least8_t;
-pub type int_least16_t = __int_least16_t;
-pub type int_least32_t = __int_least32_t;
-pub type int_least64_t = __int_least64_t;
-pub type uint_least8_t = __uint_least8_t;
-pub type uint_least16_t = __uint_least16_t;
-pub type uint_least32_t = __uint_least32_t;
-pub type uint_least64_t = __uint_least64_t;
-pub type int_fast8_t = ::std::os::raw::c_schar;
-pub type int_fast16_t = ::std::os::raw::c_long;
-pub type int_fast32_t = ::std::os::raw::c_long;
-pub type int_fast64_t = ::std::os::raw::c_long;
-pub type uint_fast8_t = ::std::os::raw::c_uchar;
-pub type uint_fast16_t = ::std::os::raw::c_ulong;
-pub type uint_fast32_t = ::std::os::raw::c_ulong;
-pub type uint_fast64_t = ::std::os::raw::c_ulong;
-pub type intmax_t = __intmax_t;
-pub type uintmax_t = __uintmax_t;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct bignum256 {
-    pub val: [u32; 9usize],
-}
-#[test]
-fn bindgen_test_layout_bignum256() {
-    assert_eq!(
-        ::std::mem::size_of::<bignum256>(),
-        36usize,
-        concat!("Size of: ", stringify!(bignum256))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<bignum256>(),
-        4usize,
-        concat!("Alignment of ", stringify!(bignum256))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<bignum256>())).val as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(bignum256),
-            "::",
-            stringify!(val)
-        )
-    );
-}
-extern "C" {
-    pub fn bn_read_be(in_number: *const u8, out_number: *mut bignum256);
-}
-extern "C" {
-    pub fn bn_write_be(in_number: *const bignum256, out_number: *mut u8);
-}
-extern "C" {
-    pub fn bn_read_le(in_number: *const u8, out_number: *mut bignum256);
-}
-extern "C" {
-    pub fn bn_write_le(in_number: *const bignum256, out_number: *mut u8);
-}
-extern "C" {
-    pub fn bn_read_uint32(in_number: u32, out_number: *mut bignum256);
-}
-extern "C" {
-    pub fn bn_read_uint64(in_number: u64, out_number: *mut bignum256);
-}
-extern "C" {
-    pub fn bn_bitcount(x: *const bignum256) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn bn_digitcount(x: *const bignum256) -> ::std::os::raw::c_uint;
-}
-extern "C" {
-    pub fn bn_zero(x: *mut bignum256);
-}
-extern "C" {
-    pub fn bn_one(x: *mut bignum256);
-}
-extern "C" {
-    pub fn bn_is_zero(x: *const bignum256) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn bn_is_one(x: *const bignum256) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn bn_is_less(x: *const bignum256, y: *const bignum256) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn bn_is_equal(x: *const bignum256, y: *const bignum256) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn bn_cmov(
-        res: *mut bignum256,
-        cond: u32,
-        truecase: *const bignum256,
-        falsecase: *const bignum256,
-    );
-}
-extern "C" {
-    pub fn bn_cnegate(cond: u32, x: *mut bignum256, prime: *const bignum256);
-}
-extern "C" {
-    pub fn bn_lshift(x: *mut bignum256);
-}
-extern "C" {
-    pub fn bn_rshift(x: *mut bignum256);
-}
-extern "C" {
-    pub fn bn_setbit(x: *mut bignum256, i: u16);
-}
-extern "C" {
-    pub fn bn_clearbit(x: *mut bignum256, i: u16);
-}
-extern "C" {
-    pub fn bn_testbit(x: *const bignum256, i: u16) -> u32;
-}
-extern "C" {
-    pub fn bn_xor(res: *mut bignum256, x: *const bignum256, y: *const bignum256);
-}
-extern "C" {
-    pub fn bn_mult_half(x: *mut bignum256, prime: *const bignum256);
-}
-extern "C" {
-    pub fn bn_mult_k(x: *mut bignum256, k: u8, prime: *const bignum256);
-}
-extern "C" {
-    pub fn bn_mod(x: *mut bignum256, prime: *const bignum256);
-}
-extern "C" {
-    pub fn bn_multiply(k: *const bignum256, x: *mut bignum256, prime: *const bignum256);
-}
-extern "C" {
-    pub fn bn_fast_mod(x: *mut bignum256, prime: *const bignum256);
-}
-extern "C" {
-    pub fn bn_power_mod(
-        x: *const bignum256,
-        e: *const bignum256,
-        prime: *const bignum256,
-        res: *mut bignum256,
-    );
-}
-extern "C" {
-    pub fn bn_sqrt(x: *mut bignum256, prime: *const bignum256);
-}
-extern "C" {
-    pub fn inverse_mod_power_two(a: u32, n: u32) -> u32;
-}
-extern "C" {
-    pub fn bn_divide_base(x: *mut bignum256, prime: *const bignum256);
-}
-extern "C" {
-    pub fn bn_normalize(x: *mut bignum256);
-}
-extern "C" {
-    pub fn bn_add(x: *mut bignum256, y: *const bignum256);
-}
-extern "C" {
-    pub fn bn_addmod(x: *mut bignum256, y: *const bignum256, prime: *const bignum256);
-}
-extern "C" {
-    pub fn bn_addi(x: *mut bignum256, y: u32);
-}
-extern "C" {
-    pub fn bn_subi(x: *mut bignum256, y: u32, prime: *const bignum256);
-}
-extern "C" {
-    pub fn bn_subtractmod(
-        x: *const bignum256,
-        y: *const bignum256,
-        res: *mut bignum256,
-        prime: *const bignum256,
-    );
-}
-extern "C" {
-    pub fn bn_subtract(x: *const bignum256, y: *const bignum256, res: *mut bignum256);
-}
-extern "C" {
-    pub fn bn_long_division(x: *mut bignum256, d: u32, q: *mut bignum256, r: *mut u32);
-}
-extern "C" {
-    pub fn bn_divmod58(x: *mut bignum256, r: *mut u32);
-}
-extern "C" {
-    pub fn bn_divmod1000(x: *mut bignum256, r: *mut u32);
-}
-extern "C" {
-    pub fn bn_inverse(x: *mut bignum256, prime: *const bignum256);
-}
-extern "C" {
-    pub fn bn_format(
-        amount: *const bignum256,
-        prefix: *const ::std::os::raw::c_char,
-        suffix: *const ::std::os::raw::c_char,
-        decimals: ::std::os::raw::c_uint,
-        exponent: ::std::os::raw::c_int,
-        trailing: bool,
-        output: *mut ::std::os::raw::c_char,
-        output_length: size_t,
-    ) -> size_t;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct BLAKE256_CTX {
-    pub h: [u32; 8usize],
-    pub s: [u32; 4usize],
-    pub t: [u32; 2usize],
-    pub buflen: size_t,
-    pub nullt: u8,
-    pub buf: [u8; 64usize],
-}
-#[test]
-fn bindgen_test_layout_BLAKE256_CTX() {
-    assert_eq!(
-        ::std::mem::size_of::<BLAKE256_CTX>(),
-        136usize,
-        concat!("Size of: ", stringify!(BLAKE256_CTX))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<BLAKE256_CTX>(),
-        8usize,
-        concat!("Alignment of ", stringify!(BLAKE256_CTX))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<BLAKE256_CTX>())).h as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(BLAKE256_CTX),
-            "::",
-            stringify!(h)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<BLAKE256_CTX>())).s as *const _ as usize },
-        32usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(BLAKE256_CTX),
-            "::",
-            stringify!(s)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<BLAKE256_CTX>())).t as *const _ as usize },
-        48usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(BLAKE256_CTX),
-            "::",
-            stringify!(t)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<BLAKE256_CTX>())).buflen as *const _ as usize },
-        56usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(BLAKE256_CTX),
-            "::",
-            stringify!(buflen)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<BLAKE256_CTX>())).nullt as *const _ as usize },
-        64usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(BLAKE256_CTX),
-            "::",
-            stringify!(nullt)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<BLAKE256_CTX>())).buf as *const _ as usize },
-        65usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(BLAKE256_CTX),
-            "::",
-            stringify!(buf)
-        )
-    );
-}
-extern "C" {
-    pub fn blake256_Init(arg1: *mut BLAKE256_CTX);
-}
-extern "C" {
-    pub fn blake256_Update(arg1: *mut BLAKE256_CTX, arg2: *const u8, arg3: size_t);
-}
-extern "C" {
-    pub fn blake256_Final(arg1: *mut BLAKE256_CTX, arg2: *mut u8);
-}
-extern "C" {
-    pub fn blake256(arg1: *const u8, arg2: size_t, arg3: *mut u8);
-}
-pub const blake2b_constant_BLAKE2B_BLOCKBYTES: blake2b_constant = 128;
-pub const blake2b_constant_BLAKE2B_OUTBYTES: blake2b_constant = 64;
-pub const blake2b_constant_BLAKE2B_KEYBYTES: blake2b_constant = 64;
-pub const blake2b_constant_BLAKE2B_SALTBYTES: blake2b_constant = 16;
-pub const blake2b_constant_BLAKE2B_PERSONALBYTES: blake2b_constant = 16;
-pub type blake2b_constant = ::std::os::raw::c_uint;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct __blake2b_state {
-    pub h: [u64; 8usize],
-    pub t: [u64; 2usize],
-    pub f: [u64; 2usize],
-    pub buf: [u8; 128usize],
-    pub buflen: size_t,
-    pub outlen: size_t,
-    pub last_node: u8,
-}
-#[test]
-fn bindgen_test_layout___blake2b_state() {
-    assert_eq!(
-        ::std::mem::size_of::<__blake2b_state>(),
-        248usize,
-        concat!("Size of: ", stringify!(__blake2b_state))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<__blake2b_state>(),
-        8usize,
-        concat!("Alignment of ", stringify!(__blake2b_state))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<__blake2b_state>())).h as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__blake2b_state),
-            "::",
-            stringify!(h)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<__blake2b_state>())).t as *const _ as usize },
-        64usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__blake2b_state),
-            "::",
-            stringify!(t)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<__blake2b_state>())).f as *const _ as usize },
-        80usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__blake2b_state),
-            "::",
-            stringify!(f)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<__blake2b_state>())).buf as *const _ as usize },
-        96usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__blake2b_state),
-            "::",
-            stringify!(buf)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<__blake2b_state>())).buflen as *const _ as usize },
-        224usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__blake2b_state),
-            "::",
-            stringify!(buflen)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<__blake2b_state>())).outlen as *const _ as usize },
-        232usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__blake2b_state),
-            "::",
-            stringify!(outlen)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<__blake2b_state>())).last_node as *const _ as usize },
-        240usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__blake2b_state),
-            "::",
-            stringify!(last_node)
-        )
-    );
-}
-pub type blake2b_state = __blake2b_state;
-extern "C" {
-    pub fn blake2b_Init(S: *mut blake2b_state, outlen: size_t) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn blake2b_InitKey(
-        S: *mut blake2b_state,
-        outlen: size_t,
-        key: *const ::std::os::raw::c_void,
-        keylen: size_t,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn blake2b_InitPersonal(
-        S: *mut blake2b_state,
-        outlen: size_t,
-        personal: *const ::std::os::raw::c_void,
-        personal_len: size_t,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn blake2b_Update(
-        S: *mut blake2b_state,
-        pin: *const ::std::os::raw::c_void,
-        inlen: size_t,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn blake2b_Final(
-        S: *mut blake2b_state,
-        out: *mut ::std::os::raw::c_void,
-        outlen: size_t,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn blake2b(
-        msg: *const u8,
-        msg_len: u32,
-        out: *mut ::std::os::raw::c_void,
-        outlen: size_t,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn blake2b_Key(
-        msg: *const u8,
-        msg_len: u32,
-        key: *const ::std::os::raw::c_void,
-        keylen: size_t,
-        out: *mut ::std::os::raw::c_void,
-        outlen: size_t,
-    ) -> ::std::os::raw::c_int;
-}
-#[doc = " This structure is a context for Groestl-384 and Groestl-512 computations:"]
-#[doc = " it contains the intermediate values and some data from the last"]
-#[doc = " entered block. Once a Groestl computation has been performed, the"]
-#[doc = " context can be reused for another computation."]
-#[doc = ""]
-#[doc = " The contents of this structure are private. A running Groestl"]
-#[doc = " computation can be cloned by copying the context (e.g. with a simple"]
-#[doc = " <code>memcpy()</code>)."]
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct sph_groestl_big_context {
-    pub buf: [::std::os::raw::c_uchar; 128usize],
-    pub ptr: size_t,
-    pub state: sph_groestl_big_context__bindgen_ty_1,
-    pub count: u64,
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub union sph_groestl_big_context__bindgen_ty_1 {
-    pub wide: [u64; 16usize],
-    pub narrow: [u32; 32usize],
-}
-#[test]
-fn bindgen_test_layout_sph_groestl_big_context__bindgen_ty_1() {
-    assert_eq!(
-        ::std::mem::size_of::<sph_groestl_big_context__bindgen_ty_1>(),
-        128usize,
-        concat!(
-            "Size of: ",
-            stringify!(sph_groestl_big_context__bindgen_ty_1)
-        )
-    );
-    assert_eq!(
-        ::std::mem::align_of::<sph_groestl_big_context__bindgen_ty_1>(),
-        8usize,
-        concat!(
-            "Alignment of ",
-            stringify!(sph_groestl_big_context__bindgen_ty_1)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<sph_groestl_big_context__bindgen_ty_1>())).wide as *const _
-                as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(sph_groestl_big_context__bindgen_ty_1),
-            "::",
-            stringify!(wide)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<sph_groestl_big_context__bindgen_ty_1>())).narrow as *const _
-                as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(sph_groestl_big_context__bindgen_ty_1),
-            "::",
-            stringify!(narrow)
-        )
-    );
-}
-#[test]
-fn bindgen_test_layout_sph_groestl_big_context() {
-    assert_eq!(
-        ::std::mem::size_of::<sph_groestl_big_context>(),
-        272usize,
-        concat!("Size of: ", stringify!(sph_groestl_big_context))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<sph_groestl_big_context>(),
-        8usize,
-        concat!("Alignment of ", stringify!(sph_groestl_big_context))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<sph_groestl_big_context>())).buf as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(sph_groestl_big_context),
-            "::",
-            stringify!(buf)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<sph_groestl_big_context>())).ptr as *const _ as usize },
-        128usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(sph_groestl_big_context),
-            "::",
-            stringify!(ptr)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<sph_groestl_big_context>())).state as *const _ as usize },
-        136usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(sph_groestl_big_context),
-            "::",
-            stringify!(state)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<sph_groestl_big_context>())).count as *const _ as usize },
-        264usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(sph_groestl_big_context),
-            "::",
-            stringify!(count)
-        )
-    );
-}
-pub type GROESTL512_CTX = sph_groestl_big_context;
-extern "C" {
-    #[doc = " Initialize a Groestl-512 context. This process performs no memory allocation."]
-    #[doc = ""]
-    #[doc = " @param cc   the Groestl-512 context (pointer to a"]
-    #[doc = "             <code>GROESTL512_CTX</code>)"]
-    pub fn groestl512_Init(cc: *mut ::std::os::raw::c_void);
-}
-extern "C" {
-    #[doc = " Process some data bytes. It is acceptable that <code>len</code> is zero"]
-    #[doc = " (in which case this function does nothing)."]
-    #[doc = ""]
-    #[doc = " @param cc     the Groestl-512 context"]
-    #[doc = " @param data   the input data"]
-    #[doc = " @param len    the input data length (in bytes)"]
-    pub fn groestl512_Update(
-        cc: *mut ::std::os::raw::c_void,
-        data: *const ::std::os::raw::c_void,
-        len: size_t,
-    );
-}
-extern "C" {
-    #[doc = " Terminate the current Groestl-512 computation and output the result into"]
-    #[doc = " the provided buffer. The destination buffer must be wide enough to"]
-    #[doc = " accomodate the result (64 bytes). The context is automatically"]
-    #[doc = " reinitialized."]
-    #[doc = ""]
-    #[doc = " @param cc    the Groestl-512 context"]
-    #[doc = " @param dst   the destination buffer"]
-    pub fn groestl512_Final(cc: *mut ::std::os::raw::c_void, dst: *mut ::std::os::raw::c_void);
-}
-extern "C" {
-    pub fn groestl512_DoubleTrunc(
-        cc: *mut ::std::os::raw::c_void,
-        dst: *mut ::std::os::raw::c_void,
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct _SHA1_CTX {
-    pub state: [u32; 5usize],
-    pub bitcount: u64,
-    pub buffer: [u32; 16usize],
-}
-#[test]
-fn bindgen_test_layout__SHA1_CTX() {
-    assert_eq!(
-        ::std::mem::size_of::<_SHA1_CTX>(),
-        96usize,
-        concat!("Size of: ", stringify!(_SHA1_CTX))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<_SHA1_CTX>(),
-        8usize,
-        concat!("Alignment of ", stringify!(_SHA1_CTX))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_SHA1_CTX>())).state as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_SHA1_CTX),
-            "::",
-            stringify!(state)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_SHA1_CTX>())).bitcount as *const _ as usize },
-        24usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_SHA1_CTX),
-            "::",
-            stringify!(bitcount)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_SHA1_CTX>())).buffer as *const _ as usize },
-        32usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_SHA1_CTX),
-            "::",
-            stringify!(buffer)
-        )
-    );
-}
-pub type SHA1_CTX = _SHA1_CTX;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct _SHA256_CTX {
-    pub state: [u32; 8usize],
-    pub bitcount: u64,
-    pub buffer: [u32; 16usize],
-}
-#[test]
-fn bindgen_test_layout__SHA256_CTX() {
-    assert_eq!(
-        ::std::mem::size_of::<_SHA256_CTX>(),
-        104usize,
-        concat!("Size of: ", stringify!(_SHA256_CTX))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<_SHA256_CTX>(),
-        8usize,
-        concat!("Alignment of ", stringify!(_SHA256_CTX))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_SHA256_CTX>())).state as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_SHA256_CTX),
-            "::",
-            stringify!(state)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_SHA256_CTX>())).bitcount as *const _ as usize },
-        32usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_SHA256_CTX),
-            "::",
-            stringify!(bitcount)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_SHA256_CTX>())).buffer as *const _ as usize },
-        40usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_SHA256_CTX),
-            "::",
-            stringify!(buffer)
-        )
-    );
-}
-pub type SHA256_CTX = _SHA256_CTX;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct _SHA512_CTX {
-    pub state: [u64; 8usize],
-    pub bitcount: [u64; 2usize],
-    pub buffer: [u64; 16usize],
-}
-#[test]
-fn bindgen_test_layout__SHA512_CTX() {
-    assert_eq!(
-        ::std::mem::size_of::<_SHA512_CTX>(),
-        208usize,
-        concat!("Size of: ", stringify!(_SHA512_CTX))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<_SHA512_CTX>(),
-        8usize,
-        concat!("Alignment of ", stringify!(_SHA512_CTX))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_SHA512_CTX>())).state as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_SHA512_CTX),
-            "::",
-            stringify!(state)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_SHA512_CTX>())).bitcount as *const _ as usize },
-        64usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_SHA512_CTX),
-            "::",
-            stringify!(bitcount)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_SHA512_CTX>())).buffer as *const _ as usize },
-        80usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_SHA512_CTX),
-            "::",
-            stringify!(buffer)
-        )
-    );
-}
-pub type SHA512_CTX = _SHA512_CTX;
-extern "C" {
-    pub static sha256_initial_hash_value: [u32; 8usize];
-}
-extern "C" {
-    pub static sha512_initial_hash_value: [u64; 8usize];
-}
-extern "C" {
-    pub fn sha1_Transform(state_in: *const u32, data: *const u32, state_out: *mut u32);
-}
-extern "C" {
-    pub fn sha1_Init(arg1: *mut SHA1_CTX);
-}
-extern "C" {
-    pub fn sha1_Update(arg1: *mut SHA1_CTX, arg2: *const u8, arg3: size_t);
-}
-extern "C" {
-    pub fn sha1_Final(arg1: *mut SHA1_CTX, arg2: *mut u8);
-}
-extern "C" {
-    pub fn sha1_End(
-        arg1: *mut SHA1_CTX,
-        arg2: *mut ::std::os::raw::c_char,
-    ) -> *mut ::std::os::raw::c_char;
-}
-extern "C" {
-    pub fn sha1_Raw(arg1: *const u8, arg2: size_t, arg3: *mut u8);
-}
-extern "C" {
-    pub fn sha1_Data(
-        arg1: *const u8,
-        arg2: size_t,
-        arg3: *mut ::std::os::raw::c_char,
-    ) -> *mut ::std::os::raw::c_char;
-}
-extern "C" {
-    pub fn sha256_Transform(state_in: *const u32, data: *const u32, state_out: *mut u32);
-}
-extern "C" {
-    pub fn sha256_Init(arg1: *mut SHA256_CTX);
-}
-extern "C" {
-    pub fn sha256_Update(arg1: *mut SHA256_CTX, arg2: *const u8, arg3: size_t);
-}
-extern "C" {
-    pub fn sha256_Final(arg1: *mut SHA256_CTX, arg2: *mut u8);
-}
-extern "C" {
-    pub fn sha256_End(
-        arg1: *mut SHA256_CTX,
-        arg2: *mut ::std::os::raw::c_char,
-    ) -> *mut ::std::os::raw::c_char;
-}
-extern "C" {
-    pub fn sha256_Raw(arg1: *const u8, arg2: size_t, arg3: *mut u8);
-}
-extern "C" {
-    pub fn sha256_Data(
-        arg1: *const u8,
-        arg2: size_t,
-        arg3: *mut ::std::os::raw::c_char,
-    ) -> *mut ::std::os::raw::c_char;
-}
-extern "C" {
-    pub fn sha512_Transform(state_in: *const u64, data: *const u64, state_out: *mut u64);
-}
-extern "C" {
-    pub fn sha512_Init(arg1: *mut SHA512_CTX);
-}
-extern "C" {
-    pub fn sha512_Update(arg1: *mut SHA512_CTX, arg2: *const u8, arg3: size_t);
-}
-extern "C" {
-    pub fn sha512_Final(arg1: *mut SHA512_CTX, arg2: *mut u8);
-}
-extern "C" {
-    pub fn sha512_End(
-        arg1: *mut SHA512_CTX,
-        arg2: *mut ::std::os::raw::c_char,
-    ) -> *mut ::std::os::raw::c_char;
-}
-extern "C" {
-    pub fn sha512_Raw(arg1: *const u8, arg2: size_t, arg3: *mut u8);
-}
-extern "C" {
-    pub fn sha512_Data(
-        arg1: *const u8,
-        arg2: size_t,
-        arg3: *mut ::std::os::raw::c_char,
-    ) -> *mut ::std::os::raw::c_char;
-}
-#[doc = " SHA3 Algorithm context."]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct SHA3_CTX {
-    pub hash: [u64; 25usize],
-    pub message: [u64; 24usize],
-    pub rest: ::std::os::raw::c_uint,
-    pub block_size: ::std::os::raw::c_uint,
-}
-#[test]
-fn bindgen_test_layout_SHA3_CTX() {
-    assert_eq!(
-        ::std::mem::size_of::<SHA3_CTX>(),
-        400usize,
-        concat!("Size of: ", stringify!(SHA3_CTX))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<SHA3_CTX>(),
-        8usize,
-        concat!("Alignment of ", stringify!(SHA3_CTX))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SHA3_CTX>())).hash as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SHA3_CTX),
-            "::",
-            stringify!(hash)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SHA3_CTX>())).message as *const _ as usize },
-        200usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SHA3_CTX),
-            "::",
-            stringify!(message)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SHA3_CTX>())).rest as *const _ as usize },
-        392usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SHA3_CTX),
-            "::",
-            stringify!(rest)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SHA3_CTX>())).block_size as *const _ as usize },
-        396usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SHA3_CTX),
-            "::",
-            stringify!(block_size)
-        )
-    );
-}
-extern "C" {
-    pub fn sha3_224_Init(ctx: *mut SHA3_CTX);
-}
-extern "C" {
-    pub fn sha3_256_Init(ctx: *mut SHA3_CTX);
-}
-extern "C" {
-    pub fn sha3_384_Init(ctx: *mut SHA3_CTX);
-}
-extern "C" {
-    pub fn sha3_512_Init(ctx: *mut SHA3_CTX);
-}
-extern "C" {
-    pub fn sha3_Update(ctx: *mut SHA3_CTX, msg: *const ::std::os::raw::c_uchar, size: size_t);
-}
-extern "C" {
-    pub fn sha3_Final(ctx: *mut SHA3_CTX, result: *mut ::std::os::raw::c_uchar);
-}
-extern "C" {
-    pub fn keccak_Final(ctx: *mut SHA3_CTX, result: *mut ::std::os::raw::c_uchar);
-}
-extern "C" {
-    pub fn keccak_256(
-        data: *const ::std::os::raw::c_uchar,
-        len: size_t,
-        digest: *mut ::std::os::raw::c_uchar,
-    );
-}
-extern "C" {
-    pub fn keccak_512(
-        data: *const ::std::os::raw::c_uchar,
-        len: size_t,
-        digest: *mut ::std::os::raw::c_uchar,
-    );
-}
-extern "C" {
-    pub fn sha3_256(
-        data: *const ::std::os::raw::c_uchar,
-        len: size_t,
-        digest: *mut ::std::os::raw::c_uchar,
-    );
-}
-extern "C" {
-    pub fn sha3_512(
-        data: *const ::std::os::raw::c_uchar,
-        len: size_t,
-        digest: *mut ::std::os::raw::c_uchar,
-    );
-}
-pub const HasherType_HASHER_SHA2: HasherType = 0;
-pub const HasherType_HASHER_SHA2D: HasherType = 1;
-pub const HasherType_HASHER_SHA2_RIPEMD: HasherType = 2;
-pub const HasherType_HASHER_SHA3: HasherType = 3;
-pub const HasherType_HASHER_SHA3K: HasherType = 4;
-pub const HasherType_HASHER_BLAKE: HasherType = 5;
-pub const HasherType_HASHER_BLAKED: HasherType = 6;
-pub const HasherType_HASHER_BLAKE_RIPEMD: HasherType = 7;
-pub const HasherType_HASHER_GROESTLD_TRUNC: HasherType = 8;
-pub const HasherType_HASHER_BLAKE2B: HasherType = 9;
-pub const HasherType_HASHER_BLAKE2B_PERSONAL: HasherType = 10;
-pub type HasherType = ::std::os::raw::c_uint;
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Hasher {
-    pub type_: HasherType,
-    pub ctx: Hasher__bindgen_ty_1,
-    pub param: *const ::std::os::raw::c_void,
-    pub param_size: u32,
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub union Hasher__bindgen_ty_1 {
-    pub sha2: SHA256_CTX,
-    pub sha3: SHA3_CTX,
-    pub blake: BLAKE256_CTX,
-    pub groestl: GROESTL512_CTX,
-    pub blake2b: blake2b_state,
-}
-#[test]
-fn bindgen_test_layout_Hasher__bindgen_ty_1() {
-    assert_eq!(
-        ::std::mem::size_of::<Hasher__bindgen_ty_1>(),
-        400usize,
-        concat!("Size of: ", stringify!(Hasher__bindgen_ty_1))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Hasher__bindgen_ty_1>(),
-        8usize,
-        concat!("Alignment of ", stringify!(Hasher__bindgen_ty_1))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Hasher__bindgen_ty_1>())).sha2 as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Hasher__bindgen_ty_1),
-            "::",
-            stringify!(sha2)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Hasher__bindgen_ty_1>())).sha3 as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Hasher__bindgen_ty_1),
-            "::",
-            stringify!(sha3)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Hasher__bindgen_ty_1>())).blake as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Hasher__bindgen_ty_1),
-            "::",
-            stringify!(blake)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Hasher__bindgen_ty_1>())).groestl as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Hasher__bindgen_ty_1),
-            "::",
-            stringify!(groestl)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Hasher__bindgen_ty_1>())).blake2b as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Hasher__bindgen_ty_1),
-            "::",
-            stringify!(blake2b)
-        )
-    );
-}
-#[test]
-fn bindgen_test_layout_Hasher() {
-    assert_eq!(
-        ::std::mem::size_of::<Hasher>(),
-        424usize,
-        concat!("Size of: ", stringify!(Hasher))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Hasher>(),
-        8usize,
-        concat!("Alignment of ", stringify!(Hasher))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Hasher>())).type_ as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Hasher),
-            "::",
-            stringify!(type_)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Hasher>())).ctx as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Hasher),
-            "::",
-            stringify!(ctx)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Hasher>())).param as *const _ as usize },
-        408usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Hasher),
-            "::",
-            stringify!(param)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Hasher>())).param_size as *const _ as usize },
-        416usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Hasher),
-            "::",
-            stringify!(param_size)
-        )
-    );
-}
-extern "C" {
-    pub fn hasher_InitParam(
-        hasher: *mut Hasher,
-        type_: HasherType,
-        param: *const ::std::os::raw::c_void,
-        param_size: u32,
-    );
-}
-extern "C" {
-    pub fn hasher_Init(hasher: *mut Hasher, type_: HasherType);
-}
-extern "C" {
-    pub fn hasher_Reset(hasher: *mut Hasher);
-}
-extern "C" {
-    pub fn hasher_Update(hasher: *mut Hasher, data: *const u8, length: size_t);
-}
-extern "C" {
-    pub fn hasher_Final(hasher: *mut Hasher, hash: *mut u8);
-}
-extern "C" {
-    pub fn hasher_Raw(type_: HasherType, data: *const u8, length: size_t, hash: *mut u8);
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct curve_point {
-    pub x: bignum256,
-    pub y: bignum256,
-}
-#[test]
-fn bindgen_test_layout_curve_point() {
-    assert_eq!(
-        ::std::mem::size_of::<curve_point>(),
-        72usize,
-        concat!("Size of: ", stringify!(curve_point))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<curve_point>(),
-        4usize,
-        concat!("Alignment of ", stringify!(curve_point))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<curve_point>())).x as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(curve_point),
-            "::",
-            stringify!(x)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<curve_point>())).y as *const _ as usize },
-        36usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(curve_point),
-            "::",
-            stringify!(y)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct ecdsa_curve {
-    pub prime: bignum256,
-    pub G: curve_point,
-    pub order: bignum256,
-    pub order_half: bignum256,
-    pub a: ::std::os::raw::c_int,
-    pub b: bignum256,
-    pub cp: [[curve_point; 8usize]; 64usize],
-}
-#[test]
-fn bindgen_test_layout_ecdsa_curve() {
-    assert_eq!(
-        ::std::mem::size_of::<ecdsa_curve>(),
-        37084usize,
-        concat!("Size of: ", stringify!(ecdsa_curve))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ecdsa_curve>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ecdsa_curve))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ecdsa_curve>())).prime as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ecdsa_curve),
-            "::",
-            stringify!(prime)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ecdsa_curve>())).G as *const _ as usize },
-        36usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ecdsa_curve),
-            "::",
-            stringify!(G)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ecdsa_curve>())).order as *const _ as usize },
-        108usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ecdsa_curve),
-            "::",
-            stringify!(order)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ecdsa_curve>())).order_half as *const _ as usize },
-        144usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ecdsa_curve),
-            "::",
-            stringify!(order_half)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ecdsa_curve>())).a as *const _ as usize },
-        180usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ecdsa_curve),
-            "::",
-            stringify!(a)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ecdsa_curve>())).b as *const _ as usize },
-        184usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ecdsa_curve),
-            "::",
-            stringify!(b)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ecdsa_curve>())).cp as *const _ as usize },
-        220usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ecdsa_curve),
-            "::",
-            stringify!(cp)
-        )
-    );
-}
-extern "C" {
-    pub fn point_copy(cp1: *const curve_point, cp2: *mut curve_point);
-}
-extern "C" {
-    pub fn point_add(curve: *const ecdsa_curve, cp1: *const curve_point, cp2: *mut curve_point);
-}
-extern "C" {
-    pub fn point_double(curve: *const ecdsa_curve, cp: *mut curve_point);
-}
-extern "C" {
-    pub fn point_multiply(
-        curve: *const ecdsa_curve,
-        k: *const bignum256,
-        p: *const curve_point,
-        res: *mut curve_point,
-    );
-}
-extern "C" {
-    pub fn point_set_infinity(p: *mut curve_point);
-}
-extern "C" {
-    pub fn point_is_infinity(p: *const curve_point) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn point_is_equal(p: *const curve_point, q: *const curve_point) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn point_is_negative_of(
-        p: *const curve_point,
-        q: *const curve_point,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn scalar_multiply(curve: *const ecdsa_curve, k: *const bignum256, res: *mut curve_point);
-}
-extern "C" {
-    pub fn ecdh_multiply(
-        curve: *const ecdsa_curve,
-        priv_key: *const u8,
-        pub_key: *const u8,
-        session_key: *mut u8,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn compress_coords(cp: *const curve_point, compressed: *mut u8);
-}
-extern "C" {
-    pub fn uncompress_coords(
-        curve: *const ecdsa_curve,
-        odd: u8,
-        x: *const bignum256,
-        y: *mut bignum256,
-    );
-}
-extern "C" {
-    pub fn ecdsa_uncompress_pubkey(
-        curve: *const ecdsa_curve,
-        pub_key: *const u8,
-        uncompressed: *mut u8,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn ecdsa_sign(
-        curve: *const ecdsa_curve,
-        hasher_sign: HasherType,
-        priv_key: *const u8,
-        msg: *const u8,
-        msg_len: u32,
-        sig: *mut u8,
-        pby: *mut u8,
-        is_canonical: ::std::option::Option<
-            unsafe extern "C" fn(by: u8, sig: *mut u8) -> ::std::os::raw::c_int,
-        >,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn ecdsa_sign_digest(
-        curve: *const ecdsa_curve,
-        priv_key: *const u8,
-        digest: *const u8,
-        sig: *mut u8,
-        pby: *mut u8,
-        is_canonical: ::std::option::Option<
-            unsafe extern "C" fn(by: u8, sig: *mut u8) -> ::std::os::raw::c_int,
-        >,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn ecdsa_get_public_key33(curve: *const ecdsa_curve, priv_key: *const u8, pub_key: *mut u8);
-}
-extern "C" {
-    pub fn ecdsa_get_public_key65(curve: *const ecdsa_curve, priv_key: *const u8, pub_key: *mut u8);
-}
-extern "C" {
-    pub fn ecdsa_get_pubkeyhash(pub_key: *const u8, hasher_pubkey: HasherType, pubkeyhash: *mut u8);
-}
-extern "C" {
-    pub fn ecdsa_get_address_raw(
-        pub_key: *const u8,
-        version: u32,
-        hasher_pubkey: HasherType,
-        addr_raw: *mut u8,
-    );
-}
-extern "C" {
-    pub fn ecdsa_get_address(
-        pub_key: *const u8,
-        version: u32,
-        hasher_pubkey: HasherType,
-        hasher_base58: HasherType,
-        addr: *mut ::std::os::raw::c_char,
-        addrsize: ::std::os::raw::c_int,
-    );
-}
-extern "C" {
-    pub fn ecdsa_get_address_segwit_p2sh_raw(
-        pub_key: *const u8,
-        version: u32,
-        hasher_pubkey: HasherType,
-        addr_raw: *mut u8,
-    );
-}
-extern "C" {
-    pub fn ecdsa_get_address_segwit_p2sh(
-        pub_key: *const u8,
-        version: u32,
-        hasher_pubkey: HasherType,
-        hasher_base58: HasherType,
-        addr: *mut ::std::os::raw::c_char,
-        addrsize: ::std::os::raw::c_int,
-    );
-}
-extern "C" {
-    pub fn ecdsa_get_wif(
-        priv_key: *const u8,
-        version: u32,
-        hasher_base58: HasherType,
-        wif: *mut ::std::os::raw::c_char,
-        wifsize: ::std::os::raw::c_int,
-    );
-}
-extern "C" {
-    pub fn ecdsa_address_decode(
-        addr: *const ::std::os::raw::c_char,
-        version: u32,
-        hasher_base58: HasherType,
-        out: *mut u8,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn ecdsa_read_pubkey(
-        curve: *const ecdsa_curve,
-        pub_key: *const u8,
-        pub_: *mut curve_point,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn ecdsa_validate_pubkey(
-        curve: *const ecdsa_curve,
-        pub_: *const curve_point,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn ecdsa_verify(
-        curve: *const ecdsa_curve,
-        hasher_sign: HasherType,
-        pub_key: *const u8,
-        sig: *const u8,
-        msg: *const u8,
-        msg_len: u32,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn ecdsa_verify_digest(
-        curve: *const ecdsa_curve,
-        pub_key: *const u8,
-        sig: *const u8,
-        digest: *const u8,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn ecdsa_recover_pub_from_sig(
-        curve: *const ecdsa_curve,
-        pub_key: *mut u8,
-        sig: *const u8,
-        digest: *const u8,
-        recid: ::std::os::raw::c_int,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn ecdsa_sig_to_der(sig: *const u8, der: *mut u8) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn ecdsa_sig_from_der(
-        der: *const u8,
-        der_len: size_t,
-        sig: *mut u8,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub static mut SECP256K1_NAME: [::std::os::raw::c_char; 0usize];
-}
-extern "C" {
-    pub static mut SECP256K1_DECRED_NAME: [::std::os::raw::c_char; 0usize];
-}
-extern "C" {
-    pub static mut SECP256K1_GROESTL_NAME: [::std::os::raw::c_char; 0usize];
-}
-extern "C" {
-    pub static mut SECP256K1_SMART_NAME: [::std::os::raw::c_char; 0usize];
-}
-extern "C" {
-    pub static mut NIST256P1_NAME: [::std::os::raw::c_char; 0usize];
-}
-extern "C" {
-    pub static mut ED25519_NAME: [::std::os::raw::c_char; 0usize];
-}
-extern "C" {
-    pub static mut ED25519_CARDANO_NAME: [::std::os::raw::c_char; 0usize];
-}
-extern "C" {
-    pub static mut ED25519_SHA3_NAME: [::std::os::raw::c_char; 0usize];
-}
-extern "C" {
-    pub static mut ED25519_KECCAK_NAME: [::std::os::raw::c_char; 0usize];
-}
-extern "C" {
-    pub static mut CURVE25519_NAME: [::std::os::raw::c_char; 0usize];
-}
 pub const idtype_t_P_ALL: idtype_t = 0;
 pub const idtype_t_P_PID: idtype_t = 1;
 pub const idtype_t_P_PGID: idtype_t = 2;
@@ -2200,6 +605,95 @@ extern "C" {
 extern "C" {
     pub fn a64l(__s: *const ::std::os::raw::c_char) -> ::std::os::raw::c_long;
 }
+pub type __u_char = ::std::os::raw::c_uchar;
+pub type __u_short = ::std::os::raw::c_ushort;
+pub type __u_int = ::std::os::raw::c_uint;
+pub type __u_long = ::std::os::raw::c_ulong;
+pub type __int8_t = ::std::os::raw::c_schar;
+pub type __uint8_t = ::std::os::raw::c_uchar;
+pub type __int16_t = ::std::os::raw::c_short;
+pub type __uint16_t = ::std::os::raw::c_ushort;
+pub type __int32_t = ::std::os::raw::c_int;
+pub type __uint32_t = ::std::os::raw::c_uint;
+pub type __int64_t = ::std::os::raw::c_long;
+pub type __uint64_t = ::std::os::raw::c_ulong;
+pub type __int_least8_t = __int8_t;
+pub type __uint_least8_t = __uint8_t;
+pub type __int_least16_t = __int16_t;
+pub type __uint_least16_t = __uint16_t;
+pub type __int_least32_t = __int32_t;
+pub type __uint_least32_t = __uint32_t;
+pub type __int_least64_t = __int64_t;
+pub type __uint_least64_t = __uint64_t;
+pub type __quad_t = ::std::os::raw::c_long;
+pub type __u_quad_t = ::std::os::raw::c_ulong;
+pub type __intmax_t = ::std::os::raw::c_long;
+pub type __uintmax_t = ::std::os::raw::c_ulong;
+pub type __dev_t = ::std::os::raw::c_ulong;
+pub type __uid_t = ::std::os::raw::c_uint;
+pub type __gid_t = ::std::os::raw::c_uint;
+pub type __ino_t = ::std::os::raw::c_ulong;
+pub type __ino64_t = ::std::os::raw::c_ulong;
+pub type __mode_t = ::std::os::raw::c_uint;
+pub type __nlink_t = ::std::os::raw::c_ulong;
+pub type __off_t = ::std::os::raw::c_long;
+pub type __off64_t = ::std::os::raw::c_long;
+pub type __pid_t = ::std::os::raw::c_int;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct __fsid_t {
+    pub __val: [::std::os::raw::c_int; 2usize],
+}
+#[test]
+fn bindgen_test_layout___fsid_t() {
+    assert_eq!(
+        ::std::mem::size_of::<__fsid_t>(),
+        8usize,
+        concat!("Size of: ", stringify!(__fsid_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<__fsid_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(__fsid_t))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<__fsid_t>())).__val as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__fsid_t),
+            "::",
+            stringify!(__val)
+        )
+    );
+}
+pub type __clock_t = ::std::os::raw::c_long;
+pub type __rlim_t = ::std::os::raw::c_ulong;
+pub type __rlim64_t = ::std::os::raw::c_ulong;
+pub type __id_t = ::std::os::raw::c_uint;
+pub type __time_t = ::std::os::raw::c_long;
+pub type __useconds_t = ::std::os::raw::c_uint;
+pub type __suseconds_t = ::std::os::raw::c_long;
+pub type __daddr_t = ::std::os::raw::c_int;
+pub type __key_t = ::std::os::raw::c_int;
+pub type __clockid_t = ::std::os::raw::c_int;
+pub type __timer_t = *mut ::std::os::raw::c_void;
+pub type __blksize_t = ::std::os::raw::c_long;
+pub type __blkcnt_t = ::std::os::raw::c_long;
+pub type __blkcnt64_t = ::std::os::raw::c_long;
+pub type __fsblkcnt_t = ::std::os::raw::c_ulong;
+pub type __fsblkcnt64_t = ::std::os::raw::c_ulong;
+pub type __fsfilcnt_t = ::std::os::raw::c_ulong;
+pub type __fsfilcnt64_t = ::std::os::raw::c_ulong;
+pub type __fsword_t = ::std::os::raw::c_long;
+pub type __ssize_t = ::std::os::raw::c_long;
+pub type __syscall_slong_t = ::std::os::raw::c_long;
+pub type __syscall_ulong_t = ::std::os::raw::c_ulong;
+pub type __loff_t = __off64_t;
+pub type __caddr_t = *mut ::std::os::raw::c_char;
+pub type __intptr_t = ::std::os::raw::c_long;
+pub type __socklen_t = ::std::os::raw::c_uint;
+pub type __sig_atomic_t = ::std::os::raw::c_int;
 pub type u_char = __u_char;
 pub type u_short = __u_short;
 pub type u_int = __u_int;
@@ -3717,18 +2211,10 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn aligned_alloc(__alignment: size_t, __size: size_t) -> *mut ::std::os::raw::c_void;
-}
-extern "C" {
     pub fn abort();
 }
 extern "C" {
     pub fn atexit(__func: ::std::option::Option<unsafe extern "C" fn()>) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn at_quick_exit(
-        __func: ::std::option::Option<unsafe extern "C" fn()>,
-    ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub fn on_exit(
@@ -3743,9 +2229,6 @@ extern "C" {
 }
 extern "C" {
     pub fn exit(__status: ::std::os::raw::c_int);
-}
-extern "C" {
-    pub fn quick_exit(__status: ::std::os::raw::c_int);
 }
 extern "C" {
     pub fn _Exit(__status: ::std::os::raw::c_int);
@@ -3964,1023 +2447,276 @@ extern "C" {
     pub fn getloadavg(__loadavg: *mut f64, __nelem: ::std::os::raw::c_int)
         -> ::std::os::raw::c_int;
 }
-pub type ed25519_signature = [::std::os::raw::c_uchar; 64usize];
-pub type ed25519_public_key = [::std::os::raw::c_uchar; 32usize];
-pub type ed25519_secret_key = [::std::os::raw::c_uchar; 32usize];
-pub type curve25519_key = [::std::os::raw::c_uchar; 32usize];
-pub type ed25519_cosi_signature = [::std::os::raw::c_uchar; 32usize];
-extern "C" {
-    pub fn ed25519_publickey(sk: *mut ::std::os::raw::c_uchar, pk: *mut ::std::os::raw::c_uchar);
-}
-extern "C" {
-    pub fn ed25519_sign_open(
-        m: *const ::std::os::raw::c_uchar,
-        mlen: size_t,
-        pk: *mut ::std::os::raw::c_uchar,
-        RS: *mut ::std::os::raw::c_uchar,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn ed25519_sign(
-        m: *const ::std::os::raw::c_uchar,
-        mlen: size_t,
-        sk: *mut ::std::os::raw::c_uchar,
-        pk: *mut ::std::os::raw::c_uchar,
-        RS: *mut ::std::os::raw::c_uchar,
-    );
-}
-extern "C" {
-    pub fn ed25519_scalarmult(
-        res: *mut ::std::os::raw::c_uchar,
-        sk: *mut ::std::os::raw::c_uchar,
-        pk: *mut ::std::os::raw::c_uchar,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn curve25519_scalarmult(
-        mypublic: *mut ::std::os::raw::c_uchar,
-        secret: *mut ::std::os::raw::c_uchar,
-        basepoint: *mut ::std::os::raw::c_uchar,
-    );
-}
-extern "C" {
-    pub fn curve25519_scalarmult_basepoint(
-        mypublic: *mut ::std::os::raw::c_uchar,
-        secret: *mut ::std::os::raw::c_uchar,
-    );
-}
-extern "C" {
-    pub fn ed25519_cosi_combine_publickeys(
-        res: *mut ::std::os::raw::c_uchar,
-        pks: *mut ed25519_public_key,
-        n: size_t,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn ed25519_cosi_combine_signatures(
-        res: *mut ::std::os::raw::c_uchar,
-        R: *mut ::std::os::raw::c_uchar,
-        sigs: *mut ed25519_cosi_signature,
-        n: size_t,
-    );
-}
-extern "C" {
-    pub fn ed25519_cosi_sign(
-        m: *const ::std::os::raw::c_uchar,
-        mlen: size_t,
-        key: *mut ::std::os::raw::c_uchar,
-        nonce: *mut ::std::os::raw::c_uchar,
-        R: *mut ::std::os::raw::c_uchar,
-        pk: *mut ::std::os::raw::c_uchar,
-        sig: *mut ::std::os::raw::c_uchar,
-    );
-}
+pub type int_least8_t = __int_least8_t;
+pub type int_least16_t = __int_least16_t;
+pub type int_least32_t = __int_least32_t;
+pub type int_least64_t = __int_least64_t;
+pub type uint_least8_t = __uint_least8_t;
+pub type uint_least16_t = __uint_least16_t;
+pub type uint_least32_t = __uint_least32_t;
+pub type uint_least64_t = __uint_least64_t;
+pub type int_fast8_t = ::std::os::raw::c_schar;
+pub type int_fast16_t = ::std::os::raw::c_long;
+pub type int_fast32_t = ::std::os::raw::c_long;
+pub type int_fast64_t = ::std::os::raw::c_long;
+pub type uint_fast8_t = ::std::os::raw::c_uchar;
+pub type uint_fast16_t = ::std::os::raw::c_ulong;
+pub type uint_fast32_t = ::std::os::raw::c_ulong;
+pub type uint_fast64_t = ::std::os::raw::c_ulong;
+pub type intmax_t = __intmax_t;
+pub type uintmax_t = __uintmax_t;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct curve_info {
-    pub bip32_name: *const ::std::os::raw::c_char,
-    pub params: *const ecdsa_curve,
-    pub hasher_base58: HasherType,
-    pub hasher_sign: HasherType,
-    pub hasher_pubkey: HasherType,
-    pub hasher_script: HasherType,
+#[derive(Copy, Clone)]
+pub union aes_inf {
+    pub l: u32,
+    pub b: [u8; 4usize],
 }
 #[test]
-fn bindgen_test_layout_curve_info() {
+fn bindgen_test_layout_aes_inf() {
     assert_eq!(
-        ::std::mem::size_of::<curve_info>(),
-        32usize,
-        concat!("Size of: ", stringify!(curve_info))
+        ::std::mem::size_of::<aes_inf>(),
+        4usize,
+        concat!("Size of: ", stringify!(aes_inf))
     );
     assert_eq!(
-        ::std::mem::align_of::<curve_info>(),
-        8usize,
-        concat!("Alignment of ", stringify!(curve_info))
+        ::std::mem::align_of::<aes_inf>(),
+        4usize,
+        concat!("Alignment of ", stringify!(aes_inf))
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<curve_info>())).bip32_name as *const _ as usize },
+        unsafe { &(*(::std::ptr::null::<aes_inf>())).l as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(curve_info),
+            stringify!(aes_inf),
             "::",
-            stringify!(bip32_name)
+            stringify!(l)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<curve_info>())).params as *const _ as usize },
-        8usize,
+        unsafe { &(*(::std::ptr::null::<aes_inf>())).b as *const _ as usize },
+        0usize,
         concat!(
             "Offset of field: ",
-            stringify!(curve_info),
+            stringify!(aes_inf),
             "::",
-            stringify!(params)
+            stringify!(b)
         )
     );
+}
+#[repr(C)]
+#[repr(align(16))]
+#[derive(Copy, Clone)]
+pub struct aes_encrypt_ctx {
+    pub ks: [u32; 60usize],
+    pub inf: aes_inf,
+}
+#[test]
+fn bindgen_test_layout_aes_encrypt_ctx() {
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<curve_info>())).hasher_base58 as *const _ as usize },
+        ::std::mem::size_of::<aes_encrypt_ctx>(),
+        256usize,
+        concat!("Size of: ", stringify!(aes_encrypt_ctx))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<aes_encrypt_ctx>(),
         16usize,
+        concat!("Alignment of ", stringify!(aes_encrypt_ctx))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<aes_encrypt_ctx>())).ks as *const _ as usize },
+        0usize,
         concat!(
             "Offset of field: ",
-            stringify!(curve_info),
+            stringify!(aes_encrypt_ctx),
             "::",
-            stringify!(hasher_base58)
+            stringify!(ks)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<curve_info>())).hasher_sign as *const _ as usize },
-        20usize,
+        unsafe { &(*(::std::ptr::null::<aes_encrypt_ctx>())).inf as *const _ as usize },
+        240usize,
         concat!(
             "Offset of field: ",
-            stringify!(curve_info),
+            stringify!(aes_encrypt_ctx),
             "::",
-            stringify!(hasher_sign)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<curve_info>())).hasher_pubkey as *const _ as usize },
-        24usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(curve_info),
-            "::",
-            stringify!(hasher_pubkey)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<curve_info>())).hasher_script as *const _ as usize },
-        28usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(curve_info),
-            "::",
-            stringify!(hasher_script)
+            stringify!(inf)
         )
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct HDNode {
-    pub depth: u32,
-    pub child_num: u32,
-    pub chain_code: [u8; 32usize],
-    pub private_key: [u8; 32usize],
-    pub private_key_extension: [u8; 32usize],
-    pub public_key: [u8; 33usize],
-    pub curve: *const curve_info,
+#[repr(align(16))]
+#[derive(Copy, Clone)]
+pub struct aes_decrypt_ctx {
+    pub ks: [u32; 60usize],
+    pub inf: aes_inf,
 }
 #[test]
-fn bindgen_test_layout_HDNode() {
+fn bindgen_test_layout_aes_decrypt_ctx() {
     assert_eq!(
-        ::std::mem::size_of::<HDNode>(),
-        152usize,
-        concat!("Size of: ", stringify!(HDNode))
+        ::std::mem::size_of::<aes_decrypt_ctx>(),
+        256usize,
+        concat!("Size of: ", stringify!(aes_decrypt_ctx))
     );
     assert_eq!(
-        ::std::mem::align_of::<HDNode>(),
-        8usize,
-        concat!("Alignment of ", stringify!(HDNode))
+        ::std::mem::align_of::<aes_decrypt_ctx>(),
+        16usize,
+        concat!("Alignment of ", stringify!(aes_decrypt_ctx))
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<HDNode>())).depth as *const _ as usize },
+        unsafe { &(*(::std::ptr::null::<aes_decrypt_ctx>())).ks as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(HDNode),
+            stringify!(aes_decrypt_ctx),
             "::",
-            stringify!(depth)
+            stringify!(ks)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<HDNode>())).child_num as *const _ as usize },
-        4usize,
+        unsafe { &(*(::std::ptr::null::<aes_decrypt_ctx>())).inf as *const _ as usize },
+        240usize,
         concat!(
             "Offset of field: ",
-            stringify!(HDNode),
+            stringify!(aes_decrypt_ctx),
             "::",
-            stringify!(child_num)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<HDNode>())).chain_code as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(HDNode),
-            "::",
-            stringify!(chain_code)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<HDNode>())).private_key as *const _ as usize },
-        40usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(HDNode),
-            "::",
-            stringify!(private_key)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<HDNode>())).private_key_extension as *const _ as usize },
-        72usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(HDNode),
-            "::",
-            stringify!(private_key_extension)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<HDNode>())).public_key as *const _ as usize },
-        104usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(HDNode),
-            "::",
-            stringify!(public_key)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<HDNode>())).curve as *const _ as usize },
-        144usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(HDNode),
-            "::",
-            stringify!(curve)
+            stringify!(inf)
         )
     );
 }
 extern "C" {
-    pub fn hdnode_from_xpub(
-        depth: u32,
-        child_num: u32,
-        chain_code: *const u8,
-        public_key: *const u8,
-        curve: *const ::std::os::raw::c_char,
-        out: *mut HDNode,
+    pub fn aes_init() -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn aes_encrypt_key128(
+        key: *const ::std::os::raw::c_uchar,
+        cx: *mut aes_encrypt_ctx,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn hdnode_from_xprv(
-        depth: u32,
-        child_num: u32,
-        chain_code: *const u8,
-        private_key: *const u8,
-        curve: *const ::std::os::raw::c_char,
-        out: *mut HDNode,
+    pub fn aes_encrypt_key192(
+        key: *const ::std::os::raw::c_uchar,
+        cx: *mut aes_encrypt_ctx,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn hdnode_from_seed(
-        seed: *const u8,
-        seed_len: ::std::os::raw::c_int,
-        curve: *const ::std::os::raw::c_char,
-        out: *mut HDNode,
+    pub fn aes_encrypt_key256(
+        key: *const ::std::os::raw::c_uchar,
+        cx: *mut aes_encrypt_ctx,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn hdnode_private_ckd(inout: *mut HDNode, i: u32) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn hdnode_public_ckd_cp(
-        curve: *const ecdsa_curve,
-        parent: *const curve_point,
-        parent_chain_code: *const u8,
-        i: u32,
-        child: *mut curve_point,
-        child_chain_code: *mut u8,
+    pub fn aes_encrypt(
+        in_: *const ::std::os::raw::c_uchar,
+        out: *mut ::std::os::raw::c_uchar,
+        cx: *const aes_encrypt_ctx,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn hdnode_public_ckd(inout: *mut HDNode, i: u32) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn hdnode_public_ckd_address_optimized(
-        pub_: *const curve_point,
-        chain_code: *const u8,
-        i: u32,
-        version: u32,
-        hasher_pubkey: HasherType,
-        hasher_base58: HasherType,
-        addr: *mut ::std::os::raw::c_char,
-        addrsize: ::std::os::raw::c_int,
-        addrformat: ::std::os::raw::c_int,
-    );
-}
-extern "C" {
-    pub fn hdnode_private_ckd_cached(
-        inout: *mut HDNode,
-        i: *const u32,
-        i_count: size_t,
-        fingerprint: *mut u32,
+    pub fn aes_decrypt_key128(
+        key: *const ::std::os::raw::c_uchar,
+        cx: *mut aes_decrypt_ctx,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn hdnode_fingerprint(node: *mut HDNode) -> u32;
-}
-extern "C" {
-    pub fn hdnode_fill_public_key(node: *mut HDNode);
-}
-extern "C" {
-    pub fn hdnode_sign(
-        node: *mut HDNode,
-        msg: *const u8,
-        msg_len: u32,
-        hasher_sign: HasherType,
-        sig: *mut u8,
-        pby: *mut u8,
-        is_canonical: ::std::option::Option<
-            unsafe extern "C" fn(by: u8, sig: *mut u8) -> ::std::os::raw::c_int,
-        >,
+    pub fn aes_decrypt_key192(
+        key: *const ::std::os::raw::c_uchar,
+        cx: *mut aes_decrypt_ctx,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn hdnode_sign_digest(
-        node: *mut HDNode,
-        digest: *const u8,
-        sig: *mut u8,
-        pby: *mut u8,
-        is_canonical: ::std::option::Option<
-            unsafe extern "C" fn(by: u8, sig: *mut u8) -> ::std::os::raw::c_int,
-        >,
+    pub fn aes_decrypt_key256(
+        key: *const ::std::os::raw::c_uchar,
+        cx: *mut aes_decrypt_ctx,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn hdnode_get_shared_key(
-        node: *const HDNode,
-        peer_public_key: *const u8,
-        session_key: *mut u8,
-        result_size: *mut ::std::os::raw::c_int,
+    pub fn aes_decrypt(
+        in_: *const ::std::os::raw::c_uchar,
+        out: *mut ::std::os::raw::c_uchar,
+        cx: *const aes_decrypt_ctx,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn hdnode_serialize_public(
-        node: *const HDNode,
-        fingerprint: u32,
-        version: u32,
-        str_: *mut ::std::os::raw::c_char,
-        strsize: ::std::os::raw::c_int,
-    ) -> ::std::os::raw::c_int;
+    pub fn aes_test_alignment_detection(n: ::std::os::raw::c_uint) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn hdnode_serialize_private(
-        node: *const HDNode,
-        fingerprint: u32,
-        version: u32,
-        str_: *mut ::std::os::raw::c_char,
-        strsize: ::std::os::raw::c_int,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn hdnode_deserialize_public(
-        str_: *const ::std::os::raw::c_char,
-        version: u32,
-        curve: *const ::std::os::raw::c_char,
-        node: *mut HDNode,
-        fingerprint: *mut u32,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn hdnode_deserialize_private(
-        str_: *const ::std::os::raw::c_char,
-        version: u32,
-        curve: *const ::std::os::raw::c_char,
-        node: *mut HDNode,
-        fingerprint: *mut u32,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn hdnode_get_address_raw(node: *mut HDNode, version: u32, addr_raw: *mut u8);
-}
-extern "C" {
-    pub fn hdnode_get_address(
-        node: *mut HDNode,
-        version: u32,
-        addr: *mut ::std::os::raw::c_char,
-        addrsize: ::std::os::raw::c_int,
-    );
-}
-extern "C" {
-    pub fn get_curve_by_name(curve_name: *const ::std::os::raw::c_char) -> *const curve_info;
-}
-extern "C" {
-    pub static secp256k1: ecdsa_curve;
-}
-extern "C" {
-    pub static secp256k1_info: curve_info;
-}
-extern "C" {
-    pub static secp256k1_decred_info: curve_info;
-}
-extern "C" {
-    pub static secp256k1_groestl_info: curve_info;
-}
-extern "C" {
-    pub static secp256k1_smart_info: curve_info;
-}
-extern "C" {
-    pub static nist256p1: ecdsa_curve;
-}
-extern "C" {
-    pub static nist256p1_info: curve_info;
-}
-extern "C" {
-    pub fn random_reseed(value: u32);
-}
-extern "C" {
-    pub fn random32() -> u32;
-}
-extern "C" {
-    pub fn random_buffer(buf: *mut u8, len: size_t);
-}
-extern "C" {
-    pub fn random_uniform(n: u32) -> u32;
-}
-extern "C" {
-    pub fn random_permute(buf: *mut ::std::os::raw::c_char, len: size_t);
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct _HMAC_SHA256_CTX {
-    pub o_key_pad: [u8; 64usize],
-    pub ctx: SHA256_CTX,
-}
-#[test]
-fn bindgen_test_layout__HMAC_SHA256_CTX() {
-    assert_eq!(
-        ::std::mem::size_of::<_HMAC_SHA256_CTX>(),
-        168usize,
-        concat!("Size of: ", stringify!(_HMAC_SHA256_CTX))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<_HMAC_SHA256_CTX>(),
-        8usize,
-        concat!("Alignment of ", stringify!(_HMAC_SHA256_CTX))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_HMAC_SHA256_CTX>())).o_key_pad as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_HMAC_SHA256_CTX),
-            "::",
-            stringify!(o_key_pad)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_HMAC_SHA256_CTX>())).ctx as *const _ as usize },
-        64usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_HMAC_SHA256_CTX),
-            "::",
-            stringify!(ctx)
-        )
-    );
-}
-pub type HMAC_SHA256_CTX = _HMAC_SHA256_CTX;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct _HMAC_SHA512_CTX {
-    pub o_key_pad: [u8; 128usize],
-    pub ctx: SHA512_CTX,
-}
-#[test]
-fn bindgen_test_layout__HMAC_SHA512_CTX() {
-    assert_eq!(
-        ::std::mem::size_of::<_HMAC_SHA512_CTX>(),
-        336usize,
-        concat!("Size of: ", stringify!(_HMAC_SHA512_CTX))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<_HMAC_SHA512_CTX>(),
-        8usize,
-        concat!("Alignment of ", stringify!(_HMAC_SHA512_CTX))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_HMAC_SHA512_CTX>())).o_key_pad as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_HMAC_SHA512_CTX),
-            "::",
-            stringify!(o_key_pad)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_HMAC_SHA512_CTX>())).ctx as *const _ as usize },
-        128usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_HMAC_SHA512_CTX),
-            "::",
-            stringify!(ctx)
-        )
-    );
-}
-pub type HMAC_SHA512_CTX = _HMAC_SHA512_CTX;
-extern "C" {
-    pub fn hmac_sha256_Init(hctx: *mut HMAC_SHA256_CTX, key: *const u8, keylen: u32);
-}
-extern "C" {
-    pub fn hmac_sha256_Update(hctx: *mut HMAC_SHA256_CTX, msg: *const u8, msglen: u32);
-}
-extern "C" {
-    pub fn hmac_sha256_Final(hctx: *mut HMAC_SHA256_CTX, hmac: *mut u8);
-}
-extern "C" {
-    pub fn hmac_sha256(key: *const u8, keylen: u32, msg: *const u8, msglen: u32, hmac: *mut u8);
-}
-extern "C" {
-    pub fn hmac_sha256_prepare(
-        key: *const u8,
-        keylen: u32,
-        opad_digest: *mut u32,
-        ipad_digest: *mut u32,
-    );
-}
-extern "C" {
-    pub fn hmac_sha512_Init(hctx: *mut HMAC_SHA512_CTX, key: *const u8, keylen: u32);
-}
-extern "C" {
-    pub fn hmac_sha512_Update(hctx: *mut HMAC_SHA512_CTX, msg: *const u8, msglen: u32);
-}
-extern "C" {
-    pub fn hmac_sha512_Final(hctx: *mut HMAC_SHA512_CTX, hmac: *mut u8);
-}
-extern "C" {
-    pub fn hmac_sha512(key: *const u8, keylen: u32, msg: *const u8, msglen: u32, hmac: *mut u8);
-}
-extern "C" {
-    pub fn hmac_sha512_prepare(
-        key: *const u8,
-        keylen: u32,
-        opad_digest: *mut u64,
-        ipad_digest: *mut u64,
-    );
-}
-extern "C" {
-    pub fn mnemonic_generate(strength: ::std::os::raw::c_int) -> *const ::std::os::raw::c_char;
-}
-extern "C" {
-    pub fn mnemonic_from_data(
-        data: *const u8,
+    pub fn aes_ecb_encrypt(
+        ibuf: *const ::std::os::raw::c_uchar,
+        obuf: *mut ::std::os::raw::c_uchar,
         len: ::std::os::raw::c_int,
-    ) -> *const ::std::os::raw::c_char;
-}
-extern "C" {
-    pub fn mnemonic_clear();
-}
-extern "C" {
-    pub fn mnemonic_check(mnemonic: *const ::std::os::raw::c_char) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn mnemonic_to_bits(
-        mnemonic: *const ::std::os::raw::c_char,
-        bits: *mut u8,
+        cx: *const aes_encrypt_ctx,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn mnemonic_to_seed(
-        mnemonic: *const ::std::os::raw::c_char,
-        passphrase: *const ::std::os::raw::c_char,
-        seed: *mut u8,
-        progress_callback: ::std::option::Option<unsafe extern "C" fn(current: u32, total: u32)>,
-    );
-}
-extern "C" {
-    pub fn mnemonic_find_word(word: *const ::std::os::raw::c_char) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn mnemonic_complete_word(
-        prefix: *const ::std::os::raw::c_char,
+    pub fn aes_ecb_decrypt(
+        ibuf: *const ::std::os::raw::c_uchar,
+        obuf: *mut ::std::os::raw::c_uchar,
         len: ::std::os::raw::c_int,
-    ) -> *const ::std::os::raw::c_char;
+        cx: *const aes_decrypt_ctx,
+    ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn mnemonic_get_word(index: ::std::os::raw::c_int) -> *const ::std::os::raw::c_char;
-}
-extern "C" {
-    pub fn mnemonic_word_completion_mask(
-        prefix: *const ::std::os::raw::c_char,
+    pub fn aes_cbc_encrypt(
+        ibuf: *const ::std::os::raw::c_uchar,
+        obuf: *mut ::std::os::raw::c_uchar,
         len: ::std::os::raw::c_int,
-    ) -> u32;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct _PBKDF2_HMAC_SHA256_CTX {
-    pub odig: [u32; 8usize],
-    pub idig: [u32; 8usize],
-    pub f: [u32; 8usize],
-    pub g: [u32; 16usize],
-    pub first: ::std::os::raw::c_char,
-}
-#[test]
-fn bindgen_test_layout__PBKDF2_HMAC_SHA256_CTX() {
-    assert_eq!(
-        ::std::mem::size_of::<_PBKDF2_HMAC_SHA256_CTX>(),
-        164usize,
-        concat!("Size of: ", stringify!(_PBKDF2_HMAC_SHA256_CTX))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<_PBKDF2_HMAC_SHA256_CTX>(),
-        4usize,
-        concat!("Alignment of ", stringify!(_PBKDF2_HMAC_SHA256_CTX))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA256_CTX>())).odig as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_PBKDF2_HMAC_SHA256_CTX),
-            "::",
-            stringify!(odig)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA256_CTX>())).idig as *const _ as usize },
-        32usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_PBKDF2_HMAC_SHA256_CTX),
-            "::",
-            stringify!(idig)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA256_CTX>())).f as *const _ as usize },
-        64usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_PBKDF2_HMAC_SHA256_CTX),
-            "::",
-            stringify!(f)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA256_CTX>())).g as *const _ as usize },
-        96usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_PBKDF2_HMAC_SHA256_CTX),
-            "::",
-            stringify!(g)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA256_CTX>())).first as *const _ as usize },
-        160usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_PBKDF2_HMAC_SHA256_CTX),
-            "::",
-            stringify!(first)
-        )
-    );
-}
-pub type PBKDF2_HMAC_SHA256_CTX = _PBKDF2_HMAC_SHA256_CTX;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct _PBKDF2_HMAC_SHA512_CTX {
-    pub odig: [u64; 8usize],
-    pub idig: [u64; 8usize],
-    pub f: [u64; 8usize],
-    pub g: [u64; 16usize],
-    pub first: ::std::os::raw::c_char,
-}
-#[test]
-fn bindgen_test_layout__PBKDF2_HMAC_SHA512_CTX() {
-    assert_eq!(
-        ::std::mem::size_of::<_PBKDF2_HMAC_SHA512_CTX>(),
-        328usize,
-        concat!("Size of: ", stringify!(_PBKDF2_HMAC_SHA512_CTX))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<_PBKDF2_HMAC_SHA512_CTX>(),
-        8usize,
-        concat!("Alignment of ", stringify!(_PBKDF2_HMAC_SHA512_CTX))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA512_CTX>())).odig as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_PBKDF2_HMAC_SHA512_CTX),
-            "::",
-            stringify!(odig)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA512_CTX>())).idig as *const _ as usize },
-        64usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_PBKDF2_HMAC_SHA512_CTX),
-            "::",
-            stringify!(idig)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA512_CTX>())).f as *const _ as usize },
-        128usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_PBKDF2_HMAC_SHA512_CTX),
-            "::",
-            stringify!(f)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA512_CTX>())).g as *const _ as usize },
-        192usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_PBKDF2_HMAC_SHA512_CTX),
-            "::",
-            stringify!(g)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA512_CTX>())).first as *const _ as usize },
-        320usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_PBKDF2_HMAC_SHA512_CTX),
-            "::",
-            stringify!(first)
-        )
-    );
-}
-pub type PBKDF2_HMAC_SHA512_CTX = _PBKDF2_HMAC_SHA512_CTX;
-extern "C" {
-    pub fn pbkdf2_hmac_sha256_Init(
-        pctx: *mut PBKDF2_HMAC_SHA256_CTX,
-        pass: *const u8,
-        passlen: ::std::os::raw::c_int,
-        salt: *const u8,
-        saltlen: ::std::os::raw::c_int,
-        blocknr: u32,
-    );
+        iv: *mut ::std::os::raw::c_uchar,
+        cx: *const aes_encrypt_ctx,
+    ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn pbkdf2_hmac_sha256_Update(pctx: *mut PBKDF2_HMAC_SHA256_CTX, iterations: u32);
-}
-extern "C" {
-    pub fn pbkdf2_hmac_sha256_Final(pctx: *mut PBKDF2_HMAC_SHA256_CTX, key: *mut u8);
-}
-extern "C" {
-    pub fn pbkdf2_hmac_sha256(
-        pass: *const u8,
-        passlen: ::std::os::raw::c_int,
-        salt: *const u8,
-        saltlen: ::std::os::raw::c_int,
-        iterations: u32,
-        key: *mut u8,
-        keylen: ::std::os::raw::c_int,
-    );
-}
-extern "C" {
-    pub fn pbkdf2_hmac_sha512_Init(
-        pctx: *mut PBKDF2_HMAC_SHA512_CTX,
-        pass: *const u8,
-        passlen: ::std::os::raw::c_int,
-        salt: *const u8,
-        saltlen: ::std::os::raw::c_int,
-        blocknr: u32,
-    );
-}
-extern "C" {
-    pub fn pbkdf2_hmac_sha512_Update(pctx: *mut PBKDF2_HMAC_SHA512_CTX, iterations: u32);
-}
-extern "C" {
-    pub fn pbkdf2_hmac_sha512_Final(pctx: *mut PBKDF2_HMAC_SHA512_CTX, key: *mut u8);
-}
-extern "C" {
-    pub fn pbkdf2_hmac_sha512(
-        pass: *const u8,
-        passlen: ::std::os::raw::c_int,
-        salt: *const u8,
-        saltlen: ::std::os::raw::c_int,
-        iterations: u32,
-        key: *mut u8,
-        keylen: ::std::os::raw::c_int,
-    );
-}
-extern "C" {
-    pub static mut b58digits_ordered: [::std::os::raw::c_char; 0usize];
-}
-extern "C" {
-    pub static mut b58digits_map: [i8; 0usize];
-}
-extern "C" {
-    pub fn base58_encode_check(
-        data: *const u8,
+    pub fn aes_cbc_decrypt(
+        ibuf: *const ::std::os::raw::c_uchar,
+        obuf: *mut ::std::os::raw::c_uchar,
         len: ::std::os::raw::c_int,
-        hasher_type: HasherType,
-        str_: *mut ::std::os::raw::c_char,
-        strsize: ::std::os::raw::c_int,
+        iv: *mut ::std::os::raw::c_uchar,
+        cx: *const aes_decrypt_ctx,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn base58_decode_check(
-        str_: *const ::std::os::raw::c_char,
-        hasher_type: HasherType,
-        data: *mut u8,
-        datalen: ::std::os::raw::c_int,
+    pub fn aes_mode_reset(cx: *mut aes_encrypt_ctx) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn aes_cfb_encrypt(
+        ibuf: *const ::std::os::raw::c_uchar,
+        obuf: *mut ::std::os::raw::c_uchar,
+        len: ::std::os::raw::c_int,
+        iv: *mut ::std::os::raw::c_uchar,
+        cx: *mut aes_encrypt_ctx,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn b58tobin(
-        bin: *mut ::std::os::raw::c_void,
-        binszp: *mut size_t,
-        b58: *const ::std::os::raw::c_char,
-    ) -> bool;
-}
-extern "C" {
-    pub fn b58check(
-        bin: *const ::std::os::raw::c_void,
-        binsz: size_t,
-        hasher_type: HasherType,
-        base58str: *const ::std::os::raw::c_char,
+    pub fn aes_cfb_decrypt(
+        ibuf: *const ::std::os::raw::c_uchar,
+        obuf: *mut ::std::os::raw::c_uchar,
+        len: ::std::os::raw::c_int,
+        iv: *mut ::std::os::raw::c_uchar,
+        cx: *mut aes_encrypt_ctx,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn b58enc(
-        b58: *mut ::std::os::raw::c_char,
-        b58sz: *mut size_t,
-        data: *const ::std::os::raw::c_void,
-        binsz: size_t,
-    ) -> bool;
-}
-extern "C" {
-    pub static mut BASE32_ALPHABET_RFC4648: *const ::std::os::raw::c_char;
-}
-extern "C" {
-    pub fn base32_encode(
-        in_: *const u8,
-        inlen: size_t,
-        out: *mut ::std::os::raw::c_char,
-        outlen: size_t,
-        alphabet: *const ::std::os::raw::c_char,
-    ) -> *mut ::std::os::raw::c_char;
-}
-extern "C" {
-    pub fn base32_encode_unsafe(in_: *const u8, inlen: size_t, out: *mut u8);
-}
-extern "C" {
-    pub fn base32_decode(
-        in_: *const ::std::os::raw::c_char,
-        inlen: size_t,
-        out: *mut u8,
-        outlen: size_t,
-        alphabet: *const ::std::os::raw::c_char,
-    ) -> *mut u8;
-}
-extern "C" {
-    pub fn base32_decode_unsafe(
-        in_: *const u8,
-        inlen: size_t,
-        out: *mut u8,
-        alphabet: *const ::std::os::raw::c_char,
-    ) -> bool;
-}
-extern "C" {
-    pub fn base32_encoded_length(inlen: size_t) -> size_t;
-}
-extern "C" {
-    pub fn base32_decoded_length(inlen: size_t) -> size_t;
-}
-extern "C" {
-    pub fn address_prefix_bytes_len(address_type: u32) -> size_t;
-}
-extern "C" {
-    pub fn address_write_prefix_bytes(address_type: u32, out: *mut u8);
-}
-extern "C" {
-    pub fn address_check_prefix(addr: *const u8, address_type: u32) -> bool;
-}
-extern "C" {
-    pub fn script_output_to_address(
-        script: *const u8,
-        scriptlen: ::std::os::raw::c_int,
-        addr: *mut ::std::os::raw::c_char,
-        addrsize: ::std::os::raw::c_int,
+    pub fn aes_ofb_crypt(
+        ibuf: *const ::std::os::raw::c_uchar,
+        obuf: *mut ::std::os::raw::c_uchar,
+        len: ::std::os::raw::c_int,
+        iv: *mut ::std::os::raw::c_uchar,
+        cx: *mut aes_encrypt_ctx,
     ) -> ::std::os::raw::c_int;
 }
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct _RIPEMD160_CTX {
-    #[doc = "< number of bytes processed"]
-    pub total: [u32; 2usize],
-    #[doc = "< intermediate digest state"]
-    pub state: [u32; 5usize],
-    #[doc = "< data block being processed"]
-    pub buffer: [u8; 64usize],
-}
-#[test]
-fn bindgen_test_layout__RIPEMD160_CTX() {
-    assert_eq!(
-        ::std::mem::size_of::<_RIPEMD160_CTX>(),
-        92usize,
-        concat!("Size of: ", stringify!(_RIPEMD160_CTX))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<_RIPEMD160_CTX>(),
-        4usize,
-        concat!("Alignment of ", stringify!(_RIPEMD160_CTX))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_RIPEMD160_CTX>())).total as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_RIPEMD160_CTX),
-            "::",
-            stringify!(total)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_RIPEMD160_CTX>())).state as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_RIPEMD160_CTX),
-            "::",
-            stringify!(state)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_RIPEMD160_CTX>())).buffer as *const _ as usize },
-        28usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_RIPEMD160_CTX),
-            "::",
-            stringify!(buffer)
-        )
-    );
-}
-pub type RIPEMD160_CTX = _RIPEMD160_CTX;
+pub type cbuf_inc = ::std::option::Option<unsafe extern "C" fn(cbuf: *mut ::std::os::raw::c_uchar)>;
 extern "C" {
-    pub fn ripemd160_Init(ctx: *mut RIPEMD160_CTX);
-}
-extern "C" {
-    pub fn ripemd160_Update(ctx: *mut RIPEMD160_CTX, input: *const u8, ilen: u32);
-}
-extern "C" {
-    pub fn ripemd160_Final(ctx: *mut RIPEMD160_CTX, output: *mut u8);
-}
-extern "C" {
-    pub fn ripemd160(msg: *const u8, msg_len: u32, hash: *mut u8);
-}
-extern "C" {
-    pub fn xmr_base58_addr_encode_check(
-        tag: u64,
-        data: *const u8,
-        binsz: size_t,
-        b58: *mut ::std::os::raw::c_char,
-        b58sz: size_t,
+    pub fn aes_ctr_crypt(
+        ibuf: *const ::std::os::raw::c_uchar,
+        obuf: *mut ::std::os::raw::c_uchar,
+        len: ::std::os::raw::c_int,
+        cbuf: *mut ::std::os::raw::c_uchar,
+        ctr_inc: cbuf_inc,
+        cx: *mut aes_encrypt_ctx,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn xmr_base58_addr_decode_check(
-        addr: *const ::std::os::raw::c_char,
-        sz: size_t,
-        tag: *mut u64,
-        data: *mut ::std::os::raw::c_void,
-        datalen: size_t,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn xmr_base58_encode(
-        b58: *mut ::std::os::raw::c_char,
-        b58sz: *mut size_t,
-        data: *const ::std::os::raw::c_void,
-        binsz: size_t,
-    ) -> bool;
-}
-extern "C" {
-    pub fn xmr_base58_decode(
-        b58: *const ::std::os::raw::c_char,
-        b58sz: size_t,
-        data: *mut ::std::os::raw::c_void,
-        binsz: *mut size_t,
-    ) -> bool;
-}
-extern "C" {
-    pub fn xmr_size_varint(num: u64) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn xmr_write_varint(buff: *mut u8, buff_size: size_t, num: u64) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn xmr_read_varint(
-        buff: *mut u8,
-        buff_size: size_t,
-        val: *mut u64,
-    ) -> ::std::os::raw::c_int;
+    pub fn aes_ctr_cbuf_inc(cbuf: *mut ::std::os::raw::c_uchar);
 }
 extern "C" {
     pub fn memcpy(
@@ -5835,6 +3571,15 @@ extern "C" {
     );
 }
 extern "C" {
+    pub fn ge25519_double_scalarmult_vartime2(
+        r: *mut ge25519,
+        p1: *const ge25519,
+        s1: *mut bignum256modm_element_t,
+        p2: *const ge25519,
+        s2: *mut bignum256modm_element_t,
+    );
+}
+extern "C" {
     pub fn ge25519_pnielsadd_p1p1(
         r: *mut ge25519_p1p1,
         p: *const ge25519,
@@ -5942,6 +3687,2670 @@ extern "C" {
 }
 extern "C" {
     pub fn ge25519_scalarmult_base_wrapper(r: *mut ge25519, s: *mut bignum256modm_element_t);
+}
+#[doc = " SHA3 Algorithm context."]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct SHA3_CTX {
+    pub hash: [u64; 25usize],
+    pub message: [u64; 24usize],
+    pub rest: ::std::os::raw::c_uint,
+    pub block_size: ::std::os::raw::c_uint,
+}
+#[test]
+fn bindgen_test_layout_SHA3_CTX() {
+    assert_eq!(
+        ::std::mem::size_of::<SHA3_CTX>(),
+        400usize,
+        concat!("Size of: ", stringify!(SHA3_CTX))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<SHA3_CTX>(),
+        8usize,
+        concat!("Alignment of ", stringify!(SHA3_CTX))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<SHA3_CTX>())).hash as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SHA3_CTX),
+            "::",
+            stringify!(hash)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<SHA3_CTX>())).message as *const _ as usize },
+        200usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SHA3_CTX),
+            "::",
+            stringify!(message)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<SHA3_CTX>())).rest as *const _ as usize },
+        392usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SHA3_CTX),
+            "::",
+            stringify!(rest)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<SHA3_CTX>())).block_size as *const _ as usize },
+        396usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SHA3_CTX),
+            "::",
+            stringify!(block_size)
+        )
+    );
+}
+extern "C" {
+    pub fn sha3_224_Init(ctx: *mut SHA3_CTX);
+}
+extern "C" {
+    pub fn sha3_256_Init(ctx: *mut SHA3_CTX);
+}
+extern "C" {
+    pub fn sha3_384_Init(ctx: *mut SHA3_CTX);
+}
+extern "C" {
+    pub fn sha3_512_Init(ctx: *mut SHA3_CTX);
+}
+extern "C" {
+    pub fn sha3_Update(ctx: *mut SHA3_CTX, msg: *const ::std::os::raw::c_uchar, size: size_t);
+}
+extern "C" {
+    pub fn sha3_Final(ctx: *mut SHA3_CTX, result: *mut ::std::os::raw::c_uchar);
+}
+extern "C" {
+    pub fn keccak_Final(ctx: *mut SHA3_CTX, result: *mut ::std::os::raw::c_uchar);
+}
+extern "C" {
+    pub fn keccak_256(
+        data: *const ::std::os::raw::c_uchar,
+        len: size_t,
+        digest: *mut ::std::os::raw::c_uchar,
+    );
+}
+extern "C" {
+    pub fn keccak_512(
+        data: *const ::std::os::raw::c_uchar,
+        len: size_t,
+        digest: *mut ::std::os::raw::c_uchar,
+    );
+}
+extern "C" {
+    pub fn sha3_256(
+        data: *const ::std::os::raw::c_uchar,
+        len: size_t,
+        digest: *mut ::std::os::raw::c_uchar,
+    );
+}
+extern "C" {
+    pub fn sha3_512(
+        data: *const ::std::os::raw::c_uchar,
+        len: size_t,
+        digest: *mut ::std::os::raw::c_uchar,
+    );
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct bignum256 {
+    pub val: [u32; 9usize],
+}
+#[test]
+fn bindgen_test_layout_bignum256() {
+    assert_eq!(
+        ::std::mem::size_of::<bignum256>(),
+        36usize,
+        concat!("Size of: ", stringify!(bignum256))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<bignum256>(),
+        4usize,
+        concat!("Alignment of ", stringify!(bignum256))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<bignum256>())).val as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(bignum256),
+            "::",
+            stringify!(val)
+        )
+    );
+}
+extern "C" {
+    pub fn bn_read_be(in_number: *const u8, out_number: *mut bignum256);
+}
+extern "C" {
+    pub fn bn_write_be(in_number: *const bignum256, out_number: *mut u8);
+}
+extern "C" {
+    pub fn bn_read_le(in_number: *const u8, out_number: *mut bignum256);
+}
+extern "C" {
+    pub fn bn_write_le(in_number: *const bignum256, out_number: *mut u8);
+}
+extern "C" {
+    pub fn bn_read_uint32(in_number: u32, out_number: *mut bignum256);
+}
+extern "C" {
+    pub fn bn_read_uint64(in_number: u64, out_number: *mut bignum256);
+}
+extern "C" {
+    pub fn bn_bitcount(x: *const bignum256) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn bn_digitcount(x: *const bignum256) -> ::std::os::raw::c_uint;
+}
+extern "C" {
+    pub fn bn_zero(x: *mut bignum256);
+}
+extern "C" {
+    pub fn bn_one(x: *mut bignum256);
+}
+extern "C" {
+    pub fn bn_is_zero(x: *const bignum256) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn bn_is_one(x: *const bignum256) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn bn_is_less(x: *const bignum256, y: *const bignum256) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn bn_is_equal(x: *const bignum256, y: *const bignum256) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn bn_cmov(
+        res: *mut bignum256,
+        cond: u32,
+        truecase: *const bignum256,
+        falsecase: *const bignum256,
+    );
+}
+extern "C" {
+    pub fn bn_cnegate(cond: u32, x: *mut bignum256, prime: *const bignum256);
+}
+extern "C" {
+    pub fn bn_lshift(x: *mut bignum256);
+}
+extern "C" {
+    pub fn bn_rshift(x: *mut bignum256);
+}
+extern "C" {
+    pub fn bn_setbit(x: *mut bignum256, i: u16);
+}
+extern "C" {
+    pub fn bn_clearbit(x: *mut bignum256, i: u16);
+}
+extern "C" {
+    pub fn bn_testbit(x: *const bignum256, i: u16) -> u32;
+}
+extern "C" {
+    pub fn bn_xor(res: *mut bignum256, x: *const bignum256, y: *const bignum256);
+}
+extern "C" {
+    pub fn bn_mult_half(x: *mut bignum256, prime: *const bignum256);
+}
+extern "C" {
+    pub fn bn_mult_k(x: *mut bignum256, k: u8, prime: *const bignum256);
+}
+extern "C" {
+    pub fn bn_mod(x: *mut bignum256, prime: *const bignum256);
+}
+extern "C" {
+    pub fn bn_multiply(k: *const bignum256, x: *mut bignum256, prime: *const bignum256);
+}
+extern "C" {
+    pub fn bn_fast_mod(x: *mut bignum256, prime: *const bignum256);
+}
+extern "C" {
+    pub fn bn_power_mod(
+        x: *const bignum256,
+        e: *const bignum256,
+        prime: *const bignum256,
+        res: *mut bignum256,
+    );
+}
+extern "C" {
+    pub fn bn_sqrt(x: *mut bignum256, prime: *const bignum256);
+}
+extern "C" {
+    pub fn inverse_mod_power_two(a: u32, n: u32) -> u32;
+}
+extern "C" {
+    pub fn bn_divide_base(x: *mut bignum256, prime: *const bignum256);
+}
+extern "C" {
+    pub fn bn_normalize(x: *mut bignum256);
+}
+extern "C" {
+    pub fn bn_add(x: *mut bignum256, y: *const bignum256);
+}
+extern "C" {
+    pub fn bn_addmod(x: *mut bignum256, y: *const bignum256, prime: *const bignum256);
+}
+extern "C" {
+    pub fn bn_addi(x: *mut bignum256, y: u32);
+}
+extern "C" {
+    pub fn bn_subi(x: *mut bignum256, y: u32, prime: *const bignum256);
+}
+extern "C" {
+    pub fn bn_subtractmod(
+        x: *const bignum256,
+        y: *const bignum256,
+        res: *mut bignum256,
+        prime: *const bignum256,
+    );
+}
+extern "C" {
+    pub fn bn_subtract(x: *const bignum256, y: *const bignum256, res: *mut bignum256);
+}
+extern "C" {
+    pub fn bn_long_division(x: *mut bignum256, d: u32, q: *mut bignum256, r: *mut u32);
+}
+extern "C" {
+    pub fn bn_divmod58(x: *mut bignum256, r: *mut u32);
+}
+extern "C" {
+    pub fn bn_divmod1000(x: *mut bignum256, r: *mut u32);
+}
+extern "C" {
+    pub fn bn_inverse(x: *mut bignum256, prime: *const bignum256);
+}
+extern "C" {
+    pub fn bn_format(
+        amount: *const bignum256,
+        prefix: *const ::std::os::raw::c_char,
+        suffix: *const ::std::os::raw::c_char,
+        decimals: ::std::os::raw::c_uint,
+        exponent: ::std::os::raw::c_int,
+        trailing: bool,
+        output: *mut ::std::os::raw::c_char,
+        output_length: size_t,
+    ) -> size_t;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct BLAKE256_CTX {
+    pub h: [u32; 8usize],
+    pub s: [u32; 4usize],
+    pub t: [u32; 2usize],
+    pub buflen: size_t,
+    pub nullt: u8,
+    pub buf: [u8; 64usize],
+}
+#[test]
+fn bindgen_test_layout_BLAKE256_CTX() {
+    assert_eq!(
+        ::std::mem::size_of::<BLAKE256_CTX>(),
+        136usize,
+        concat!("Size of: ", stringify!(BLAKE256_CTX))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<BLAKE256_CTX>(),
+        8usize,
+        concat!("Alignment of ", stringify!(BLAKE256_CTX))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<BLAKE256_CTX>())).h as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(BLAKE256_CTX),
+            "::",
+            stringify!(h)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<BLAKE256_CTX>())).s as *const _ as usize },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(BLAKE256_CTX),
+            "::",
+            stringify!(s)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<BLAKE256_CTX>())).t as *const _ as usize },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(BLAKE256_CTX),
+            "::",
+            stringify!(t)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<BLAKE256_CTX>())).buflen as *const _ as usize },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(BLAKE256_CTX),
+            "::",
+            stringify!(buflen)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<BLAKE256_CTX>())).nullt as *const _ as usize },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(BLAKE256_CTX),
+            "::",
+            stringify!(nullt)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<BLAKE256_CTX>())).buf as *const _ as usize },
+        65usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(BLAKE256_CTX),
+            "::",
+            stringify!(buf)
+        )
+    );
+}
+extern "C" {
+    pub fn blake256_Init(arg1: *mut BLAKE256_CTX);
+}
+extern "C" {
+    pub fn blake256_Update(arg1: *mut BLAKE256_CTX, arg2: *const u8, arg3: size_t);
+}
+extern "C" {
+    pub fn blake256_Final(arg1: *mut BLAKE256_CTX, arg2: *mut u8);
+}
+extern "C" {
+    pub fn blake256(arg1: *const u8, arg2: size_t, arg3: *mut u8);
+}
+pub const blake2b_constant_BLAKE2B_BLOCKBYTES: blake2b_constant = 128;
+pub const blake2b_constant_BLAKE2B_OUTBYTES: blake2b_constant = 64;
+pub const blake2b_constant_BLAKE2B_KEYBYTES: blake2b_constant = 64;
+pub const blake2b_constant_BLAKE2B_SALTBYTES: blake2b_constant = 16;
+pub const blake2b_constant_BLAKE2B_PERSONALBYTES: blake2b_constant = 16;
+pub type blake2b_constant = ::std::os::raw::c_uint;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct __blake2b_state {
+    pub h: [u64; 8usize],
+    pub t: [u64; 2usize],
+    pub f: [u64; 2usize],
+    pub buf: [u8; 128usize],
+    pub buflen: size_t,
+    pub outlen: size_t,
+    pub last_node: u8,
+}
+#[test]
+fn bindgen_test_layout___blake2b_state() {
+    assert_eq!(
+        ::std::mem::size_of::<__blake2b_state>(),
+        248usize,
+        concat!("Size of: ", stringify!(__blake2b_state))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<__blake2b_state>(),
+        8usize,
+        concat!("Alignment of ", stringify!(__blake2b_state))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<__blake2b_state>())).h as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__blake2b_state),
+            "::",
+            stringify!(h)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<__blake2b_state>())).t as *const _ as usize },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__blake2b_state),
+            "::",
+            stringify!(t)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<__blake2b_state>())).f as *const _ as usize },
+        80usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__blake2b_state),
+            "::",
+            stringify!(f)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<__blake2b_state>())).buf as *const _ as usize },
+        96usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__blake2b_state),
+            "::",
+            stringify!(buf)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<__blake2b_state>())).buflen as *const _ as usize },
+        224usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__blake2b_state),
+            "::",
+            stringify!(buflen)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<__blake2b_state>())).outlen as *const _ as usize },
+        232usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__blake2b_state),
+            "::",
+            stringify!(outlen)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<__blake2b_state>())).last_node as *const _ as usize },
+        240usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(__blake2b_state),
+            "::",
+            stringify!(last_node)
+        )
+    );
+}
+pub type blake2b_state = __blake2b_state;
+extern "C" {
+    pub fn blake2b_Init(S: *mut blake2b_state, outlen: size_t) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn blake2b_InitKey(
+        S: *mut blake2b_state,
+        outlen: size_t,
+        key: *const ::std::os::raw::c_void,
+        keylen: size_t,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn blake2b_InitPersonal(
+        S: *mut blake2b_state,
+        outlen: size_t,
+        personal: *const ::std::os::raw::c_void,
+        personal_len: size_t,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn blake2b_Update(
+        S: *mut blake2b_state,
+        pin: *const ::std::os::raw::c_void,
+        inlen: size_t,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn blake2b_Final(
+        S: *mut blake2b_state,
+        out: *mut ::std::os::raw::c_void,
+        outlen: size_t,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn blake2b(
+        msg: *const u8,
+        msg_len: u32,
+        out: *mut ::std::os::raw::c_void,
+        outlen: size_t,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn blake2b_Key(
+        msg: *const u8,
+        msg_len: u32,
+        key: *const ::std::os::raw::c_void,
+        keylen: size_t,
+        out: *mut ::std::os::raw::c_void,
+        outlen: size_t,
+    ) -> ::std::os::raw::c_int;
+}
+#[doc = " This structure is a context for Groestl-384 and Groestl-512 computations:"]
+#[doc = " it contains the intermediate values and some data from the last"]
+#[doc = " entered block. Once a Groestl computation has been performed, the"]
+#[doc = " context can be reused for another computation."]
+#[doc = ""]
+#[doc = " The contents of this structure are private. A running Groestl"]
+#[doc = " computation can be cloned by copying the context (e.g. with a simple"]
+#[doc = " <code>memcpy()</code>)."]
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct sph_groestl_big_context {
+    pub buf: [::std::os::raw::c_uchar; 128usize],
+    pub ptr: size_t,
+    pub state: sph_groestl_big_context__bindgen_ty_1,
+    pub count: u64,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub union sph_groestl_big_context__bindgen_ty_1 {
+    pub wide: [u64; 16usize],
+    pub narrow: [u32; 32usize],
+}
+#[test]
+fn bindgen_test_layout_sph_groestl_big_context__bindgen_ty_1() {
+    assert_eq!(
+        ::std::mem::size_of::<sph_groestl_big_context__bindgen_ty_1>(),
+        128usize,
+        concat!(
+            "Size of: ",
+            stringify!(sph_groestl_big_context__bindgen_ty_1)
+        )
+    );
+    assert_eq!(
+        ::std::mem::align_of::<sph_groestl_big_context__bindgen_ty_1>(),
+        8usize,
+        concat!(
+            "Alignment of ",
+            stringify!(sph_groestl_big_context__bindgen_ty_1)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<sph_groestl_big_context__bindgen_ty_1>())).wide as *const _
+                as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(sph_groestl_big_context__bindgen_ty_1),
+            "::",
+            stringify!(wide)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<sph_groestl_big_context__bindgen_ty_1>())).narrow as *const _
+                as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(sph_groestl_big_context__bindgen_ty_1),
+            "::",
+            stringify!(narrow)
+        )
+    );
+}
+#[test]
+fn bindgen_test_layout_sph_groestl_big_context() {
+    assert_eq!(
+        ::std::mem::size_of::<sph_groestl_big_context>(),
+        272usize,
+        concat!("Size of: ", stringify!(sph_groestl_big_context))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<sph_groestl_big_context>(),
+        8usize,
+        concat!("Alignment of ", stringify!(sph_groestl_big_context))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<sph_groestl_big_context>())).buf as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(sph_groestl_big_context),
+            "::",
+            stringify!(buf)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<sph_groestl_big_context>())).ptr as *const _ as usize },
+        128usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(sph_groestl_big_context),
+            "::",
+            stringify!(ptr)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<sph_groestl_big_context>())).state as *const _ as usize },
+        136usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(sph_groestl_big_context),
+            "::",
+            stringify!(state)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<sph_groestl_big_context>())).count as *const _ as usize },
+        264usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(sph_groestl_big_context),
+            "::",
+            stringify!(count)
+        )
+    );
+}
+pub type GROESTL512_CTX = sph_groestl_big_context;
+extern "C" {
+    #[doc = " Initialize a Groestl-512 context. This process performs no memory allocation."]
+    #[doc = ""]
+    #[doc = " @param cc   the Groestl-512 context (pointer to a"]
+    #[doc = "             <code>GROESTL512_CTX</code>)"]
+    pub fn groestl512_Init(cc: *mut ::std::os::raw::c_void);
+}
+extern "C" {
+    #[doc = " Process some data bytes. It is acceptable that <code>len</code> is zero"]
+    #[doc = " (in which case this function does nothing)."]
+    #[doc = ""]
+    #[doc = " @param cc     the Groestl-512 context"]
+    #[doc = " @param data   the input data"]
+    #[doc = " @param len    the input data length (in bytes)"]
+    pub fn groestl512_Update(
+        cc: *mut ::std::os::raw::c_void,
+        data: *const ::std::os::raw::c_void,
+        len: size_t,
+    );
+}
+extern "C" {
+    #[doc = " Terminate the current Groestl-512 computation and output the result into"]
+    #[doc = " the provided buffer. The destination buffer must be wide enough to"]
+    #[doc = " accomodate the result (64 bytes). The context is automatically"]
+    #[doc = " reinitialized."]
+    #[doc = ""]
+    #[doc = " @param cc    the Groestl-512 context"]
+    #[doc = " @param dst   the destination buffer"]
+    pub fn groestl512_Final(cc: *mut ::std::os::raw::c_void, dst: *mut ::std::os::raw::c_void);
+}
+extern "C" {
+    pub fn groestl512_DoubleTrunc(
+        cc: *mut ::std::os::raw::c_void,
+        dst: *mut ::std::os::raw::c_void,
+    );
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _SHA1_CTX {
+    pub state: [u32; 5usize],
+    pub bitcount: u64,
+    pub buffer: [u32; 16usize],
+}
+#[test]
+fn bindgen_test_layout__SHA1_CTX() {
+    assert_eq!(
+        ::std::mem::size_of::<_SHA1_CTX>(),
+        96usize,
+        concat!("Size of: ", stringify!(_SHA1_CTX))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_SHA1_CTX>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_SHA1_CTX))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_SHA1_CTX>())).state as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_SHA1_CTX),
+            "::",
+            stringify!(state)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_SHA1_CTX>())).bitcount as *const _ as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_SHA1_CTX),
+            "::",
+            stringify!(bitcount)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_SHA1_CTX>())).buffer as *const _ as usize },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_SHA1_CTX),
+            "::",
+            stringify!(buffer)
+        )
+    );
+}
+pub type SHA1_CTX = _SHA1_CTX;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _SHA256_CTX {
+    pub state: [u32; 8usize],
+    pub bitcount: u64,
+    pub buffer: [u32; 16usize],
+}
+#[test]
+fn bindgen_test_layout__SHA256_CTX() {
+    assert_eq!(
+        ::std::mem::size_of::<_SHA256_CTX>(),
+        104usize,
+        concat!("Size of: ", stringify!(_SHA256_CTX))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_SHA256_CTX>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_SHA256_CTX))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_SHA256_CTX>())).state as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_SHA256_CTX),
+            "::",
+            stringify!(state)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_SHA256_CTX>())).bitcount as *const _ as usize },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_SHA256_CTX),
+            "::",
+            stringify!(bitcount)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_SHA256_CTX>())).buffer as *const _ as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_SHA256_CTX),
+            "::",
+            stringify!(buffer)
+        )
+    );
+}
+pub type SHA256_CTX = _SHA256_CTX;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _SHA512_CTX {
+    pub state: [u64; 8usize],
+    pub bitcount: [u64; 2usize],
+    pub buffer: [u64; 16usize],
+}
+#[test]
+fn bindgen_test_layout__SHA512_CTX() {
+    assert_eq!(
+        ::std::mem::size_of::<_SHA512_CTX>(),
+        208usize,
+        concat!("Size of: ", stringify!(_SHA512_CTX))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_SHA512_CTX>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_SHA512_CTX))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_SHA512_CTX>())).state as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_SHA512_CTX),
+            "::",
+            stringify!(state)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_SHA512_CTX>())).bitcount as *const _ as usize },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_SHA512_CTX),
+            "::",
+            stringify!(bitcount)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_SHA512_CTX>())).buffer as *const _ as usize },
+        80usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_SHA512_CTX),
+            "::",
+            stringify!(buffer)
+        )
+    );
+}
+pub type SHA512_CTX = _SHA512_CTX;
+extern "C" {
+    pub static sha256_initial_hash_value: [u32; 8usize];
+}
+extern "C" {
+    pub static sha512_initial_hash_value: [u64; 8usize];
+}
+extern "C" {
+    pub fn sha1_Transform(state_in: *const u32, data: *const u32, state_out: *mut u32);
+}
+extern "C" {
+    pub fn sha1_Init(arg1: *mut SHA1_CTX);
+}
+extern "C" {
+    pub fn sha1_Update(arg1: *mut SHA1_CTX, arg2: *const u8, arg3: size_t);
+}
+extern "C" {
+    pub fn sha1_Final(arg1: *mut SHA1_CTX, arg2: *mut u8);
+}
+extern "C" {
+    pub fn sha1_End(
+        arg1: *mut SHA1_CTX,
+        arg2: *mut ::std::os::raw::c_char,
+    ) -> *mut ::std::os::raw::c_char;
+}
+extern "C" {
+    pub fn sha1_Raw(arg1: *const u8, arg2: size_t, arg3: *mut u8);
+}
+extern "C" {
+    pub fn sha1_Data(
+        arg1: *const u8,
+        arg2: size_t,
+        arg3: *mut ::std::os::raw::c_char,
+    ) -> *mut ::std::os::raw::c_char;
+}
+extern "C" {
+    pub fn sha256_Transform(state_in: *const u32, data: *const u32, state_out: *mut u32);
+}
+extern "C" {
+    pub fn sha256_Init(arg1: *mut SHA256_CTX);
+}
+extern "C" {
+    pub fn sha256_Update(arg1: *mut SHA256_CTX, arg2: *const u8, arg3: size_t);
+}
+extern "C" {
+    pub fn sha256_Final(arg1: *mut SHA256_CTX, arg2: *mut u8);
+}
+extern "C" {
+    pub fn sha256_End(
+        arg1: *mut SHA256_CTX,
+        arg2: *mut ::std::os::raw::c_char,
+    ) -> *mut ::std::os::raw::c_char;
+}
+extern "C" {
+    pub fn sha256_Raw(arg1: *const u8, arg2: size_t, arg3: *mut u8);
+}
+extern "C" {
+    pub fn sha256_Data(
+        arg1: *const u8,
+        arg2: size_t,
+        arg3: *mut ::std::os::raw::c_char,
+    ) -> *mut ::std::os::raw::c_char;
+}
+extern "C" {
+    pub fn sha512_Transform(state_in: *const u64, data: *const u64, state_out: *mut u64);
+}
+extern "C" {
+    pub fn sha512_Init(arg1: *mut SHA512_CTX);
+}
+extern "C" {
+    pub fn sha512_Update(arg1: *mut SHA512_CTX, arg2: *const u8, arg3: size_t);
+}
+extern "C" {
+    pub fn sha512_Final(arg1: *mut SHA512_CTX, arg2: *mut u8);
+}
+extern "C" {
+    pub fn sha512_End(
+        arg1: *mut SHA512_CTX,
+        arg2: *mut ::std::os::raw::c_char,
+    ) -> *mut ::std::os::raw::c_char;
+}
+extern "C" {
+    pub fn sha512_Raw(arg1: *const u8, arg2: size_t, arg3: *mut u8);
+}
+extern "C" {
+    pub fn sha512_Data(
+        arg1: *const u8,
+        arg2: size_t,
+        arg3: *mut ::std::os::raw::c_char,
+    ) -> *mut ::std::os::raw::c_char;
+}
+pub const HasherType_HASHER_SHA2: HasherType = 0;
+pub const HasherType_HASHER_SHA2D: HasherType = 1;
+pub const HasherType_HASHER_SHA2_RIPEMD: HasherType = 2;
+pub const HasherType_HASHER_SHA3: HasherType = 3;
+pub const HasherType_HASHER_SHA3K: HasherType = 4;
+pub const HasherType_HASHER_BLAKE: HasherType = 5;
+pub const HasherType_HASHER_BLAKED: HasherType = 6;
+pub const HasherType_HASHER_BLAKE_RIPEMD: HasherType = 7;
+pub const HasherType_HASHER_GROESTLD_TRUNC: HasherType = 8;
+pub const HasherType_HASHER_BLAKE2B: HasherType = 9;
+pub const HasherType_HASHER_BLAKE2B_PERSONAL: HasherType = 10;
+pub type HasherType = ::std::os::raw::c_uint;
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Hasher {
+    pub type_: HasherType,
+    pub ctx: Hasher__bindgen_ty_1,
+    pub param: *const ::std::os::raw::c_void,
+    pub param_size: u32,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub union Hasher__bindgen_ty_1 {
+    pub sha2: SHA256_CTX,
+    pub sha3: SHA3_CTX,
+    pub blake: BLAKE256_CTX,
+    pub groestl: GROESTL512_CTX,
+    pub blake2b: blake2b_state,
+}
+#[test]
+fn bindgen_test_layout_Hasher__bindgen_ty_1() {
+    assert_eq!(
+        ::std::mem::size_of::<Hasher__bindgen_ty_1>(),
+        400usize,
+        concat!("Size of: ", stringify!(Hasher__bindgen_ty_1))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Hasher__bindgen_ty_1>(),
+        8usize,
+        concat!("Alignment of ", stringify!(Hasher__bindgen_ty_1))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Hasher__bindgen_ty_1>())).sha2 as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Hasher__bindgen_ty_1),
+            "::",
+            stringify!(sha2)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Hasher__bindgen_ty_1>())).sha3 as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Hasher__bindgen_ty_1),
+            "::",
+            stringify!(sha3)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Hasher__bindgen_ty_1>())).blake as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Hasher__bindgen_ty_1),
+            "::",
+            stringify!(blake)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Hasher__bindgen_ty_1>())).groestl as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Hasher__bindgen_ty_1),
+            "::",
+            stringify!(groestl)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Hasher__bindgen_ty_1>())).blake2b as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Hasher__bindgen_ty_1),
+            "::",
+            stringify!(blake2b)
+        )
+    );
+}
+#[test]
+fn bindgen_test_layout_Hasher() {
+    assert_eq!(
+        ::std::mem::size_of::<Hasher>(),
+        424usize,
+        concat!("Size of: ", stringify!(Hasher))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Hasher>(),
+        8usize,
+        concat!("Alignment of ", stringify!(Hasher))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Hasher>())).type_ as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Hasher),
+            "::",
+            stringify!(type_)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Hasher>())).ctx as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Hasher),
+            "::",
+            stringify!(ctx)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Hasher>())).param as *const _ as usize },
+        408usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Hasher),
+            "::",
+            stringify!(param)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Hasher>())).param_size as *const _ as usize },
+        416usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Hasher),
+            "::",
+            stringify!(param_size)
+        )
+    );
+}
+extern "C" {
+    pub fn hasher_InitParam(
+        hasher: *mut Hasher,
+        type_: HasherType,
+        param: *const ::std::os::raw::c_void,
+        param_size: u32,
+    );
+}
+extern "C" {
+    pub fn hasher_Init(hasher: *mut Hasher, type_: HasherType);
+}
+extern "C" {
+    pub fn hasher_Reset(hasher: *mut Hasher);
+}
+extern "C" {
+    pub fn hasher_Update(hasher: *mut Hasher, data: *const u8, length: size_t);
+}
+extern "C" {
+    pub fn hasher_Final(hasher: *mut Hasher, hash: *mut u8);
+}
+extern "C" {
+    pub fn hasher_Raw(type_: HasherType, data: *const u8, length: size_t, hash: *mut u8);
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct curve_point {
+    pub x: bignum256,
+    pub y: bignum256,
+}
+#[test]
+fn bindgen_test_layout_curve_point() {
+    assert_eq!(
+        ::std::mem::size_of::<curve_point>(),
+        72usize,
+        concat!("Size of: ", stringify!(curve_point))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<curve_point>(),
+        4usize,
+        concat!("Alignment of ", stringify!(curve_point))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<curve_point>())).x as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(curve_point),
+            "::",
+            stringify!(x)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<curve_point>())).y as *const _ as usize },
+        36usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(curve_point),
+            "::",
+            stringify!(y)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct ecdsa_curve {
+    pub prime: bignum256,
+    pub G: curve_point,
+    pub order: bignum256,
+    pub order_half: bignum256,
+    pub a: ::std::os::raw::c_int,
+    pub b: bignum256,
+    pub cp: [[curve_point; 8usize]; 64usize],
+}
+#[test]
+fn bindgen_test_layout_ecdsa_curve() {
+    assert_eq!(
+        ::std::mem::size_of::<ecdsa_curve>(),
+        37084usize,
+        concat!("Size of: ", stringify!(ecdsa_curve))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ecdsa_curve>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ecdsa_curve))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ecdsa_curve>())).prime as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ecdsa_curve),
+            "::",
+            stringify!(prime)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ecdsa_curve>())).G as *const _ as usize },
+        36usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ecdsa_curve),
+            "::",
+            stringify!(G)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ecdsa_curve>())).order as *const _ as usize },
+        108usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ecdsa_curve),
+            "::",
+            stringify!(order)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ecdsa_curve>())).order_half as *const _ as usize },
+        144usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ecdsa_curve),
+            "::",
+            stringify!(order_half)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ecdsa_curve>())).a as *const _ as usize },
+        180usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ecdsa_curve),
+            "::",
+            stringify!(a)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ecdsa_curve>())).b as *const _ as usize },
+        184usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ecdsa_curve),
+            "::",
+            stringify!(b)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ecdsa_curve>())).cp as *const _ as usize },
+        220usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ecdsa_curve),
+            "::",
+            stringify!(cp)
+        )
+    );
+}
+extern "C" {
+    pub fn point_copy(cp1: *const curve_point, cp2: *mut curve_point);
+}
+extern "C" {
+    pub fn point_add(curve: *const ecdsa_curve, cp1: *const curve_point, cp2: *mut curve_point);
+}
+extern "C" {
+    pub fn point_double(curve: *const ecdsa_curve, cp: *mut curve_point);
+}
+extern "C" {
+    pub fn point_multiply(
+        curve: *const ecdsa_curve,
+        k: *const bignum256,
+        p: *const curve_point,
+        res: *mut curve_point,
+    );
+}
+extern "C" {
+    pub fn point_set_infinity(p: *mut curve_point);
+}
+extern "C" {
+    pub fn point_is_infinity(p: *const curve_point) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn point_is_equal(p: *const curve_point, q: *const curve_point) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn point_is_negative_of(
+        p: *const curve_point,
+        q: *const curve_point,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn scalar_multiply(curve: *const ecdsa_curve, k: *const bignum256, res: *mut curve_point);
+}
+extern "C" {
+    pub fn ecdh_multiply(
+        curve: *const ecdsa_curve,
+        priv_key: *const u8,
+        pub_key: *const u8,
+        session_key: *mut u8,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn compress_coords(cp: *const curve_point, compressed: *mut u8);
+}
+extern "C" {
+    pub fn uncompress_coords(
+        curve: *const ecdsa_curve,
+        odd: u8,
+        x: *const bignum256,
+        y: *mut bignum256,
+    );
+}
+extern "C" {
+    pub fn ecdsa_uncompress_pubkey(
+        curve: *const ecdsa_curve,
+        pub_key: *const u8,
+        uncompressed: *mut u8,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ecdsa_sign(
+        curve: *const ecdsa_curve,
+        hasher_sign: HasherType,
+        priv_key: *const u8,
+        msg: *const u8,
+        msg_len: u32,
+        sig: *mut u8,
+        pby: *mut u8,
+        is_canonical: ::std::option::Option<
+            unsafe extern "C" fn(by: u8, sig: *mut u8) -> ::std::os::raw::c_int,
+        >,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ecdsa_sign_digest(
+        curve: *const ecdsa_curve,
+        priv_key: *const u8,
+        digest: *const u8,
+        sig: *mut u8,
+        pby: *mut u8,
+        is_canonical: ::std::option::Option<
+            unsafe extern "C" fn(by: u8, sig: *mut u8) -> ::std::os::raw::c_int,
+        >,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ecdsa_get_public_key33(curve: *const ecdsa_curve, priv_key: *const u8, pub_key: *mut u8);
+}
+extern "C" {
+    pub fn ecdsa_get_public_key65(curve: *const ecdsa_curve, priv_key: *const u8, pub_key: *mut u8);
+}
+extern "C" {
+    pub fn ecdsa_get_pubkeyhash(pub_key: *const u8, hasher_pubkey: HasherType, pubkeyhash: *mut u8);
+}
+extern "C" {
+    pub fn ecdsa_get_address_raw(
+        pub_key: *const u8,
+        version: u32,
+        hasher_pubkey: HasherType,
+        addr_raw: *mut u8,
+    );
+}
+extern "C" {
+    pub fn ecdsa_get_address(
+        pub_key: *const u8,
+        version: u32,
+        hasher_pubkey: HasherType,
+        hasher_base58: HasherType,
+        addr: *mut ::std::os::raw::c_char,
+        addrsize: ::std::os::raw::c_int,
+    );
+}
+extern "C" {
+    pub fn ecdsa_get_address_segwit_p2sh_raw(
+        pub_key: *const u8,
+        version: u32,
+        hasher_pubkey: HasherType,
+        addr_raw: *mut u8,
+    );
+}
+extern "C" {
+    pub fn ecdsa_get_address_segwit_p2sh(
+        pub_key: *const u8,
+        version: u32,
+        hasher_pubkey: HasherType,
+        hasher_base58: HasherType,
+        addr: *mut ::std::os::raw::c_char,
+        addrsize: ::std::os::raw::c_int,
+    );
+}
+extern "C" {
+    pub fn ecdsa_get_wif(
+        priv_key: *const u8,
+        version: u32,
+        hasher_base58: HasherType,
+        wif: *mut ::std::os::raw::c_char,
+        wifsize: ::std::os::raw::c_int,
+    );
+}
+extern "C" {
+    pub fn ecdsa_address_decode(
+        addr: *const ::std::os::raw::c_char,
+        version: u32,
+        hasher_base58: HasherType,
+        out: *mut u8,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ecdsa_read_pubkey(
+        curve: *const ecdsa_curve,
+        pub_key: *const u8,
+        pub_: *mut curve_point,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ecdsa_validate_pubkey(
+        curve: *const ecdsa_curve,
+        pub_: *const curve_point,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ecdsa_verify(
+        curve: *const ecdsa_curve,
+        hasher_sign: HasherType,
+        pub_key: *const u8,
+        sig: *const u8,
+        msg: *const u8,
+        msg_len: u32,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ecdsa_verify_digest(
+        curve: *const ecdsa_curve,
+        pub_key: *const u8,
+        sig: *const u8,
+        digest: *const u8,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ecdsa_recover_pub_from_sig(
+        curve: *const ecdsa_curve,
+        pub_key: *mut u8,
+        sig: *const u8,
+        digest: *const u8,
+        recid: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ecdsa_sig_to_der(sig: *const u8, der: *mut u8) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ecdsa_sig_from_der(
+        der: *const u8,
+        der_len: size_t,
+        sig: *mut u8,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub static mut SECP256K1_NAME: [::std::os::raw::c_char; 0usize];
+}
+extern "C" {
+    pub static mut SECP256K1_DECRED_NAME: [::std::os::raw::c_char; 0usize];
+}
+extern "C" {
+    pub static mut SECP256K1_GROESTL_NAME: [::std::os::raw::c_char; 0usize];
+}
+extern "C" {
+    pub static mut SECP256K1_SMART_NAME: [::std::os::raw::c_char; 0usize];
+}
+extern "C" {
+    pub static mut NIST256P1_NAME: [::std::os::raw::c_char; 0usize];
+}
+extern "C" {
+    pub static mut ED25519_NAME: [::std::os::raw::c_char; 0usize];
+}
+extern "C" {
+    pub static mut ED25519_CARDANO_NAME: [::std::os::raw::c_char; 0usize];
+}
+extern "C" {
+    pub static mut ED25519_SHA3_NAME: [::std::os::raw::c_char; 0usize];
+}
+extern "C" {
+    pub static mut ED25519_KECCAK_NAME: [::std::os::raw::c_char; 0usize];
+}
+extern "C" {
+    pub static mut CURVE25519_NAME: [::std::os::raw::c_char; 0usize];
+}
+pub type ed25519_signature = [::std::os::raw::c_uchar; 64usize];
+pub type ed25519_public_key = [::std::os::raw::c_uchar; 32usize];
+pub type ed25519_secret_key = [::std::os::raw::c_uchar; 32usize];
+pub type curve25519_key = [::std::os::raw::c_uchar; 32usize];
+pub type ed25519_cosi_signature = [::std::os::raw::c_uchar; 32usize];
+extern "C" {
+    pub fn ed25519_publickey(sk: *mut ::std::os::raw::c_uchar, pk: *mut ::std::os::raw::c_uchar);
+}
+extern "C" {
+    pub fn ed25519_publickey_ext(
+        sk: *mut ::std::os::raw::c_uchar,
+        skext: *mut ::std::os::raw::c_uchar,
+        pk: *mut ::std::os::raw::c_uchar,
+    );
+}
+extern "C" {
+    pub fn ed25519_sign_open(
+        m: *const ::std::os::raw::c_uchar,
+        mlen: size_t,
+        pk: *mut ::std::os::raw::c_uchar,
+        RS: *mut ::std::os::raw::c_uchar,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ed25519_sign(
+        m: *const ::std::os::raw::c_uchar,
+        mlen: size_t,
+        sk: *mut ::std::os::raw::c_uchar,
+        pk: *mut ::std::os::raw::c_uchar,
+        RS: *mut ::std::os::raw::c_uchar,
+    );
+}
+extern "C" {
+    pub fn ed25519_sign_ext(
+        m: *const ::std::os::raw::c_uchar,
+        mlen: size_t,
+        sk: *mut ::std::os::raw::c_uchar,
+        skext: *mut ::std::os::raw::c_uchar,
+        pk: *mut ::std::os::raw::c_uchar,
+        RS: *mut ::std::os::raw::c_uchar,
+    );
+}
+extern "C" {
+    pub fn ed25519_scalarmult(
+        res: *mut ::std::os::raw::c_uchar,
+        sk: *mut ::std::os::raw::c_uchar,
+        pk: *mut ::std::os::raw::c_uchar,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn curve25519_scalarmult(
+        mypublic: *mut ::std::os::raw::c_uchar,
+        secret: *mut ::std::os::raw::c_uchar,
+        basepoint: *mut ::std::os::raw::c_uchar,
+    );
+}
+extern "C" {
+    pub fn curve25519_scalarmult_basepoint(
+        mypublic: *mut ::std::os::raw::c_uchar,
+        secret: *mut ::std::os::raw::c_uchar,
+    );
+}
+extern "C" {
+    pub fn ed25519_cosi_combine_publickeys(
+        res: *mut ::std::os::raw::c_uchar,
+        pks: *mut ed25519_public_key,
+        n: size_t,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ed25519_cosi_combine_signatures(
+        res: *mut ::std::os::raw::c_uchar,
+        R: *mut ::std::os::raw::c_uchar,
+        sigs: *mut ed25519_cosi_signature,
+        n: size_t,
+    );
+}
+extern "C" {
+    pub fn ed25519_cosi_sign(
+        m: *const ::std::os::raw::c_uchar,
+        mlen: size_t,
+        key: *mut ::std::os::raw::c_uchar,
+        nonce: *mut ::std::os::raw::c_uchar,
+        R: *mut ::std::os::raw::c_uchar,
+        pk: *mut ::std::os::raw::c_uchar,
+        sig: *mut ::std::os::raw::c_uchar,
+    );
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct curve_info {
+    pub bip32_name: *const ::std::os::raw::c_char,
+    pub params: *const ecdsa_curve,
+    pub hasher_base58: HasherType,
+    pub hasher_sign: HasherType,
+    pub hasher_pubkey: HasherType,
+    pub hasher_script: HasherType,
+}
+#[test]
+fn bindgen_test_layout_curve_info() {
+    assert_eq!(
+        ::std::mem::size_of::<curve_info>(),
+        32usize,
+        concat!("Size of: ", stringify!(curve_info))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<curve_info>(),
+        8usize,
+        concat!("Alignment of ", stringify!(curve_info))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<curve_info>())).bip32_name as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(curve_info),
+            "::",
+            stringify!(bip32_name)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<curve_info>())).params as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(curve_info),
+            "::",
+            stringify!(params)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<curve_info>())).hasher_base58 as *const _ as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(curve_info),
+            "::",
+            stringify!(hasher_base58)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<curve_info>())).hasher_sign as *const _ as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(curve_info),
+            "::",
+            stringify!(hasher_sign)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<curve_info>())).hasher_pubkey as *const _ as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(curve_info),
+            "::",
+            stringify!(hasher_pubkey)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<curve_info>())).hasher_script as *const _ as usize },
+        28usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(curve_info),
+            "::",
+            stringify!(hasher_script)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct HDNode {
+    pub depth: u32,
+    pub child_num: u32,
+    pub chain_code: [u8; 32usize],
+    pub private_key: [u8; 32usize],
+    pub private_key_extension: [u8; 32usize],
+    pub public_key: [u8; 33usize],
+    pub curve: *const curve_info,
+}
+#[test]
+fn bindgen_test_layout_HDNode() {
+    assert_eq!(
+        ::std::mem::size_of::<HDNode>(),
+        152usize,
+        concat!("Size of: ", stringify!(HDNode))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<HDNode>(),
+        8usize,
+        concat!("Alignment of ", stringify!(HDNode))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<HDNode>())).depth as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HDNode),
+            "::",
+            stringify!(depth)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<HDNode>())).child_num as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HDNode),
+            "::",
+            stringify!(child_num)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<HDNode>())).chain_code as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HDNode),
+            "::",
+            stringify!(chain_code)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<HDNode>())).private_key as *const _ as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HDNode),
+            "::",
+            stringify!(private_key)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<HDNode>())).private_key_extension as *const _ as usize },
+        72usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HDNode),
+            "::",
+            stringify!(private_key_extension)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<HDNode>())).public_key as *const _ as usize },
+        104usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HDNode),
+            "::",
+            stringify!(public_key)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<HDNode>())).curve as *const _ as usize },
+        144usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HDNode),
+            "::",
+            stringify!(curve)
+        )
+    );
+}
+extern "C" {
+    pub fn hdnode_from_xpub(
+        depth: u32,
+        child_num: u32,
+        chain_code: *const u8,
+        public_key: *const u8,
+        curve: *const ::std::os::raw::c_char,
+        out: *mut HDNode,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_from_xprv(
+        depth: u32,
+        child_num: u32,
+        chain_code: *const u8,
+        private_key: *const u8,
+        curve: *const ::std::os::raw::c_char,
+        out: *mut HDNode,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_from_seed(
+        seed: *const u8,
+        seed_len: ::std::os::raw::c_int,
+        curve: *const ::std::os::raw::c_char,
+        out: *mut HDNode,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_private_ckd(inout: *mut HDNode, i: u32) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_private_ckd_cardano(inout: *mut HDNode, i: u32) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_from_seed_cardano(
+        seed: *const u8,
+        seed_len: ::std::os::raw::c_int,
+        out: *mut HDNode,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_from_entropy_cardano_icarus(
+        pass: *const u8,
+        pass_len: ::std::os::raw::c_int,
+        seed: *const u8,
+        seed_len: ::std::os::raw::c_int,
+        out: *mut HDNode,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_public_ckd_cp(
+        curve: *const ecdsa_curve,
+        parent: *const curve_point,
+        parent_chain_code: *const u8,
+        i: u32,
+        child: *mut curve_point,
+        child_chain_code: *mut u8,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_public_ckd(inout: *mut HDNode, i: u32) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_public_ckd_address_optimized(
+        pub_: *const curve_point,
+        chain_code: *const u8,
+        i: u32,
+        version: u32,
+        hasher_pubkey: HasherType,
+        hasher_base58: HasherType,
+        addr: *mut ::std::os::raw::c_char,
+        addrsize: ::std::os::raw::c_int,
+        addrformat: ::std::os::raw::c_int,
+    );
+}
+extern "C" {
+    pub fn hdnode_private_ckd_cached(
+        inout: *mut HDNode,
+        i: *const u32,
+        i_count: size_t,
+        fingerprint: *mut u32,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_fingerprint(node: *mut HDNode) -> u32;
+}
+extern "C" {
+    pub fn hdnode_fill_public_key(node: *mut HDNode);
+}
+extern "C" {
+    pub fn hdnode_get_ethereum_pubkeyhash(
+        node: *const HDNode,
+        pubkeyhash: *mut u8,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_get_nem_address(
+        node: *mut HDNode,
+        version: u8,
+        address: *mut ::std::os::raw::c_char,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_get_nem_shared_key(
+        node: *const HDNode,
+        peer_public_key: *mut ::std::os::raw::c_uchar,
+        salt: *const u8,
+        mul: *mut ::std::os::raw::c_uchar,
+        shared_key: *mut u8,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_nem_encrypt(
+        node: *const HDNode,
+        public_key: *mut ::std::os::raw::c_uchar,
+        iv: *const u8,
+        salt: *const u8,
+        payload: *const u8,
+        size: size_t,
+        buffer: *mut u8,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_nem_decrypt(
+        node: *const HDNode,
+        public_key: *mut ::std::os::raw::c_uchar,
+        iv: *mut u8,
+        salt: *const u8,
+        payload: *const u8,
+        size: size_t,
+        buffer: *mut u8,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_sign(
+        node: *mut HDNode,
+        msg: *const u8,
+        msg_len: u32,
+        hasher_sign: HasherType,
+        sig: *mut u8,
+        pby: *mut u8,
+        is_canonical: ::std::option::Option<
+            unsafe extern "C" fn(by: u8, sig: *mut u8) -> ::std::os::raw::c_int,
+        >,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_sign_digest(
+        node: *mut HDNode,
+        digest: *const u8,
+        sig: *mut u8,
+        pby: *mut u8,
+        is_canonical: ::std::option::Option<
+            unsafe extern "C" fn(by: u8, sig: *mut u8) -> ::std::os::raw::c_int,
+        >,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_get_shared_key(
+        node: *const HDNode,
+        peer_public_key: *const u8,
+        session_key: *mut u8,
+        result_size: *mut ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_serialize_public(
+        node: *const HDNode,
+        fingerprint: u32,
+        version: u32,
+        str_: *mut ::std::os::raw::c_char,
+        strsize: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_serialize_private(
+        node: *const HDNode,
+        fingerprint: u32,
+        version: u32,
+        str_: *mut ::std::os::raw::c_char,
+        strsize: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_deserialize_public(
+        str_: *const ::std::os::raw::c_char,
+        version: u32,
+        curve: *const ::std::os::raw::c_char,
+        node: *mut HDNode,
+        fingerprint: *mut u32,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_deserialize_private(
+        str_: *const ::std::os::raw::c_char,
+        version: u32,
+        curve: *const ::std::os::raw::c_char,
+        node: *mut HDNode,
+        fingerprint: *mut u32,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn hdnode_get_address_raw(node: *mut HDNode, version: u32, addr_raw: *mut u8);
+}
+extern "C" {
+    pub fn hdnode_get_address(
+        node: *mut HDNode,
+        version: u32,
+        addr: *mut ::std::os::raw::c_char,
+        addrsize: ::std::os::raw::c_int,
+    );
+}
+extern "C" {
+    pub fn get_curve_by_name(curve_name: *const ::std::os::raw::c_char) -> *const curve_info;
+}
+extern "C" {
+    pub static secp256k1: ecdsa_curve;
+}
+extern "C" {
+    pub static secp256k1_info: curve_info;
+}
+extern "C" {
+    pub static secp256k1_decred_info: curve_info;
+}
+extern "C" {
+    pub static secp256k1_groestl_info: curve_info;
+}
+extern "C" {
+    pub static secp256k1_smart_info: curve_info;
+}
+extern "C" {
+    pub static nist256p1: ecdsa_curve;
+}
+extern "C" {
+    pub static nist256p1_info: curve_info;
+}
+extern "C" {
+    pub fn random_reseed(value: u32);
+}
+extern "C" {
+    pub fn random32() -> u32;
+}
+extern "C" {
+    pub fn random_buffer(buf: *mut u8, len: size_t);
+}
+extern "C" {
+    pub fn random_uniform(n: u32) -> u32;
+}
+extern "C" {
+    pub fn random_permute(buf: *mut ::std::os::raw::c_char, len: size_t);
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _HMAC_SHA256_CTX {
+    pub o_key_pad: [u8; 64usize],
+    pub ctx: SHA256_CTX,
+}
+#[test]
+fn bindgen_test_layout__HMAC_SHA256_CTX() {
+    assert_eq!(
+        ::std::mem::size_of::<_HMAC_SHA256_CTX>(),
+        168usize,
+        concat!("Size of: ", stringify!(_HMAC_SHA256_CTX))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_HMAC_SHA256_CTX>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_HMAC_SHA256_CTX))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_HMAC_SHA256_CTX>())).o_key_pad as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_HMAC_SHA256_CTX),
+            "::",
+            stringify!(o_key_pad)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_HMAC_SHA256_CTX>())).ctx as *const _ as usize },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_HMAC_SHA256_CTX),
+            "::",
+            stringify!(ctx)
+        )
+    );
+}
+pub type HMAC_SHA256_CTX = _HMAC_SHA256_CTX;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _HMAC_SHA512_CTX {
+    pub o_key_pad: [u8; 128usize],
+    pub ctx: SHA512_CTX,
+}
+#[test]
+fn bindgen_test_layout__HMAC_SHA512_CTX() {
+    assert_eq!(
+        ::std::mem::size_of::<_HMAC_SHA512_CTX>(),
+        336usize,
+        concat!("Size of: ", stringify!(_HMAC_SHA512_CTX))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_HMAC_SHA512_CTX>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_HMAC_SHA512_CTX))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_HMAC_SHA512_CTX>())).o_key_pad as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_HMAC_SHA512_CTX),
+            "::",
+            stringify!(o_key_pad)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_HMAC_SHA512_CTX>())).ctx as *const _ as usize },
+        128usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_HMAC_SHA512_CTX),
+            "::",
+            stringify!(ctx)
+        )
+    );
+}
+pub type HMAC_SHA512_CTX = _HMAC_SHA512_CTX;
+extern "C" {
+    pub fn hmac_sha256_Init(hctx: *mut HMAC_SHA256_CTX, key: *const u8, keylen: u32);
+}
+extern "C" {
+    pub fn hmac_sha256_Update(hctx: *mut HMAC_SHA256_CTX, msg: *const u8, msglen: u32);
+}
+extern "C" {
+    pub fn hmac_sha256_Final(hctx: *mut HMAC_SHA256_CTX, hmac: *mut u8);
+}
+extern "C" {
+    pub fn hmac_sha256(key: *const u8, keylen: u32, msg: *const u8, msglen: u32, hmac: *mut u8);
+}
+extern "C" {
+    pub fn hmac_sha256_prepare(
+        key: *const u8,
+        keylen: u32,
+        opad_digest: *mut u32,
+        ipad_digest: *mut u32,
+    );
+}
+extern "C" {
+    pub fn hmac_sha512_Init(hctx: *mut HMAC_SHA512_CTX, key: *const u8, keylen: u32);
+}
+extern "C" {
+    pub fn hmac_sha512_Update(hctx: *mut HMAC_SHA512_CTX, msg: *const u8, msglen: u32);
+}
+extern "C" {
+    pub fn hmac_sha512_Final(hctx: *mut HMAC_SHA512_CTX, hmac: *mut u8);
+}
+extern "C" {
+    pub fn hmac_sha512(key: *const u8, keylen: u32, msg: *const u8, msglen: u32, hmac: *mut u8);
+}
+extern "C" {
+    pub fn hmac_sha512_prepare(
+        key: *const u8,
+        keylen: u32,
+        opad_digest: *mut u64,
+        ipad_digest: *mut u64,
+    );
+}
+extern "C" {
+    pub fn mnemonic_generate(strength: ::std::os::raw::c_int) -> *const ::std::os::raw::c_char;
+}
+extern "C" {
+    pub fn mnemonic_from_data(
+        data: *const u8,
+        len: ::std::os::raw::c_int,
+    ) -> *const ::std::os::raw::c_char;
+}
+extern "C" {
+    pub fn mnemonic_clear();
+}
+extern "C" {
+    pub fn mnemonic_check(mnemonic: *const ::std::os::raw::c_char) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn mnemonic_to_bits(
+        mnemonic: *const ::std::os::raw::c_char,
+        bits: *mut u8,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn mnemonic_to_seed(
+        mnemonic: *const ::std::os::raw::c_char,
+        passphrase: *const ::std::os::raw::c_char,
+        seed: *mut u8,
+        progress_callback: ::std::option::Option<unsafe extern "C" fn(current: u32, total: u32)>,
+    );
+}
+extern "C" {
+    pub fn mnemonic_find_word(word: *const ::std::os::raw::c_char) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn mnemonic_complete_word(
+        prefix: *const ::std::os::raw::c_char,
+        len: ::std::os::raw::c_int,
+    ) -> *const ::std::os::raw::c_char;
+}
+extern "C" {
+    pub fn mnemonic_get_word(index: ::std::os::raw::c_int) -> *const ::std::os::raw::c_char;
+}
+extern "C" {
+    pub fn mnemonic_word_completion_mask(
+        prefix: *const ::std::os::raw::c_char,
+        len: ::std::os::raw::c_int,
+    ) -> u32;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _PBKDF2_HMAC_SHA256_CTX {
+    pub odig: [u32; 8usize],
+    pub idig: [u32; 8usize],
+    pub f: [u32; 8usize],
+    pub g: [u32; 16usize],
+    pub first: ::std::os::raw::c_char,
+}
+#[test]
+fn bindgen_test_layout__PBKDF2_HMAC_SHA256_CTX() {
+    assert_eq!(
+        ::std::mem::size_of::<_PBKDF2_HMAC_SHA256_CTX>(),
+        164usize,
+        concat!("Size of: ", stringify!(_PBKDF2_HMAC_SHA256_CTX))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_PBKDF2_HMAC_SHA256_CTX>(),
+        4usize,
+        concat!("Alignment of ", stringify!(_PBKDF2_HMAC_SHA256_CTX))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA256_CTX>())).odig as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_PBKDF2_HMAC_SHA256_CTX),
+            "::",
+            stringify!(odig)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA256_CTX>())).idig as *const _ as usize },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_PBKDF2_HMAC_SHA256_CTX),
+            "::",
+            stringify!(idig)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA256_CTX>())).f as *const _ as usize },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_PBKDF2_HMAC_SHA256_CTX),
+            "::",
+            stringify!(f)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA256_CTX>())).g as *const _ as usize },
+        96usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_PBKDF2_HMAC_SHA256_CTX),
+            "::",
+            stringify!(g)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA256_CTX>())).first as *const _ as usize },
+        160usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_PBKDF2_HMAC_SHA256_CTX),
+            "::",
+            stringify!(first)
+        )
+    );
+}
+pub type PBKDF2_HMAC_SHA256_CTX = _PBKDF2_HMAC_SHA256_CTX;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _PBKDF2_HMAC_SHA512_CTX {
+    pub odig: [u64; 8usize],
+    pub idig: [u64; 8usize],
+    pub f: [u64; 8usize],
+    pub g: [u64; 16usize],
+    pub first: ::std::os::raw::c_char,
+}
+#[test]
+fn bindgen_test_layout__PBKDF2_HMAC_SHA512_CTX() {
+    assert_eq!(
+        ::std::mem::size_of::<_PBKDF2_HMAC_SHA512_CTX>(),
+        328usize,
+        concat!("Size of: ", stringify!(_PBKDF2_HMAC_SHA512_CTX))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_PBKDF2_HMAC_SHA512_CTX>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_PBKDF2_HMAC_SHA512_CTX))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA512_CTX>())).odig as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_PBKDF2_HMAC_SHA512_CTX),
+            "::",
+            stringify!(odig)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA512_CTX>())).idig as *const _ as usize },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_PBKDF2_HMAC_SHA512_CTX),
+            "::",
+            stringify!(idig)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA512_CTX>())).f as *const _ as usize },
+        128usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_PBKDF2_HMAC_SHA512_CTX),
+            "::",
+            stringify!(f)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA512_CTX>())).g as *const _ as usize },
+        192usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_PBKDF2_HMAC_SHA512_CTX),
+            "::",
+            stringify!(g)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_PBKDF2_HMAC_SHA512_CTX>())).first as *const _ as usize },
+        320usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_PBKDF2_HMAC_SHA512_CTX),
+            "::",
+            stringify!(first)
+        )
+    );
+}
+pub type PBKDF2_HMAC_SHA512_CTX = _PBKDF2_HMAC_SHA512_CTX;
+extern "C" {
+    pub fn pbkdf2_hmac_sha256_Init(
+        pctx: *mut PBKDF2_HMAC_SHA256_CTX,
+        pass: *const u8,
+        passlen: ::std::os::raw::c_int,
+        salt: *const u8,
+        saltlen: ::std::os::raw::c_int,
+        blocknr: u32,
+    );
+}
+extern "C" {
+    pub fn pbkdf2_hmac_sha256_Update(pctx: *mut PBKDF2_HMAC_SHA256_CTX, iterations: u32);
+}
+extern "C" {
+    pub fn pbkdf2_hmac_sha256_Final(pctx: *mut PBKDF2_HMAC_SHA256_CTX, key: *mut u8);
+}
+extern "C" {
+    pub fn pbkdf2_hmac_sha256(
+        pass: *const u8,
+        passlen: ::std::os::raw::c_int,
+        salt: *const u8,
+        saltlen: ::std::os::raw::c_int,
+        iterations: u32,
+        key: *mut u8,
+        keylen: ::std::os::raw::c_int,
+    );
+}
+extern "C" {
+    pub fn pbkdf2_hmac_sha512_Init(
+        pctx: *mut PBKDF2_HMAC_SHA512_CTX,
+        pass: *const u8,
+        passlen: ::std::os::raw::c_int,
+        salt: *const u8,
+        saltlen: ::std::os::raw::c_int,
+        blocknr: u32,
+    );
+}
+extern "C" {
+    pub fn pbkdf2_hmac_sha512_Update(pctx: *mut PBKDF2_HMAC_SHA512_CTX, iterations: u32);
+}
+extern "C" {
+    pub fn pbkdf2_hmac_sha512_Final(pctx: *mut PBKDF2_HMAC_SHA512_CTX, key: *mut u8);
+}
+extern "C" {
+    pub fn pbkdf2_hmac_sha512(
+        pass: *const u8,
+        passlen: ::std::os::raw::c_int,
+        salt: *const u8,
+        saltlen: ::std::os::raw::c_int,
+        iterations: u32,
+        key: *mut u8,
+        keylen: ::std::os::raw::c_int,
+    );
+}
+extern "C" {
+    pub static mut b58digits_ordered: [::std::os::raw::c_char; 0usize];
+}
+extern "C" {
+    pub static mut b58digits_map: [i8; 0usize];
+}
+extern "C" {
+    pub fn base58_encode_check(
+        data: *const u8,
+        len: ::std::os::raw::c_int,
+        hasher_type: HasherType,
+        str_: *mut ::std::os::raw::c_char,
+        strsize: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn base58_decode_check(
+        str_: *const ::std::os::raw::c_char,
+        hasher_type: HasherType,
+        data: *mut u8,
+        datalen: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn b58tobin(
+        bin: *mut ::std::os::raw::c_void,
+        binszp: *mut size_t,
+        b58: *const ::std::os::raw::c_char,
+    ) -> bool;
+}
+extern "C" {
+    pub fn b58check(
+        bin: *const ::std::os::raw::c_void,
+        binsz: size_t,
+        hasher_type: HasherType,
+        base58str: *const ::std::os::raw::c_char,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn b58enc(
+        b58: *mut ::std::os::raw::c_char,
+        b58sz: *mut size_t,
+        data: *const ::std::os::raw::c_void,
+        binsz: size_t,
+    ) -> bool;
+}
+extern "C" {
+    pub fn base58gph_encode_check(
+        data: *const u8,
+        datalen: ::std::os::raw::c_int,
+        str_: *mut ::std::os::raw::c_char,
+        strsize: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn base58gph_decode_check(
+        str_: *const ::std::os::raw::c_char,
+        data: *mut u8,
+        datalen: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn b58gphcheck(
+        bin: *const ::std::os::raw::c_void,
+        binsz: size_t,
+        base58str: *const ::std::os::raw::c_char,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub static mut BASE32_ALPHABET_RFC4648: *const ::std::os::raw::c_char;
+}
+extern "C" {
+    pub fn base32_encode(
+        in_: *const u8,
+        inlen: size_t,
+        out: *mut ::std::os::raw::c_char,
+        outlen: size_t,
+        alphabet: *const ::std::os::raw::c_char,
+    ) -> *mut ::std::os::raw::c_char;
+}
+extern "C" {
+    pub fn base32_encode_unsafe(in_: *const u8, inlen: size_t, out: *mut u8);
+}
+extern "C" {
+    pub fn base32_decode(
+        in_: *const ::std::os::raw::c_char,
+        inlen: size_t,
+        out: *mut u8,
+        outlen: size_t,
+        alphabet: *const ::std::os::raw::c_char,
+    ) -> *mut u8;
+}
+extern "C" {
+    pub fn base32_decode_unsafe(
+        in_: *const u8,
+        inlen: size_t,
+        out: *mut u8,
+        alphabet: *const ::std::os::raw::c_char,
+    ) -> bool;
+}
+extern "C" {
+    pub fn base32_encoded_length(inlen: size_t) -> size_t;
+}
+extern "C" {
+    pub fn base32_decoded_length(inlen: size_t) -> size_t;
+}
+extern "C" {
+    pub fn address_prefix_bytes_len(address_type: u32) -> size_t;
+}
+extern "C" {
+    pub fn address_write_prefix_bytes(address_type: u32, out: *mut u8);
+}
+extern "C" {
+    pub fn address_check_prefix(addr: *const u8, address_type: u32) -> bool;
+}
+extern "C" {
+    pub fn ethereum_address_checksum(
+        addr: *const u8,
+        address: *mut ::std::os::raw::c_char,
+        rskip60: bool,
+        chain_id: u32,
+    );
+}
+extern "C" {
+    pub fn script_output_to_address(
+        script: *const u8,
+        scriptlen: ::std::os::raw::c_int,
+        addr: *mut ::std::os::raw::c_char,
+        addrsize: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _RIPEMD160_CTX {
+    #[doc = "< number of bytes processed"]
+    pub total: [u32; 2usize],
+    #[doc = "< intermediate digest state"]
+    pub state: [u32; 5usize],
+    #[doc = "< data block being processed"]
+    pub buffer: [u8; 64usize],
+}
+#[test]
+fn bindgen_test_layout__RIPEMD160_CTX() {
+    assert_eq!(
+        ::std::mem::size_of::<_RIPEMD160_CTX>(),
+        92usize,
+        concat!("Size of: ", stringify!(_RIPEMD160_CTX))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_RIPEMD160_CTX>(),
+        4usize,
+        concat!("Alignment of ", stringify!(_RIPEMD160_CTX))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_RIPEMD160_CTX>())).total as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_RIPEMD160_CTX),
+            "::",
+            stringify!(total)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_RIPEMD160_CTX>())).state as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_RIPEMD160_CTX),
+            "::",
+            stringify!(state)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_RIPEMD160_CTX>())).buffer as *const _ as usize },
+        28usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_RIPEMD160_CTX),
+            "::",
+            stringify!(buffer)
+        )
+    );
+}
+pub type RIPEMD160_CTX = _RIPEMD160_CTX;
+extern "C" {
+    pub fn ripemd160_Init(ctx: *mut RIPEMD160_CTX);
+}
+extern "C" {
+    pub fn ripemd160_Update(ctx: *mut RIPEMD160_CTX, input: *const u8, ilen: u32);
+}
+extern "C" {
+    pub fn ripemd160_Final(ctx: *mut RIPEMD160_CTX, output: *mut u8);
+}
+extern "C" {
+    pub fn ripemd160(msg: *const u8, msg_len: u32, hash: *mut u8);
+}
+extern "C" {
+    pub fn curve25519_scalarmult_donna(
+        mypublic: *mut ::std::os::raw::c_uchar,
+        n: *mut ::std::os::raw::c_uchar,
+        basepoint: *mut ::std::os::raw::c_uchar,
+    );
+}
+extern "C" {
+    pub fn ed25519_publickey_sha3(
+        sk: *mut ::std::os::raw::c_uchar,
+        pk: *mut ::std::os::raw::c_uchar,
+    );
+}
+extern "C" {
+    pub fn ed25519_sign_open_sha3(
+        m: *const ::std::os::raw::c_uchar,
+        mlen: size_t,
+        pk: *mut ::std::os::raw::c_uchar,
+        RS: *mut ::std::os::raw::c_uchar,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ed25519_sign_sha3(
+        m: *const ::std::os::raw::c_uchar,
+        mlen: size_t,
+        sk: *mut ::std::os::raw::c_uchar,
+        pk: *mut ::std::os::raw::c_uchar,
+        RS: *mut ::std::os::raw::c_uchar,
+    );
+}
+extern "C" {
+    pub fn ed25519_scalarmult_sha3(
+        res: *mut ::std::os::raw::c_uchar,
+        sk: *mut ::std::os::raw::c_uchar,
+        pk: *mut ::std::os::raw::c_uchar,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ed25519_publickey_keccak(
+        sk: *mut ::std::os::raw::c_uchar,
+        pk: *mut ::std::os::raw::c_uchar,
+    );
+}
+extern "C" {
+    pub fn ed25519_sign_open_keccak(
+        m: *const ::std::os::raw::c_uchar,
+        mlen: size_t,
+        pk: *mut ::std::os::raw::c_uchar,
+        RS: *mut ::std::os::raw::c_uchar,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ed25519_sign_keccak(
+        m: *const ::std::os::raw::c_uchar,
+        mlen: size_t,
+        sk: *mut ::std::os::raw::c_uchar,
+        pk: *mut ::std::os::raw::c_uchar,
+        RS: *mut ::std::os::raw::c_uchar,
+    );
+}
+extern "C" {
+    pub fn ed25519_scalarmult_keccak(
+        res: *mut ::std::os::raw::c_uchar,
+        sk: *mut ::std::os::raw::c_uchar,
+        pk: *mut ::std::os::raw::c_uchar,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn xmr_base58_addr_encode_check(
+        tag: u64,
+        data: *const u8,
+        binsz: size_t,
+        b58: *mut ::std::os::raw::c_char,
+        b58sz: size_t,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn xmr_base58_addr_decode_check(
+        addr: *const ::std::os::raw::c_char,
+        sz: size_t,
+        tag: *mut u64,
+        data: *mut ::std::os::raw::c_void,
+        datalen: size_t,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn xmr_base58_encode(
+        b58: *mut ::std::os::raw::c_char,
+        b58sz: *mut size_t,
+        data: *const ::std::os::raw::c_void,
+        binsz: size_t,
+    ) -> bool;
+}
+extern "C" {
+    pub fn xmr_base58_decode(
+        b58: *const ::std::os::raw::c_char,
+        b58sz: size_t,
+        data: *mut ::std::os::raw::c_void,
+        binsz: *mut size_t,
+    ) -> bool;
+}
+extern "C" {
+    pub fn xmr_size_varint(num: u64) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn xmr_write_varint(buff: *mut u8, buff_size: size_t, num: u64) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn xmr_read_varint(
+        buff: *mut u8,
+        buff_size: size_t,
+        val: *mut u64,
+    ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub static xmr_h: ge25519;

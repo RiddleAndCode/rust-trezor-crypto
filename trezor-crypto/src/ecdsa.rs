@@ -271,4 +271,45 @@ mod tests {
             "F449A8376906482A84ED01479BD18882B919C140D638307F0C0934BA12590BDE",
         );
     }
+
+    #[test]
+    fn secp256k1_multi_thread() {
+        let mut children = Vec::new();
+        for _ in 0..10 {
+            children.push(std::thread::spawn(|| {
+                secp256k1_public_key_test_vector(
+                    "AA5E28D6A97A2479A65527F7290311A3624D4CC0FA1578598EE3C2613BF99522",
+                    "34F9460F0E4F08393D192B3C5133A6BA099AA0AD9FD54EBCCFACDFA239FF49C6",
+                    "0B71EA9BD730FD8923F6D25A7A91E7DD7728A960686CB5A901BB419E0F2CA232",
+                );
+            }))
+        }
+        for child in children {
+            child.join().unwrap();
+        }
+    }
+
+    fn nist256p1_public_key_test_vector(
+        priv_key_hex: impl AsRef<str>,
+        x_hex: impl AsRef<str>,
+        y_hex: impl AsRef<str>,
+    ) {
+        let priv_key =
+            EcdsaPrivateKey::<Nist256p1>::from_slice(&hex::decode(priv_key_hex.as_ref()).unwrap())
+                .unwrap();
+        let pub_key = priv_key.public_key();
+        assert!(pub_key.is_valid());
+        let pub_key = pub_key.serialize_uncompressed();
+        assert_eq!(hex::encode(&pub_key[1..33]), x_hex.as_ref().to_lowercase());
+        assert_eq!(hex::encode(&pub_key[33..]), y_hex.as_ref().to_lowercase());
+    }
+
+    #[test]
+    fn nist256p1_public_key_test_vectors() {
+        nist256p1_public_key_test_vector(
+            "C9AFA9D845BA75166B5C215767B1D6934E50C3DB36E89B127B8A622B120F6721",
+            "60FED4BA255A9D31C961EB74C6356D68C049B8923B61FA6CE669622E60F29FB6",
+            "7903FE1008B8BC99A41AE9E95628BC64F2F1B20C2D7E9F5177A3C294D4462299",
+        )
+    }
 }
