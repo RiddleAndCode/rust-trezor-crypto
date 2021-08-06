@@ -1,3 +1,4 @@
+use crate::ecdsa_canonical::IsCanonicalFn;
 use crate::hasher::{Digest, HashingAlgorithm, DIGEST_LEN};
 use core::marker::PhantomData;
 use core::{mem, ops};
@@ -8,11 +9,8 @@ pub const ECDSA_PUBKEY_UNCOMPRESSED_LEN: usize = 65;
 pub const ECDSA_PRIVKEY_LEN: usize = 32;
 pub const ECDSA_SIG_LEN: usize = 64;
 
-type IsCanonicalFn = Box<dyn Fn(&RecoverableSignature) -> bool + Send + Sync>;
-
 lazy_static! {
     static ref ECDSA_CURVE_LOCK: Mutex<()> = Mutex::new(());
-    static ref ECDSA_IS_CANONICAL_FN: Mutex<Option<IsCanonicalFn>> = Mutex::new(None);
 }
 
 pub struct EcdsaCurveLock {
@@ -23,29 +21,6 @@ pub struct EcdsaCurveLock {
 impl EcdsaCurveLock {
     unsafe fn as_ptr(&self) -> *const sys::ecdsa_curve {
         self.curve
-    }
-
-    fn set_is_canonical_func(&self, func: Option<IsCanonicalFn>) {
-        let mut canon_func = ECDSA_IS_CANONICAL_FN.lock().unwrap();
-        *canon_func = func;
-    }
-
-    extern "C" fn is_canonical(by: u8, sig_ptr: *mut u8) -> i32 {
-        let callback = ECDSA_IS_CANONICAL_FN.lock().unwrap();
-        if let Some(ref cb) = callback.as_ref() {
-            let mut sig = [0; ECDSA_SIG_LEN];
-            unsafe {
-                sig.copy_from_slice(core::slice::from_raw_parts(sig_ptr, ECDSA_SIG_LEN));
-            }
-            let signature = RecoverableSignature::new(Signature::from_bytes(sig), by);
-            if cb(&signature) {
-                1
-            } else {
-                0
-            }
-        } else {
-            1
-        }
     }
 }
 
@@ -271,6 +246,15 @@ impl Signature {
     pub fn from_bytes(bytes: [u8; ECDSA_SIG_LEN]) -> Self {
         Self { bytes }
     }
+    pub fn from_slice(slice: &[u8]) -> Option<Self> {
+        if slice.len() == ECDSA_SIG_LEN {
+            let mut bytes = [0; ECDSA_SIG_LEN];
+            bytes.copy_from_slice(slice);
+            Some(Self::from_bytes(bytes))
+        } else {
+            None
+        }
+    }
     pub fn serialize(&self) -> &[u8; ECDSA_SIG_LEN] {
         &self.bytes
     }
@@ -306,6 +290,7 @@ impl ops::Deref for RecoverableSignature {
 mod tests {
     use super::*;
     use crate::hasher::*;
+    use std::sync::atomic;
 
     fn secp256k1_public_key_test_vector(
         priv_key_hex: impl AsRef<str>,
@@ -420,5 +405,32 @@ mod tests {
             "F1ABB023518351CD71D881567B1EA663ED3EFCF6C5132B354F28D3B0B7D38367",
             "019F4113742A2B14BD25926B49C649155F267E60D3814B4C0CC84250E46F0083",
         )
+    }
+
+    lazy_static! {
+        static ref COUNTER: Mutex<u8> = Mutex::new(0);
+    }
+
+    fn test_is_canonical(_sig: &RecoverableSignature) -> bool {
+        let mut counter = COUNTER.lock().unwrap();
+        *counter += 1;
+        if *counter < 5 {
+            false
+        } else {
+            true
+        }
+    }
+
+    #[test]
+    fn nist256p1_signature_test_is_canonical() {
+        let priv_key = EcdsaPrivateKey::<Nist256p1>::from_slice(
+            &hex::decode("C9AFA9D845BA75166B5C215767B1D6934E50C3DB36E89B127B8A622B120F6721")
+                .unwrap(),
+        )
+        .unwrap();
+        let _ = priv_key
+            .sign::<Sha2, _>(b"test", Some(Box::new(test_is_canonical)))
+            .unwrap();
+        assert_eq!(*COUNTER.lock().unwrap(), 5);
     }
 }
