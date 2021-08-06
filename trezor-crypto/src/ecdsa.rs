@@ -8,8 +8,11 @@ pub const ECDSA_PUBKEY_UNCOMPRESSED_LEN: usize = 65;
 pub const ECDSA_PRIVKEY_LEN: usize = 32;
 pub const ECDSA_SIG_LEN: usize = 64;
 
+type IsCanonicalFn = Box<dyn Fn(&RecoverableSignature) -> bool + Send + Sync>;
+
 lazy_static! {
     static ref ECDSA_CURVE_LOCK: Mutex<()> = Mutex::new(());
+    static ref ECDSA_IS_CANONICAL_FN: Mutex<Option<IsCanonicalFn>> = Mutex::new(None);
 }
 
 pub struct EcdsaCurveLock {
@@ -21,12 +24,41 @@ impl EcdsaCurveLock {
     unsafe fn as_ptr(&self) -> *const sys::ecdsa_curve {
         self.curve
     }
+
+    fn set_is_canonical_func(&self, func: Option<IsCanonicalFn>) {
+        let mut canon_func = ECDSA_IS_CANONICAL_FN.lock().unwrap();
+        *canon_func = func;
+    }
+
+    extern "C" fn is_canonical(by: u8, sig_ptr: *mut u8) -> i32 {
+        let callback = ECDSA_IS_CANONICAL_FN.lock().unwrap();
+        if let Some(ref cb) = callback.as_ref() {
+            let mut sig = [0; ECDSA_SIG_LEN];
+            unsafe {
+                sig.copy_from_slice(core::slice::from_raw_parts(sig_ptr, ECDSA_SIG_LEN));
+            }
+            let signature = RecoverableSignature::new(Signature::from_bytes(sig), by);
+            if cb(&signature) {
+                1
+            } else {
+                0
+            }
+        } else {
+            1
+        }
+    }
 }
 
 impl ops::Deref for EcdsaCurveLock {
     type Target = sys::ecdsa_curve;
     fn deref(&self) -> &Self::Target {
         self.curve
+    }
+}
+
+impl ops::Drop for EcdsaCurveLock {
+    fn drop(&mut self) {
+        self.set_is_canonical_func(None)
     }
 }
 
@@ -74,18 +106,20 @@ trait EcdsaCurveExt: EcdsaCurve {
     fn sign_digest(
         priv_key: &[u8; ECDSA_PRIVKEY_LEN],
         digest: &[u8; DIGEST_LEN],
+        is_canonical: Option<IsCanonicalFn>,
     ) -> Option<([u8; ECDSA_SIG_LEN], u8)> {
         let mut sig = [0; ECDSA_SIG_LEN];
         let mut by = 0;
         let res = unsafe {
             let curve = Self::curve_lock();
+            curve.set_is_canonical_func(is_canonical);
             sys::ecdsa_sign_digest(
                 curve.as_ptr(),
                 priv_key.as_ptr(),
                 digest.as_ptr(),
                 sig.as_mut_ptr(),
                 &mut by,
-                None,
+                Some(EcdsaCurveLock::is_canonical),
             )
         };
         if res == 0 {
@@ -98,11 +132,13 @@ trait EcdsaCurveExt: EcdsaCurve {
         priv_key: &[u8; ECDSA_PRIVKEY_LEN],
         hasher_type: sys::HasherType,
         data: &[u8],
+        is_canonical: Option<IsCanonicalFn>,
     ) -> Option<([u8; ECDSA_SIG_LEN], u8)> {
         let mut sig = [0; ECDSA_SIG_LEN];
         let mut by = 0;
         let res = unsafe {
             let curve = Self::curve_lock();
+            curve.set_is_canonical_func(is_canonical);
             sys::ecdsa_sign(
                 curve.as_ptr(),
                 hasher_type,
@@ -111,7 +147,7 @@ trait EcdsaCurveExt: EcdsaCurve {
                 data.len() as u32,
                 sig.as_mut_ptr(),
                 &mut by,
-                None,
+                Some(EcdsaCurveLock::is_canonical),
             )
         };
         if res == 0 {
@@ -178,12 +214,17 @@ impl<C: EcdsaCurve> EcdsaPrivateKey<C> {
     pub fn sign<H: HashingAlgorithm, D: AsRef<[u8]>>(
         &self,
         data: D,
+        is_canonical: Option<IsCanonicalFn>,
     ) -> Option<RecoverableSignature> {
-        C::sign(&self.bytes, H::hasher_type(), data.as_ref())
+        C::sign(&self.bytes, H::hasher_type(), data.as_ref(), is_canonical)
             .map(|(sig, by)| RecoverableSignature::new(Signature::from_bytes(sig), by))
     }
-    pub fn sign_digest(&self, digest: &Digest) -> Option<RecoverableSignature> {
-        C::sign_digest(&self.bytes, digest.as_bytes())
+    pub fn sign_digest(
+        &self,
+        digest: &Digest,
+        is_canonical: Option<IsCanonicalFn>,
+    ) -> Option<RecoverableSignature> {
+        C::sign_digest(&self.bytes, digest.as_bytes(), is_canonical)
             .map(|(sig, by)| RecoverableSignature::new(Signature::from_bytes(sig), by))
     }
 }
@@ -247,6 +288,10 @@ impl RecoverableSignature {
             signature,
             recovery_byte,
         }
+    }
+
+    pub fn recovery_byte(&self) -> u8 {
+        self.recovery_byte
     }
 }
 
@@ -357,9 +402,9 @@ mod tests {
             EcdsaPrivateKey::<Nist256p1>::from_slice(&hex::decode(priv_key_hex.as_ref()).unwrap())
                 .unwrap();
         let digest = digest::<Sha2, _>(message.as_ref());
-        let sig = priv_key.sign_digest(&digest).unwrap();
+        let sig = priv_key.sign_digest(&digest, None).unwrap();
         let sig = sig.serialize();
-        let sig2 = priv_key.sign::<Sha2, _>(message).unwrap();
+        let sig2 = priv_key.sign::<Sha2, _>(message, None).unwrap();
         let sig2 = sig2.serialize();
         assert_eq!(hex::encode(&sig[..32]), r_hex.as_ref().to_lowercase());
         assert_eq!(hex::encode(&sig[32..]), s_hex.as_ref().to_lowercase());
