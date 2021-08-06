@@ -114,7 +114,7 @@ trait EcdsaCurveExt: EcdsaCurve {
                 None,
             )
         };
-        if res == 1 {
+        if res == 0 {
             Some((sig, by))
         } else {
             None
@@ -356,12 +356,15 @@ mod tests {
         let priv_key =
             EcdsaPrivateKey::<Nist256p1>::from_slice(&hex::decode(priv_key_hex.as_ref()).unwrap())
                 .unwrap();
-        let digest = digest::<Sha2, _>(message);
+        let digest = digest::<Sha2, _>(message.as_ref());
         let sig = priv_key.sign_digest(&digest).unwrap();
         let sig = sig.serialize();
-        println!("{:?}", hex::encode(&sig));
+        let sig2 = priv_key.sign::<Sha2, _>(message).unwrap();
+        let sig2 = sig2.serialize();
         assert_eq!(hex::encode(&sig[..32]), r_hex.as_ref().to_lowercase());
         assert_eq!(hex::encode(&sig[32..]), s_hex.as_ref().to_lowercase());
+        assert_eq!(hex::encode(&sig2[..32]), r_hex.as_ref().to_lowercase());
+        assert_eq!(hex::encode(&sig2[32..]), s_hex.as_ref().to_lowercase());
     }
 
     #[test]
