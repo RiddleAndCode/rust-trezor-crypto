@@ -3,5 +3,4 @@ extern crate lazy_static;
 extern crate trezor_crypto_sys as sys;
 
 pub mod ecdsa;
-pub mod ecdsa_canonical;
 pub mod hasher;

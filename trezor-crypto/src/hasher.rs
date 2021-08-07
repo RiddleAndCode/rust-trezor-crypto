@@ -1,4 +1,4 @@
-use core::mem;
+use core::{fmt, mem};
 
 pub const DIGEST_LEN: usize = 32;
 
@@ -55,7 +55,6 @@ hashing_algo!(Sha2d, sys::HasherType_HASHER_SHA2D);
 hashing_algo!(Sha3, sys::HasherType_HASHER_SHA3);
 hashing_algo!(Sha3k, sys::HasherType_HASHER_SHA3K);
 
-#[derive(Clone)]
 pub struct Hasher {
     hasher: sys::Hasher,
 }
@@ -84,11 +83,18 @@ impl Hasher {
     }
 }
 
+impl fmt::Debug for Hasher {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        // TODO add hasher type
+        f.debug_struct("Hasher").finish()
+    }
+}
+
 pub fn digest<H: HashingAlgorithm, D: AsRef<[u8]>>(data: D) -> Digest {
     Digest::from_bytes(H::digest(data.as_ref()))
 }
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Digest {
     bytes: [u8; DIGEST_LEN],
 }
@@ -106,6 +112,14 @@ impl Digest {
 impl AsRef<[u8]> for Digest {
     fn as_ref(&self) -> &[u8] {
         self.as_bytes()
+    }
+}
+
+impl fmt::Debug for Digest {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_tuple("Digest")
+            .field(&hex::encode(&self.bytes))
+            .finish()
     }
 }
 

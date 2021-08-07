@@ -6,6 +6,4 @@ edition = "2018"
 [dependencies]
 lazy_static = "1.4.0"
 trezor-crypto-sys = { path = "../trezor-crypto-sys" }
-
-[dev-dependencies]
 hex = "0.4.3"

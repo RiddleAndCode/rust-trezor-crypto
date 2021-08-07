@@ -1,4 +1,4 @@
-use crate::ecdsa::{EcdsaCurveLock, RecoverableSignature, Signature, ECDSA_SIG_LEN};
+use super::{EcdsaCurveLock, RecoverableSignature, Signature, ECDSA_SIG_LEN};
 use std::sync::Mutex;
 
 pub type IsCanonicalFn = Box<dyn Fn(&RecoverableSignature) -> bool + Send + Sync>;
