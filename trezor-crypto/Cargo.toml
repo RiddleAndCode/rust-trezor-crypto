@@ -2,6 +2,9 @@
 name = "trezor-crypto"
 version = "0.1.0"
 edition = "2018"
+description = "Rust bindings for the trezor crypto libraries"
+license = "MIT"
+repository = "https://github.com/riddleandcode/rust-trezor-crypto"
 
 [dependencies]
 lazy_static = "1.4.0"
