@@ -17,3 +17,7 @@ header-list:
 	@for src in $(HEADERS) ; do \
 		echo "#include <$$src.h>" ; \
 	done
+
+.PHONY: prune-submodule
+prune-submodule:
+	cd trezor-firmware && ls | grep -v crypto | xargs rm -rf
