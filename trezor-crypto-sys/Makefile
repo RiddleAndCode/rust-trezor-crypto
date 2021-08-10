@@ -21,3 +21,4 @@ header-list:
 .PHONY: prune-submodule
 prune-submodule:
 	cd trezor-firmware && ls | grep -v crypto | xargs rm -rf
+	rm -rf trezor-firmware/.git
