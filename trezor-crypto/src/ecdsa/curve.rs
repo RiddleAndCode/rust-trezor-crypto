@@ -2,6 +2,8 @@ use super::canonical::IsCanonicalFn;
 use crate::hasher::{Digest, HashingAlgorithm, DIGEST_LEN};
 use core::marker::PhantomData;
 use core::{fmt, mem, ops};
+use std::ffi::CStr;
+use std::os::raw::c_char;
 use std::sync::{Mutex, MutexGuard};
 
 pub const ECDSA_PUBKEY_COMPRESSED_LEN: usize = 33;
@@ -20,7 +22,7 @@ pub struct EcdsaCurveLock {
 }
 
 impl EcdsaCurveLock {
-    unsafe fn as_ptr(&self) -> *const sys::ecdsa_curve {
+    pub(crate) unsafe fn as_ptr(&self) -> *const sys::ecdsa_curve {
         self.curve
     }
 }
@@ -32,9 +34,39 @@ impl ops::Deref for EcdsaCurveLock {
     }
 }
 
+#[doc(hidden)]
+pub struct EcdsaCurveInfoLock {
+    info: &'static sys::curve_info,
+    lock: EcdsaCurveLock,
+}
+
+impl EcdsaCurveInfoLock {
+    #[inline]
+    pub(crate) unsafe fn as_ptr(&self) -> *const sys::curve_info {
+        self.info
+    }
+    #[inline]
+    pub(crate) unsafe fn curve(&self) -> &EcdsaCurveLock {
+        &self.lock
+    }
+}
+
+impl ops::Deref for EcdsaCurveInfoLock {
+    type Target = sys::curve_info;
+    fn deref(&self) -> &Self::Target {
+        self.info
+    }
+}
+
 pub trait EcdsaCurve {
     #[doc(hidden)]
     unsafe fn curve_lock() -> EcdsaCurveLock;
+    #[doc(hidden)]
+    unsafe fn curve_info_lock() -> EcdsaCurveInfoLock;
+    unsafe fn name_ptr() -> *const c_char;
+    unsafe fn name_c_str() -> &'static CStr {
+        CStr::from_ptr(Self::name_ptr())
+    }
 }
 
 trait EcdsaCurveExt: EcdsaCurve {
@@ -202,22 +234,43 @@ trait EcdsaCurveExt: EcdsaCurve {
 impl<T> EcdsaCurveExt for T where T: EcdsaCurve {}
 
 macro_rules! ecdsa_curve {
-    ($name:ident, $ty:path) => {
+    ($name:ident, $curve:path, $info:path, $name_ptr:path) => {
         #[derive(Clone, Copy, Debug, PartialEq, Eq)]
         pub struct $name;
         impl EcdsaCurve for $name {
             #[inline]
             unsafe fn curve_lock() -> EcdsaCurveLock {
                 EcdsaCurveLock {
-                    curve: &$ty,
+                    curve: &$curve,
                     _lock: ECDSA_CURVE_LOCK.lock().unwrap(),
                 }
+            }
+            #[inline]
+            unsafe fn curve_info_lock() -> EcdsaCurveInfoLock {
+                EcdsaCurveInfoLock {
+                    info: &$info,
+                    lock: Self::curve_lock(),
+                }
+            }
+            #[inline]
+            unsafe fn name_ptr() -> *const c_char {
+                $name_ptr.as_ptr()
             }
         }
     };
 }
-ecdsa_curve!(Secp256k1, sys::secp256k1);
-ecdsa_curve!(Nist256p1, sys::nist256p1);
+ecdsa_curve!(
+    Secp256k1,
+    sys::secp256k1,
+    sys::secp256k1_info,
+    sys::SECP256K1_NAME
+);
+ecdsa_curve!(
+    Nist256p1,
+    sys::nist256p1,
+    sys::nist256p1_info,
+    sys::NIST256P1_NAME
+);
 
 #[derive(Clone)]
 pub struct EcdsaPrivateKey<C: EcdsaCurve> {
