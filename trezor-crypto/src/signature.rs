@@ -1,4 +1,5 @@
 use core::marker::PhantomData;
+use std::ops;
 
 pub const SIG_LEN: usize = 64;
 
@@ -29,7 +30,42 @@ impl<C> Signature<C> {
         &self.bytes
     }
     #[inline]
-    pub(crate) fn cast<U>(self) -> Signature<U> {
+    pub fn cast<U>(self) -> Signature<U> {
         Signature::from_bytes(self.bytes)
+    }
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct RecoverableSignature<C> {
+    signature: Signature<C>,
+    recovery_byte: u8,
+}
+
+impl<C> RecoverableSignature<C> {
+    #[inline]
+    pub fn new(signature: Signature<C>, recovery_byte: u8) -> Self {
+        Self {
+            signature,
+            recovery_byte,
+        }
+    }
+    #[inline]
+    pub fn signature(&self) -> &Signature<C> {
+        &self.signature
+    }
+    #[inline]
+    pub fn recovery_byte(&self) -> u8 {
+        self.recovery_byte
+    }
+    #[inline]
+    pub fn cast<U>(self) -> RecoverableSignature<U> {
+        RecoverableSignature::new(self.signature.cast(), self.recovery_byte)
+    }
+}
+
+impl<C> ops::Deref for RecoverableSignature<C> {
+    type Target = Signature<C>;
+    fn deref(&self) -> &Signature<C> {
+        self.signature()
     }
 }

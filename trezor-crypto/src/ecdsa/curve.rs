@@ -1,7 +1,7 @@
 use super::canonical::IsCanonicalFn;
 use crate::curve::Curve;
 use crate::hasher::{Digest, HashingAlgorithm, DIGEST_LEN};
-use crate::signature::{Signature, SIG_LEN};
+use crate::signature::{RecoverableSignature, Signature, SIG_LEN};
 use core::marker::PhantomData;
 use core::{fmt, mem, ops};
 use std::os::raw::c_char;
@@ -399,49 +399,14 @@ impl<C: EcdsaCurve> Signature<C> {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub struct RecoverableSignature<C: EcdsaCurve> {
-    signature: Signature<C>,
-    recovery_byte: u8,
-}
-
 impl<C: EcdsaCurve> RecoverableSignature<C> {
-    #[inline]
-    pub fn new(signature: Signature<C>, recovery_byte: u8) -> Self {
-        Self {
-            signature,
-            recovery_byte,
-        }
-    }
-    #[inline]
-    pub fn signature(&self) -> &Signature<C> {
-        &self.signature
-    }
-    #[inline]
-    pub fn recovery_byte(&self) -> u8 {
-        self.recovery_byte
-    }
     pub fn recover_public_key(&self, digest: &Digest) -> Option<EcdsaPublicKey<C>> {
         C::recover_pub_from_sig(
-            self.signature.serialize(),
+            self.signature().serialize(),
             digest.as_bytes(),
-            self.recovery_byte,
+            self.recovery_byte(),
         )
         .and_then(|bytes| EcdsaPublicKey::from_slice(&bytes))
-    }
-    #[inline]
-    pub(crate) fn cast<U>(self) -> RecoverableSignature<U>
-    where
-        U: EcdsaCurve,
-    {
-        RecoverableSignature::new(self.signature.cast(), self.recovery_byte)
-    }
-}
-
-impl<C: EcdsaCurve> ops::Deref for RecoverableSignature<C> {
-    type Target = Signature<C>;
-    fn deref(&self) -> &Signature<C> {
-        &self.signature
     }
 }
 
@@ -450,14 +415,20 @@ mod tests {
     use super::*;
     use crate::hasher::*;
 
+    #[test]
+    fn curve_name() {
+        assert_eq!("secp256k1", Secp256k1::name());
+        assert_eq!("nist256p1", Nist256p1::name());
+    }
+
     fn public_key_test_vector<C: EcdsaCurve>(priv_key_hex: &str, x_hex: &str, y_hex: &str) {
         let priv_key =
             EcdsaPrivateKey::<C>::from_slice(&hex::decode(priv_key_hex).unwrap()).unwrap();
         let pub_key = priv_key.public_key();
         assert!(pub_key.is_valid());
         let pub_key = pub_key.serialize_uncompressed();
-        assert_eq!(hex::encode(&pub_key[1..33]), x_hex.to_lowercase());
-        assert_eq!(hex::encode(&pub_key[33..]), y_hex.to_lowercase());
+        assert_eq!(pub_key[1..33], hex::decode(x_hex).unwrap());
+        assert_eq!(pub_key[33..], hex::decode(y_hex).unwrap());
     }
 
     #[test]
@@ -506,23 +477,6 @@ mod tests {
     }
 
     #[test]
-    fn secp256k1_multi_thread() {
-        let mut children = Vec::new();
-        for _ in 0..10 {
-            children.push(std::thread::spawn(|| {
-                public_key_test_vector::<Secp256k1>(
-                    "AA5E28D6A97A2479A65527F7290311A3624D4CC0FA1578598EE3C2613BF99522",
-                    "34F9460F0E4F08393D192B3C5133A6BA099AA0AD9FD54EBCCFACDFA239FF49C6",
-                    "0B71EA9BD730FD8923F6D25A7A91E7DD7728A960686CB5A901BB419E0F2CA232",
-                );
-            }))
-        }
-        for child in children {
-            child.join().unwrap();
-        }
-    }
-
-    #[test]
     fn nist256p1_public_key_test_vectors() {
         public_key_test_vector::<Nist256p1>(
             "C9AFA9D845BA75166B5C215767B1D6934E50C3DB36E89B127B8A622B120F6721",
@@ -542,8 +496,8 @@ mod tests {
         let digest = digest::<Sha2, _>(message.as_ref());
         let signature = priv_key.sign_digest(&digest, None).unwrap();
         let sig = signature.serialize();
-        assert_eq!(hex::encode(&sig[..32]), r_hex.to_lowercase());
-        assert_eq!(hex::encode(&sig[32..]), s_hex.to_lowercase());
+        assert_eq!(sig[..32], hex::decode(r_hex).unwrap());
+        assert_eq!(sig[32..], hex::decode(s_hex).unwrap());
 
         let signature2 = priv_key.sign::<Sha2, _>(message.as_ref(), None).unwrap();
         assert_eq!(signature.serialize(), signature2.serialize());
@@ -596,5 +550,20 @@ mod tests {
             .sign::<Sha2, _>(b"test", Some(Box::new(test_is_canonical)))
             .unwrap();
         assert_eq!(*COUNTER.lock().unwrap(), 5);
+    }
+
+    #[test]
+    fn ecdsa_multi_thread() {
+        let mut children = Vec::new();
+        for _ in 0..10 {
+            children.push(std::thread::spawn(|| {
+                secp256k1_public_key_test_vectors();
+                nist256p1_public_key_test_vectors();
+                nist256p1_signature_test_vectors();
+            }))
+        }
+        for child in children {
+            child.join().unwrap();
+        }
     }
 }

@@ -1,5 +1,6 @@
 use crate::curve::Curve;
 use crate::ecdsa::{EcdsaCurve, EcdsaPrivateKey, EcdsaPublicKey};
+use crate::ed25519::{Ed25519PrivateKey, Ed25519PublicKey, EdDSACurve};
 use std::marker::PhantomData;
 use std::ops;
 
@@ -122,6 +123,16 @@ impl<C: Curve + EcdsaCurve> HDNode<C> {
     }
     pub fn ecdsa_public_key(&self) -> EcdsaPublicKey<C> {
         unsafe { EcdsaPublicKey::from_bytes_unchecked(self.hd_node.public_key) }
+    }
+}
+
+impl<C: Curve + EdDSACurve> HDNode<C> {
+    pub fn ed25519_private_key(&self) -> Ed25519PrivateKey {
+        Ed25519PrivateKey::from_bytes(self.hd_node.private_key)
+    }
+
+    pub fn ed25519_public_key(&self) -> Ed25519PublicKey {
+        Ed25519PublicKey::from_slice(&self.hd_node.public_key[..32]).unwrap()
     }
 }
 

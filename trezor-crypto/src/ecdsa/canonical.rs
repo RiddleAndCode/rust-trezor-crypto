@@ -1,5 +1,5 @@
-use super::{EcdsaCurveLock, RecoverableSignature, Secp256k1};
-use crate::signature::{Signature, SIG_LEN};
+use super::{EcdsaCurveLock, Secp256k1};
+use crate::signature::{RecoverableSignature, Signature, SIG_LEN};
 use std::sync::Mutex;
 
 pub type IsCanonicalFn = Box<dyn Fn(RecoverableSignature<Secp256k1>) -> bool + Send + Sync>;
