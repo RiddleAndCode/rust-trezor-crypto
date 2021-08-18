@@ -1,5 +1,6 @@
-use crate::curve::Curve;
+use crate::curve::{Curve, CurveInfoLock, CurveLock, PrivateKey, PublicKey};
 use crate::hasher::{HashingAlgorithm, Sha2, Sha3, Sha3k};
+use crate::hd_node::{HDNODE_PRIVKEY_LEN, HDNODE_PUBKEY_LEN};
 use crate::signature::{Signature, SIG_LEN};
 
 pub const ED25519_PUBKEY_LEN: usize = 32;
@@ -10,9 +11,26 @@ pub struct Ed25519;
 
 #[doc(hidden)]
 /// Does nothing
+pub struct Ed25519Lock;
+
+const STATIC_ED25519_LOCK_DOES_NOTHING: Ed25519Lock = Ed25519Lock;
+
+impl CurveLock for Ed25519Lock {}
+
+#[doc(hidden)]
+/// Does nothing
 pub struct Ed25519InfoLock;
 
+impl CurveInfoLock for Ed25519InfoLock {
+    type CurveLock = Ed25519Lock;
+    unsafe fn curve(&self) -> &Self::CurveLock {
+        &STATIC_ED25519_LOCK_DOES_NOTHING
+    }
+}
+
 impl Curve for Ed25519 {
+    type PublicKey = Ed25519PublicKey;
+    type PrivateKey = Ed25519PrivateKey;
     type CurveInfoLock = Ed25519InfoLock;
     unsafe fn curve_info_lock() -> Self::CurveInfoLock {
         Ed25519InfoLock
@@ -100,6 +118,17 @@ impl Ed25519PrivateKey {
     }
 }
 
+impl PrivateKey for Ed25519PrivateKey {
+    #[inline]
+    fn from_bytes_unchecked(bytes: [u8; HDNODE_PRIVKEY_LEN]) -> Self {
+        Self::from_bytes(bytes)
+    }
+    #[inline]
+    fn to_bytes(self) -> [u8; HDNODE_PRIVKEY_LEN] {
+        self.bytes
+    }
+}
+
 #[derive(Clone, PartialEq, Eq)]
 pub struct Ed25519PublicKey {
     bytes: [u8; ED25519_PUBKEY_LEN],
@@ -137,6 +166,21 @@ impl Ed25519PublicKey {
             )
         };
         res == 0
+    }
+}
+
+impl PublicKey for Ed25519PublicKey {
+    #[inline]
+    fn from_bytes_unchecked(bytes: [u8; HDNODE_PUBKEY_LEN]) -> Self {
+        let mut pubkey = [0; 32];
+        pubkey.copy_from_slice(&bytes[0..ED25519_PUBKEY_LEN]);
+        Self::from_bytes(pubkey)
+    }
+    #[inline]
+    fn to_bytes(self) -> [u8; HDNODE_PUBKEY_LEN] {
+        let mut out = [0; HDNODE_PUBKEY_LEN];
+        out[..ED25519_PUBKEY_LEN].copy_from_slice(&self.bytes);
+        out
     }
 }
 

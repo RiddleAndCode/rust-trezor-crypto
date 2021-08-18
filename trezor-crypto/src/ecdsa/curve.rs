@@ -1,6 +1,7 @@
-use super::canonical::IsCanonicalFn;
-use crate::curve::Curve;
+use super::canonical::{CanonicalFnLock, IsCanonicalFn};
+use crate::curve::{Curve, CurveInfoLock, CurveLock, PrivateKey, PublicKey};
 use crate::hasher::{Digest, HashingAlgorithm, DIGEST_LEN};
+use crate::hd_node::{HDNODE_PRIVKEY_LEN, HDNODE_PUBKEY_LEN};
 use crate::signature::{RecoverableSignature, Signature, SIG_LEN};
 use core::marker::PhantomData;
 use core::{fmt, mem, ops};
@@ -21,9 +22,19 @@ pub struct EcdsaCurveLock {
     _lock: MutexGuard<'static, ()>,
 }
 
+impl CurveLock for EcdsaCurveLock {}
+
 impl EcdsaCurveLock {
     pub(crate) unsafe fn as_ptr(&self) -> *const sys::ecdsa_curve {
         self.curve
+    }
+}
+
+impl CurveInfoLock for EcdsaCurveInfoLock {
+    type CurveLock = EcdsaCurveLock;
+    #[inline]
+    unsafe fn curve(&self) -> &EcdsaCurveLock {
+        &self.lock
     }
 }
 
@@ -44,10 +55,6 @@ impl EcdsaCurveInfoLock {
     #[inline]
     pub(crate) unsafe fn as_ptr(&self) -> *const sys::curve_info {
         self.info
-    }
-    #[inline]
-    pub(crate) unsafe fn curve(&self) -> &EcdsaCurveLock {
-        &self.lock
     }
 }
 
@@ -122,14 +129,13 @@ trait EcdsaCurveExt: EcdsaCurve {
         let mut by = 0;
         let res = unsafe {
             let curve = Self::curve_lock();
-            curve.set_is_canonical_func(is_canonical);
             sys::ecdsa_sign_digest(
                 curve.as_ptr(),
                 priv_key.as_ptr(),
                 digest.as_ptr(),
                 sig.as_mut_ptr(),
                 &mut by,
-                Some(EcdsaCurveLock::is_canonical),
+                curve.is_canonical_fn(is_canonical),
             )
         };
         if res == 0 {
@@ -148,7 +154,6 @@ trait EcdsaCurveExt: EcdsaCurve {
         let mut by = 0;
         let res = unsafe {
             let curve = Self::curve_lock();
-            curve.set_is_canonical_func(is_canonical);
             sys::ecdsa_sign(
                 curve.as_ptr(),
                 hasher_type,
@@ -157,7 +162,7 @@ trait EcdsaCurveExt: EcdsaCurve {
                 data.len() as u32,
                 sig.as_mut_ptr(),
                 &mut by,
-                Some(EcdsaCurveLock::is_canonical),
+                curve.is_canonical_fn(is_canonical),
             )
         };
         if res == 0 {
@@ -241,6 +246,8 @@ macro_rules! ecdsa_curve {
             }
         }
         impl Curve for $name {
+            type PublicKey = EcdsaPublicKey<Self>;
+            type PrivateKey = EcdsaPrivateKey<Self>;
             type CurveInfoLock = EcdsaCurveInfoLock;
             #[inline]
             unsafe fn curve_info_lock() -> EcdsaCurveInfoLock {
@@ -320,6 +327,17 @@ impl<C: EcdsaCurve> EcdsaPrivateKey<C> {
     }
 }
 
+impl<C: EcdsaCurve> PrivateKey for EcdsaPrivateKey<C> {
+    #[inline]
+    fn from_bytes_unchecked(bytes: [u8; HDNODE_PRIVKEY_LEN]) -> Self {
+        Self::from_bytes(bytes)
+    }
+    #[inline]
+    fn to_bytes(self) -> [u8; HDNODE_PRIVKEY_LEN] {
+        self.bytes
+    }
+}
+
 #[derive(Clone, PartialEq, Eq)]
 pub struct EcdsaPublicKey<C: EcdsaCurve> {
     bytes: [u8; ECDSA_PUBKEY_COMPRESSED_LEN],
@@ -366,6 +384,17 @@ impl<C: EcdsaCurve> EcdsaPublicKey<C> {
             &signature.serialize(),
             data.as_ref(),
         )
+    }
+}
+
+impl<C: EcdsaCurve> PublicKey for EcdsaPublicKey<C> {
+    #[inline]
+    fn from_bytes_unchecked(bytes: [u8; HDNODE_PUBKEY_LEN]) -> Self {
+        unsafe { Self::from_bytes_unchecked(bytes) }
+    }
+    #[inline]
+    fn to_bytes(self) -> [u8; HDNODE_PUBKEY_LEN] {
+        self.bytes
     }
 }
 

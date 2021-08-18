@@ -10,3 +10,4 @@ repository = "https://github.com/riddleandcode/rust-trezor-crypto"
 lazy_static = "1.4.0"
 trezor-crypto-sys = { version = "0.1.0", path = "../trezor-crypto-sys" }
 hex = "0.4.3"
+derivation-path = "0.1.3"
