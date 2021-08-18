@@ -1,15 +1,16 @@
-use super::curve::{EcdsaCurve, EcdsaCurveInfoLock, EcdsaPrivateKey, EcdsaPublicKey};
+use crate::curve::Curve;
+use crate::ecdsa::{EcdsaCurve, EcdsaPrivateKey, EcdsaPublicKey};
 use std::marker::PhantomData;
 use std::ops;
 
-struct HDNodeRef<'a> {
+struct HDNodeRef<'a, C: Curve> {
     hd_node: &'a sys::HDNode,
-    lock: EcdsaCurveInfoLock,
+    lock: C::CurveInfoLock,
 }
 
-impl<'a> HDNodeRef<'a> {
+impl<'a, C: Curve> HDNodeRef<'a, C> {
     #[inline]
-    fn curve_info(&self) -> &EcdsaCurveInfoLock {
+    fn curve_info(&self) -> &C::CurveInfoLock {
         &self.lock
     }
     #[inline]
@@ -18,21 +19,21 @@ impl<'a> HDNodeRef<'a> {
     }
 }
 
-impl<'a> ops::Deref for HDNodeRef<'a> {
+impl<'a, C: Curve> ops::Deref for HDNodeRef<'a, C> {
     type Target = sys::HDNode;
     fn deref(&self) -> &Self::Target {
         self.hd_node
     }
 }
 
-struct HDNodeMutRef<'a> {
+struct HDNodeMutRef<'a, C: Curve> {
     hd_node: &'a mut sys::HDNode,
-    lock: EcdsaCurveInfoLock,
+    lock: C::CurveInfoLock,
 }
 
-impl<'a> HDNodeMutRef<'a> {
+impl<'a, C: Curve> HDNodeMutRef<'a, C> {
     #[inline]
-    fn curve_info(&self) -> &EcdsaCurveInfoLock {
+    fn curve_info(&self) -> &C::CurveInfoLock {
         &self.lock
     }
     #[inline]
@@ -41,25 +42,25 @@ impl<'a> HDNodeMutRef<'a> {
     }
 }
 
-impl<'a> ops::Deref for HDNodeMutRef<'a> {
+impl<'a, C: Curve> ops::Deref for HDNodeMutRef<'a, C> {
     type Target = sys::HDNode;
     fn deref(&self) -> &Self::Target {
         self.hd_node
     }
 }
 
-impl<'a> ops::DerefMut for HDNodeMutRef<'a> {
+impl<'a, C: Curve> ops::DerefMut for HDNodeMutRef<'a, C> {
     fn deref_mut(&mut self) -> &mut Self::Target {
         self.hd_node
     }
 }
 
-pub struct HDNode<C: EcdsaCurve> {
+pub struct HDNode<C: Curve> {
     hd_node: sys::HDNode,
     curve: PhantomData<C>,
 }
 
-impl<C: EcdsaCurve> HDNode<C> {
+impl<C: Curve> HDNode<C> {
     pub fn from_seed(seed: &[u8]) -> Option<Self> {
         let mut this: Self;
         let res = unsafe {
@@ -95,29 +96,32 @@ impl<C: EcdsaCurve> HDNode<C> {
     pub fn private_key_extension(&self) -> [u8; 32] {
         self.hd_node.private_key_extension
     }
-    pub fn private_key(&self) -> EcdsaPrivateKey<C> {
-        EcdsaPrivateKey::from_bytes(self.hd_node.private_key)
-    }
     fn fill_public_key(&mut self) {
         unsafe {
             let mut hd_node = self.borrow_mut();
             sys::hdnode_fill_public_key(hd_node.as_ptr())
         }
     }
-    pub fn public_key(&self) -> EcdsaPublicKey<C> {
-        unsafe { EcdsaPublicKey::from_bytes_unchecked(self.hd_node.public_key) }
-    }
-    unsafe fn borrow(&self) -> HDNodeRef {
+    unsafe fn borrow(&self) -> HDNodeRef<C> {
         HDNodeRef {
             hd_node: &self.hd_node,
             lock: C::curve_info_lock(),
         }
     }
-    unsafe fn borrow_mut(&mut self) -> HDNodeMutRef {
+    unsafe fn borrow_mut(&mut self) -> HDNodeMutRef<C> {
         HDNodeMutRef {
             hd_node: &mut self.hd_node,
             lock: C::curve_info_lock(),
         }
+    }
+}
+
+impl<C: Curve + EcdsaCurve> HDNode<C> {
+    pub fn ecdsa_private_key(&self) -> EcdsaPrivateKey<C> {
+        EcdsaPrivateKey::from_bytes(self.hd_node.private_key)
+    }
+    pub fn ecdsa_public_key(&self) -> EcdsaPublicKey<C> {
+        unsafe { EcdsaPublicKey::from_bytes_unchecked(self.hd_node.public_key) }
     }
 }
 
@@ -136,7 +140,7 @@ mod tests {
         );
         assert_eq!(
             "0339a36013301597daef41fbe593a02cc513d0b55527ec2df1050e2e8ff49c85c2",
-            hex::encode(hd_node.public_key().serialize())
+            hex::encode(hd_node.ecdsa_public_key().serialize())
         );
     }
 }

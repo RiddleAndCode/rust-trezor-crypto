@@ -1,7 +1,8 @@
-use super::{EcdsaCurveLock, RecoverableSignature, Signature, ECDSA_SIG_LEN};
+use super::{EcdsaCurveLock, RecoverableSignature, Secp256k1};
+use crate::signature::{Signature, SIG_LEN};
 use std::sync::Mutex;
 
-pub type IsCanonicalFn = Box<dyn Fn(&RecoverableSignature) -> bool + Send + Sync>;
+pub type IsCanonicalFn = Box<dyn Fn(RecoverableSignature<Secp256k1>) -> bool + Send + Sync>;
 
 lazy_static! {
     static ref ECDSA_IS_CANONICAL_FN: Mutex<Option<IsCanonicalFn>> = Mutex::new(None);
@@ -17,10 +18,10 @@ impl EcdsaCurveLock {
         let callback = ECDSA_IS_CANONICAL_FN.lock().unwrap();
         if let Some(ref cb) = callback.as_ref() {
             let sig = unsafe {
-                Signature::from_slice(core::slice::from_raw_parts(sig_ptr, ECDSA_SIG_LEN)).unwrap()
+                Signature::from_slice(core::slice::from_raw_parts(sig_ptr, SIG_LEN)).unwrap()
             };
             let signature = RecoverableSignature::new(sig, by);
-            if cb(&signature) {
+            if cb(signature) {
                 1
             } else {
                 0
@@ -31,11 +32,11 @@ impl EcdsaCurveLock {
     }
 }
 
-pub fn is_canonical_ethereum(sig: &RecoverableSignature) -> bool {
+pub fn is_canonical_ethereum(sig: RecoverableSignature<Secp256k1>) -> bool {
     return (sig.recovery_byte() & 2) == 0;
 }
 
-pub fn is_canonical_eos(sig: &RecoverableSignature) -> bool {
+pub fn is_canonical_eos(sig: RecoverableSignature<Secp256k1>) -> bool {
     let signature = sig.serialize();
     return (signature[0] & 0x80) == 0
         && !(signature[0] == 0 && (signature[1] & 0x80) == 0)
