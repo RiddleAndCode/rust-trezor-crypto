@@ -1,4 +1,5 @@
 use crate::hd_node::{HDNODE_PRIVKEY_LEN, HDNODE_PUBKEY_LEN};
+use generic_array::{ArrayLength, GenericArray};
 use std::ffi::CStr;
 use std::os::raw::c_char;
 
@@ -12,10 +13,14 @@ pub trait CurveInfoLock {
 }
 
 pub trait PublicKey: Sized {
+    type SerializedSize: ArrayLength<u8>;
+    type UncompressedSize: ArrayLength<u8>;
     #[doc(hidden)]
     fn from_bytes_unchecked(bytes: [u8; HDNODE_PUBKEY_LEN]) -> Self;
     #[doc(hidden)]
     fn to_bytes(self) -> [u8; HDNODE_PUBKEY_LEN];
+    fn serialize(&self) -> GenericArray<u8, Self::SerializedSize>;
+    fn serialize_uncompressed(&self) -> GenericArray<u8, Self::UncompressedSize>;
 }
 
 pub trait PrivateKey: Sized {

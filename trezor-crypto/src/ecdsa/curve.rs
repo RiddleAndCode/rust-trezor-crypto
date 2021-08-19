@@ -5,6 +5,8 @@ use crate::hd_node::{HDNODE_PRIVKEY_LEN, HDNODE_PUBKEY_LEN};
 use crate::signature::{RecoverableSignature, Signature, SIG_LEN};
 use core::marker::PhantomData;
 use core::{fmt, mem, ops};
+use generic_array::typenum::{U33, U64};
+use generic_array::GenericArray;
 use std::os::raw::c_char;
 use std::sync::{Mutex, MutexGuard};
 
@@ -381,6 +383,8 @@ impl<C: EcdsaCurve> EcdsaPublicKey<C> {
 }
 
 impl<C: EcdsaCurve> PublicKey for EcdsaPublicKey<C> {
+    type SerializedSize = U33;
+    type UncompressedSize = U64;
     #[inline]
     fn from_bytes_unchecked(bytes: [u8; HDNODE_PUBKEY_LEN]) -> Self {
         unsafe { Self::from_bytes_unchecked(bytes) }
@@ -388,6 +392,12 @@ impl<C: EcdsaCurve> PublicKey for EcdsaPublicKey<C> {
     #[inline]
     fn to_bytes(self) -> [u8; HDNODE_PUBKEY_LEN] {
         self.bytes
+    }
+    fn serialize(&self) -> GenericArray<u8, Self::SerializedSize> {
+        GenericArray::clone_from_slice(&self.serialize())
+    }
+    fn serialize_uncompressed(&self) -> GenericArray<u8, Self::UncompressedSize> {
+        GenericArray::clone_from_slice(&self.serialize_uncompressed())
     }
 }
 

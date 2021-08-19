@@ -2,6 +2,8 @@ use crate::curve::{Curve, CurveInfoLock, CurveLock, PrivateKey, PublicKey};
 use crate::hasher::{HashingAlgorithm, Sha2, Sha3, Sha3k};
 use crate::hd_node::{HDNODE_PRIVKEY_LEN, HDNODE_PUBKEY_LEN};
 use crate::signature::{Signature, SIG_LEN};
+use generic_array::typenum::U32;
+use generic_array::GenericArray;
 
 pub const ED25519_PUBKEY_LEN: usize = 32;
 pub const ED25519_PRIVKEY_LEN: usize = 32;
@@ -183,6 +185,8 @@ impl Ed25519PublicKey {
 }
 
 impl PublicKey for Ed25519PublicKey {
+    type SerializedSize = U32;
+    type UncompressedSize = U32;
     #[inline]
     fn from_bytes_unchecked(bytes: [u8; HDNODE_PUBKEY_LEN]) -> Self {
         let mut pubkey = [0; 32];
@@ -194,6 +198,12 @@ impl PublicKey for Ed25519PublicKey {
         let mut out = [0; HDNODE_PUBKEY_LEN];
         out[..ED25519_PUBKEY_LEN].copy_from_slice(&self.bytes);
         out
+    }
+    fn serialize(&self) -> GenericArray<u8, Self::SerializedSize> {
+        GenericArray::clone_from_slice(&self.serialize())
+    }
+    fn serialize_uncompressed(&self) -> GenericArray<u8, Self::UncompressedSize> {
+        GenericArray::clone_from_slice(&self.serialize())
     }
 }
 

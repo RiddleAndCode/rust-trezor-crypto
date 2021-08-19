@@ -129,7 +129,6 @@ impl<C: Curve> Clone for HDNode<C> {
     }
 }
 
-#[derive(Clone)]
 pub struct ExtendedPrivateKey<C: Curve>(HDNode<C>);
 
 impl<C: Curve> ExtendedPrivateKey<C> {
@@ -281,6 +280,12 @@ impl<C: Curve> ExtendedPrivateKey<C> {
     }
 }
 
+impl<C: Curve> Clone for ExtendedPrivateKey<C> {
+    fn clone(&self) -> Self {
+        Self(self.0.clone())
+    }
+}
+
 impl<C: Curve> ops::Deref for ExtendedPrivateKey<C> {
     type Target = HDNode<C>;
     fn deref(&self) -> &Self::Target {
@@ -294,7 +299,6 @@ impl<C: Curve> ops::DerefMut for ExtendedPrivateKey<C> {
     }
 }
 
-#[derive(Clone)]
 pub struct ExtendedPublicKey<C: Curve>(HDNode<C>);
 
 impl<C: Curve> ExtendedPublicKey<C> {
@@ -336,6 +340,12 @@ impl<C: Curve> ExtendedPublicKey<C> {
         for index in path {
             self.derive_next(*index);
         }
+    }
+}
+
+impl<C: Curve> Clone for ExtendedPublicKey<C> {
+    fn clone(&self) -> Self {
+        Self(self.0.clone())
     }
 }
 
