@@ -1,6 +1,6 @@
 [package]
 name = "trezor-crypto"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2018"
 description = "Rust bindings for the trezor crypto libraries"
 license = "MIT"
