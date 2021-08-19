@@ -51,13 +51,6 @@ pub struct EcdsaCurveInfoLock {
     lock: EcdsaCurveLock,
 }
 
-impl EcdsaCurveInfoLock {
-    #[inline]
-    pub(crate) unsafe fn as_ptr(&self) -> *const sys::curve_info {
-        self.info
-    }
-}
-
 impl ops::Deref for EcdsaCurveInfoLock {
     type Target = sys::curve_info;
     fn deref(&self) -> &Self::Target {

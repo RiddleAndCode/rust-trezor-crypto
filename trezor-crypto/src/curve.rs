@@ -33,6 +33,10 @@ pub trait Curve {
     #[doc(hidden)]
     unsafe fn curve_info_lock() -> Self::CurveInfoLock;
     #[doc(hidden)]
+    fn is_cardano() -> bool {
+        false
+    }
+    #[doc(hidden)]
     unsafe fn name_ptr() -> *const c_char;
     #[doc(hidden)]
     unsafe fn name_c_str() -> &'static CStr {

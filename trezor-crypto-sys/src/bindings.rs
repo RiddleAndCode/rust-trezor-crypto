@@ -3,6 +3,8 @@
 #![allow(non_snake_case)]
 #![allow(dead_code)]
 #![allow(clippy::unreadable_literal)]
+#![allow(improper_ctypes)]
+#![allow(deref_nullptr)]
 
 #[cfg(all(not(feature = "update-bindings"), feature = "generate-bindings"))]
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));

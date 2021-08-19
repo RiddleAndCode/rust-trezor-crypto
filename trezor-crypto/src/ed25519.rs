@@ -40,9 +40,22 @@ impl Curve for Ed25519 {
     }
 }
 
-pub trait EdDSACurve {}
+pub struct Ed25519Cardano;
 
-impl EdDSACurve for Ed25519 {}
+impl Curve for Ed25519Cardano {
+    type PublicKey = Ed25519PublicKey;
+    type PrivateKey = Ed25519PrivateKey;
+    type CurveInfoLock = Ed25519InfoLock;
+    unsafe fn curve_info_lock() -> Self::CurveInfoLock {
+        Ed25519InfoLock
+    }
+    fn is_cardano() -> bool {
+        true
+    }
+    unsafe fn name_ptr() -> *const std::os::raw::c_char {
+        sys::ED25519_CARDANO_NAME.as_ptr()
+    }
+}
 
 #[doc(hidden)]
 pub type Ed25519SignAlgo = unsafe extern "C" fn(*const u8, u64, *mut u8, *mut u8, *mut u8);
