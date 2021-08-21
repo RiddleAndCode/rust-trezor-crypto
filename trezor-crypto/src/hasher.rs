@@ -33,7 +33,7 @@ trait HashingAlgorithmExt: HashingAlgorithm {
 impl<T> HashingAlgorithmExt for T where T: HashingAlgorithm {}
 
 macro_rules! hashing_algo {
-    ($name:ident, $ty:path) => {
+    ($name:ident, $ty:expr) => {
         #[derive(Clone, Copy, Debug)]
         pub struct $name;
         impl HashingAlgorithm for $name {
@@ -54,6 +54,7 @@ hashing_algo!(Sha2Ripemd, sys::HasherType_HASHER_SHA2_RIPEMD);
 hashing_algo!(Sha2d, sys::HasherType_HASHER_SHA2D);
 hashing_algo!(Sha3, sys::HasherType_HASHER_SHA3);
 hashing_algo!(Sha3k, sys::HasherType_HASHER_SHA3K);
+hashing_algo!(NoHash, 0);
 
 pub struct Hasher {
     hasher: sys::Hasher,

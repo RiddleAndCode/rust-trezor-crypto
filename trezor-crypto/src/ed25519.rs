@@ -190,7 +190,7 @@ impl PublicKey for Ed25519PublicKey {
     #[inline]
     fn from_bytes_unchecked(bytes: [u8; HDNODE_PUBKEY_LEN]) -> Self {
         let mut pubkey = [0; 32];
-        pubkey.copy_from_slice(&bytes[0..ED25519_PUBKEY_LEN]);
+        pubkey.copy_from_slice(&bytes[1..]);
         Self::from_bytes(pubkey)
     }
     #[inline]
