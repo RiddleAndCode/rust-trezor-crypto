@@ -1,6 +1,12 @@
 use crate::hasher::{digest, Sha2};
 use crate::utils::{Bits, Bits11, IterExt};
 use std::ffi::{CStr, CString};
+use std::sync::Mutex;
+
+lazy_static! {
+    static ref BIP39_SEED_LOCK: Mutex<()> = Mutex::new(());
+    static ref BIP39_ENTROPY_LOCK: Mutex<()> = Mutex::new(());
+}
 
 pub const SEED_LEN: usize = 64;
 
@@ -38,6 +44,7 @@ impl Mnemonic {
         let mut out = [0; SEED_LEN];
         unsafe {
             let pass = CString::from_vec_unchecked(password.to_string().into_bytes());
+            let _lock = BIP39_SEED_LOCK.lock().unwrap();
             sys::mnemonic_to_seed(self.phrase.as_ptr(), pass.as_ptr(), out.as_mut_ptr(), None);
         }
         out
@@ -70,7 +77,10 @@ impl Mnemonic {
 
     fn phrase_to_entropy(phrase: &CStr) -> Vec<u8> {
         let mut out = vec![0; 64];
-        let bit_len = unsafe { sys::mnemonic_to_bits(phrase.as_ptr(), out.as_mut_ptr()) };
+        let bit_len = unsafe {
+            let _lock = BIP39_ENTROPY_LOCK.lock().unwrap();
+            sys::mnemonic_to_bits(phrase.as_ptr(), out.as_mut_ptr())
+        };
         // NOTE: the "-1" may be a little hacky but it works to account for the checksum
         out.truncate((bit_len as usize - 1) / 8);
         out
@@ -78,7 +88,10 @@ impl Mnemonic {
 
     fn phrase_to_entropy_cardano(phrase: &CStr) -> Vec<u8> {
         let mut out = vec![0; 64];
-        let bit_len = unsafe { sys::mnemonic_to_bits(phrase.as_ptr(), out.as_mut_ptr()) };
+        let bit_len = unsafe {
+            let _lock = BIP39_ENTROPY_LOCK.lock().unwrap();
+            sys::mnemonic_to_bits(phrase.as_ptr(), out.as_mut_ptr())
+        };
         out.truncate(bit_len as usize / 8);
         out
     }
@@ -121,20 +134,38 @@ impl Mnemonic {
 mod tests {
     use super::*;
 
+    fn test_vector(entropy_hex: &str, mnemonic: &str, seed_hex: &str) {
+        let entropy = hex::decode(entropy_hex).unwrap();
+        let seed = hex::decode(seed_hex).unwrap();
+        assert!(Mnemonic::is_valid(mnemonic));
+        let phrase_mnemonic = Mnemonic::from_phrase(mnemonic).unwrap();
+        assert_eq!(phrase_mnemonic.phrase(), mnemonic);
+        assert_eq!(phrase_mnemonic.entropy(), &entropy);
+        assert_eq!(phrase_mnemonic.seed("TREZOR"), seed.as_slice());
+        let entropy_mnemonic = Mnemonic::from_entropy(&entropy).unwrap();
+        assert_eq!(entropy_mnemonic.phrase(), mnemonic);
+        assert_eq!(entropy_mnemonic.entropy(), &entropy);
+        assert_eq!(phrase_mnemonic.seed("TREZOR"), seed.as_slice());
+    }
+
     #[test]
     fn test_vectors() {
         for [entropy, mnemonic, seed, _] in TEST_VECTORS {
-            let entropy = hex::decode(entropy).unwrap();
-            let seed = hex::decode(seed).unwrap();
-            assert!(Mnemonic::is_valid(mnemonic));
-            let phrase_mnemonic = Mnemonic::from_phrase(mnemonic).unwrap();
-            assert_eq!(phrase_mnemonic.phrase(), mnemonic);
-            assert_eq!(phrase_mnemonic.entropy(), &entropy);
-            assert_eq!(phrase_mnemonic.seed("TREZOR"), seed.as_slice());
-            let entropy_mnemonic = Mnemonic::from_entropy(&entropy).unwrap();
-            assert_eq!(entropy_mnemonic.phrase(), mnemonic);
-            assert_eq!(entropy_mnemonic.entropy(), &entropy);
-            assert_eq!(phrase_mnemonic.seed("TREZOR"), seed.as_slice());
+            test_vector(entropy, mnemonic, seed);
+        }
+    }
+
+    #[test]
+    fn bip39_multi_thread() {
+        let mut children = Vec::new();
+        for _ in 0..10 {
+            children.push(std::thread::spawn(|| {
+                let [entropy, mnemonic, seed, _] = TEST_VECTORS[0];
+                test_vector(entropy, mnemonic, seed);
+            }))
+        }
+        for child in children {
+            child.join().unwrap();
         }
     }
 

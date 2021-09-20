@@ -583,7 +583,7 @@ mod tests {
     }
 
     #[test]
-    fn cardano() {
+    fn dignity_cardano() {
         let mut hd_node =
             ExtendedPrivateKey::<Ed25519Cardano>::from_mnemonic(&dignity_mnemonic(), "").unwrap();
         assert_eq!(hd_node.depth(), 0);
@@ -601,5 +601,17 @@ mod tests {
         );
         hd_node.derive(&"m/1852'/1815'/0'".parse().unwrap());
         assert_eq!(hd_node.depth(), 3);
+        assert_eq!(
+            &hd_node.chain_code(),
+            hex::decode("415b7d92ecc8539cac4fcc23f2f243a0cfc59125129b9fb297e05bcc8625a51e")
+                .unwrap()
+                .as_slice()
+        );
+        assert_eq!(
+            &hd_node.public_key().serialize(),
+            hex::decode("80609213e0e94b2e49b03996fd57262fed51f34108d6167a69df6938a3435cb3")
+                .unwrap()
+                .as_slice()
+        );
     }
 }
