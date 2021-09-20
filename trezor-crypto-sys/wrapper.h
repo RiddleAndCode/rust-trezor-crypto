@@ -5,6 +5,7 @@
 #include <ed25519-donna/ed25519-hash-custom-keccak.h>
 #include <ed25519-donna/ed25519-hash-custom-sha3.h>
 #include <ed25519-donna/ed25519-hash-custom.h>
+#include <bip39_english.h>
 #include <bignum.h>
 #include <ecdsa.h>
 #include <curves.h>

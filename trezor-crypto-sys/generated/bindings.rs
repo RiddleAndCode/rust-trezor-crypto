@@ -3799,6 +3799,29 @@ extern "C" {
         digest: *mut ::std::os::raw::c_uchar,
     );
 }
+extern "C" {
+    #[doc = " Copyright (c) 2013-2014 Tomas Dzetkulic"]
+    #[doc = " Copyright (c) 2013-2014 Pavol Rusnak"]
+    #[doc = ""]
+    #[doc = " Permission is hereby granted, free of charge, to any person obtaining"]
+    #[doc = " a copy of this software and associated documentation files (the \"Software\"),"]
+    #[doc = " to deal in the Software without restriction, including without limitation"]
+    #[doc = " the rights to use, copy, modify, merge, publish, distribute, sublicense,"]
+    #[doc = " and/or sell copies of the Software, and to permit persons to whom the"]
+    #[doc = " Software is furnished to do so, subject to the following conditions:"]
+    #[doc = ""]
+    #[doc = " The above copyright notice and this permission notice shall be included"]
+    #[doc = " in all copies or substantial portions of the Software."]
+    #[doc = ""]
+    #[doc = " THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS"]
+    #[doc = " OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,"]
+    #[doc = " FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL"]
+    #[doc = " THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES"]
+    #[doc = " OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,"]
+    #[doc = " ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR"]
+    #[doc = " OTHER DEALINGS IN THE SOFTWARE."]
+    pub static wordlist: [*const ::std::os::raw::c_char; 2049usize];
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct bignum256 {

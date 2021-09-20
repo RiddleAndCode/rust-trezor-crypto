@@ -1,10 +1,11 @@
+use crate::bip39::Mnemonic;
 use crate::curve::{Curve, CurveInfoLock, PrivateKey, PublicKey};
 use crate::ecdsa::canonical::{CanonicalFnLock, IsCanonicalFn};
 use crate::hasher::{Digest, HashingAlgorithm};
 use crate::signature::{RecoverableSignature, Signature, SIG_LEN};
 use derivation_path::{ChildIndex, DerivationPath};
 use std::marker::PhantomData;
-use std::ops;
+use std::{fmt, ops};
 
 pub(crate) const HDNODE_PRIVKEY_LEN: usize = 32;
 pub(crate) const HDNODE_PUBKEY_LEN: usize = 33;
@@ -185,6 +186,33 @@ impl<C: Curve> ExtendedPrivateKey<C> {
         }
     }
 
+    pub fn from_mnemonic(mnemonic: &Mnemonic, password: &str) -> Option<Self> {
+        let mut this: Self;
+        if C::is_cardano() {
+            let res = unsafe {
+                this = std::mem::zeroed();
+                let mut hd_node = this.borrow_mut();
+                let pass = password.as_bytes();
+                let entropy = mnemonic.entropy_cardano();
+                sys::hdnode_from_entropy_cardano_icarus(
+                    pass.as_ptr(),
+                    pass.len() as i32,
+                    entropy.as_ptr(),
+                    entropy.len() as i32,
+                    hd_node.as_ptr(),
+                )
+            };
+            if res == 1 {
+                this.fill_public_key();
+                Some(this)
+            } else {
+                None
+            }
+        } else {
+            Self::from_seed(&mnemonic.seed(password))
+        }
+    }
+
     pub fn extend_public_key(&self) -> ExtendedPublicKey<C> {
         let mut inner = self.0.clone();
         inner.hd_node.private_key.fill(0);
@@ -362,11 +390,50 @@ impl<C: Curve> ops::DerefMut for ExtendedPublicKey<C> {
     }
 }
 
+impl<C> fmt::Debug for HDNode<C>
+where
+    C: Curve,
+{
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_struct("HDNode")
+            .field("chain_code", &hex::encode(&self.chain_code()))
+            .field("child_index", &self.child_index())
+            .field("depth", &self.depth())
+            .field("fingerprint", &self.fingerprint())
+            .field("public_key", &hex::encode(&self.public_key().serialize()))
+            .finish()
+    }
+}
+
+impl<C> fmt::Debug for ExtendedPublicKey<C>
+where
+    C: Curve,
+{
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_tuple("ExtendedPublicKey").field(&self.0).finish()
+    }
+}
+
+impl<C> fmt::Debug for ExtendedPrivateKey<C>
+where
+    C: Curve,
+{
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_tuple("ExtendedPrivateKey").field(&self.0).finish()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::bip39::Mnemonic;
     use crate::ecdsa::Secp256k1;
+    use crate::ed25519::Ed25519Cardano;
     use crate::hasher::Sha2;
+
+    fn dignity_mnemonic() -> Mnemonic {
+        Mnemonic::from_phrase("dignity pass list indicate nasty swamp pool script soccer toe leaf photo multiply desk host tomato cradle drill spread actor shine dismiss champion exotic").unwrap()
+    }
 
     #[test]
     fn derive_next() {
@@ -493,5 +560,46 @@ mod tests {
             .sign::<Sha2, _>(message, None)
             .unwrap();
         assert_eq!(signature, signature2);
+    }
+
+    #[test]
+    fn dignity_secp256k1() {
+        let mut hd_node =
+            ExtendedPrivateKey::<Secp256k1>::from_mnemonic(&dignity_mnemonic(), "").unwrap();
+        hd_node.derive(&"m/1852'/1815'/0'".parse().unwrap());
+        assert_eq!(hd_node.depth(), 3);
+        assert_eq!(
+            &hd_node.chain_code(),
+            hex::decode("0d27e09175aed7737fabe8dc833d034f32750e01179dfcf26c74bafada708d38")
+                .unwrap()
+                .as_slice()
+        );
+        assert_eq!(
+            &hd_node.public_key().serialize(),
+            hex::decode("02ee2fdb748f9bc8648372cc79cbe543eed0401528a8ab91966f5135e55aac2d99")
+                .unwrap()
+                .as_slice()
+        );
+    }
+
+    #[test]
+    fn cardano() {
+        let mut hd_node =
+            ExtendedPrivateKey::<Ed25519Cardano>::from_mnemonic(&dignity_mnemonic(), "").unwrap();
+        assert_eq!(hd_node.depth(), 0);
+        assert_eq!(
+            &hd_node.chain_code(),
+            hex::decode("350df93ad0ebdbdd42d719badfec2670efe013902bdc05c838774d7118fb9ac8")
+                .unwrap()
+                .as_slice()
+        );
+        assert_eq!(
+            &hd_node.public_key().serialize(),
+            hex::decode("41fe8c524e2e1b4c67ea2b0030f121515085ffa4861e2816dbaaeaf93428eb63")
+                .unwrap()
+                .as_slice()
+        );
+        hd_node.derive(&"m/1852'/1815'/0'".parse().unwrap());
+        assert_eq!(hd_node.depth(), 3);
     }
 }
