@@ -1,7 +1,7 @@
 use crate::bip39::Mnemonic;
 use crate::curve::{Curve, CurveInfoLock, PrivateKey, PublicKey};
 use crate::ecdsa::canonical::{CanonicalFnLock, IsCanonicalFn};
-use crate::ed25519::{Ed25519, Ed25519PrivateKey, Ed25519PublicKey, ED25519_PUBKEY_LEN};
+use crate::ed25519::{Ed25519, Ed25519PrivateKey, Ed25519PublicKey};
 use crate::hasher::{Digest, HashingAlgorithm};
 use crate::signature::{RecoverableSignature, Signature, SIG_LEN};
 use derivation_path::{ChildIndex, DerivationPath};
