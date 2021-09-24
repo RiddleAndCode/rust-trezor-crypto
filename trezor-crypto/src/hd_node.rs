@@ -1,7 +1,7 @@
 use crate::bip39::Mnemonic;
 use crate::curve::{Curve, CurveInfoLock, PrivateKey, PublicKey};
 use crate::ecdsa::canonical::{CanonicalFnLock, IsCanonicalFn};
-use crate::ed25519::{Ed25519PrivateKey, Ed25519PublicKey, ED25519_PUBKEY_LEN};
+use crate::ed25519::{Ed25519, Ed25519PrivateKey, Ed25519PublicKey, ED25519_PUBKEY_LEN};
 use crate::hasher::{Digest, HashingAlgorithm};
 use crate::signature::{RecoverableSignature, Signature, SIG_LEN};
 use derivation_path::{ChildIndex, DerivationPath};
@@ -314,40 +314,16 @@ where
     C: Curve<PublicKey = Ed25519PublicKey, PrivateKey = Ed25519PrivateKey>,
 {
     #[inline]
-    pub fn private_key_ext(&self) -> C::PrivateKey {
-        C::PrivateKey::from_bytes_unchecked(self.hd_node.private_key_extension)
+    pub fn private_key_ext(&self) -> Ed25519PrivateKey {
+        Ed25519PrivateKey::from_bytes_unchecked(self.hd_node.private_key_extension)
     }
     #[inline]
-    pub fn public_key_ext(&self) -> C::PublicKey {
-        let mut pk = [0; ED25519_PUBKEY_LEN];
-        let mut sk = self.hd_node.private_key.clone();
-        let mut sk_ext = self.hd_node.private_key_extension.clone();
-        unsafe {
-            let _lock = C::curve_info_lock();
-            sys::ed25519_publickey_ext(sk.as_mut_ptr(), sk_ext.as_mut_ptr(), pk.as_mut_ptr());
-        }
-        C::PublicKey::from_bytes(pk)
+    pub fn public_key_ext(&self) -> Ed25519PublicKey {
+        self.private_key().public_key_ext(&self.private_key_ext())
     }
     #[inline]
-    pub fn sign_ext<D: AsRef<[u8]>>(&self, data: D) -> Signature<C> {
-        let data = data.as_ref();
-        let mut pk = [0; ED25519_PUBKEY_LEN];
-        let mut sk = self.hd_node.private_key.clone();
-        let mut sk_ext = self.hd_node.private_key_extension.clone();
-        let mut sig = [0; SIG_LEN];
-        unsafe {
-            let _lock = C::curve_info_lock();
-            sys::ed25519_publickey_ext(sk.as_mut_ptr(), sk_ext.as_mut_ptr(), pk.as_mut_ptr());
-            sys::ed25519_sign_ext(
-                data.as_ptr(),
-                data.len() as u64,
-                sk.as_mut_ptr(),
-                sk_ext.as_mut_ptr(),
-                pk.as_mut_ptr(),
-                sig.as_mut_ptr(),
-            )
-        }
-        Signature::from_bytes(sig)
+    pub fn sign_ext<D: AsRef<[u8]>>(&self, data: D) -> Signature<Ed25519> {
+        self.private_key().sign_ext(&self.private_key_ext(), data)
     }
 }
 

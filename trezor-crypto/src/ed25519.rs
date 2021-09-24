@@ -131,6 +131,38 @@ impl Ed25519PrivateKey {
         }
         Signature::from_bytes(signature)
     }
+    pub fn public_key_ext(&self, private_key_ext: &Ed25519PrivateKey) -> Ed25519PublicKey {
+        let mut pk = [0; ED25519_PUBKEY_LEN];
+        let mut sk = self.bytes;
+        let mut sk_ext = private_key_ext.bytes;
+        unsafe {
+            sys::ed25519_publickey_ext(sk.as_mut_ptr(), sk_ext.as_mut_ptr(), pk.as_mut_ptr());
+        }
+        Ed25519PublicKey::from_bytes(pk)
+    }
+    pub fn sign_ext<D: AsRef<[u8]>>(
+        &self,
+        private_key_ext: &Ed25519PrivateKey,
+        data: D,
+    ) -> Signature<Ed25519> {
+        let data = data.as_ref();
+        let mut pk = [0; ED25519_PUBKEY_LEN];
+        let mut sk = self.bytes;
+        let mut sk_ext = private_key_ext.bytes;
+        let mut sig = [0; SIG_LEN];
+        unsafe {
+            sys::ed25519_publickey_ext(sk.as_mut_ptr(), sk_ext.as_mut_ptr(), pk.as_mut_ptr());
+            sys::ed25519_sign_ext(
+                data.as_ptr(),
+                data.len() as u64,
+                sk.as_mut_ptr(),
+                sk_ext.as_mut_ptr(),
+                pk.as_mut_ptr(),
+                sig.as_mut_ptr(),
+            )
+        }
+        Signature::from_bytes(sig)
+    }
 }
 
 impl PrivateKey for Ed25519PrivateKey {
