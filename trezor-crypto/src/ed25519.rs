@@ -176,7 +176,7 @@ impl PrivateKey for Ed25519PrivateKey {
     }
 }
 
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Ed25519PublicKey {
     bytes: [u8; ED25519_PUBKEY_LEN],
 }
@@ -317,5 +317,46 @@ mod tests {
         for child in children {
             child.join().unwrap();
         }
+    }
+
+    fn sign_ext_test_vector(
+        private_key_hex: &str,
+        private_key_ext_hex: &str,
+        public_key_ext_hex: &str,
+        signature_hex: &str,
+    ) {
+        let message = "Hello World";
+        let private_key =
+            Ed25519PrivateKey::from_slice(&hex::decode(private_key_hex).unwrap()).unwrap();
+        let private_key_ext =
+            Ed25519PrivateKey::from_slice(&hex::decode(private_key_ext_hex).unwrap()).unwrap();
+        let public_key_ext =
+            Ed25519PublicKey::from_slice(&hex::decode(public_key_ext_hex).unwrap()).unwrap();
+        let signature =
+            Signature::<Ed25519>::from_slice(&hex::decode(signature_hex).unwrap()).unwrap();
+        assert_eq!(private_key.public_key_ext(&private_key_ext), public_key_ext);
+        assert_eq!(private_key.sign_ext(&private_key_ext, message), signature);
+    }
+
+    #[test]
+    fn sign_ext_test_vectors() {
+        sign_ext_test_vector(
+            "6065a956b1b34145c4416fdc3ba3276801850e91a77a31a7be782463288aea53",
+            "60ba6e25b1a02157fb69c5d1d7b96c4619736e545447069a6a6f0ba90844bc8e",
+            "64b20fa082b3143d6b5eed42c6ef63f99599d0888afe060620abc1b319935fe1",
+            "45b1a75fe3119e13c6f60ab9ba674b42f946fdc558e07c83dfa0751c2eba69c79331bd8a4a975662b23628a438a0eba76367e44c12ca91b39ec59063f860f10d"
+        );
+        sign_ext_test_vector(
+            "52e0c98aa600cfdcd1ff28fcda5227ed87063f4a98547a78b771052cf102b40c",
+            "6c18d9f8075b1a6a1833540607479bd58b7beb8a83d2bb01ca7ae02452a25803",
+            "dc907c7c06e6314eedd9e18c9f6c6f9cc4e205fb1c70da608234c319f1f7b0d6",
+            "0cd34f84e0d2fcb1800bdb0e869b9041349955ced66aedbe6bda187ebe8d36a62a05b39647e92fcc42aa7a7368174240afba08b8c81f981a22f942d6bd781602"
+        );
+        sign_ext_test_vector(
+            "624b47150f58dfa44284fbc63c9f99b9b79f808c4955a461f0e2be44eb0be50d",
+            "097aa006d694b165ef37cf23562e5967c96e49255d2f20faae478dee83aa5b02",
+            "0588589cd9b51dfc028cf225674069cbe52e0e70deb02dc45b79b26ee3548b00",
+            "1de1d275428ba9491a433cd473cd076c027f61e7a8b5391df9dea5cb4bc88d8a57b095906a30b13e68259851a8dd3f57b6f0ffa37a5d3ffc171240f2d404f901"
+        );
     }
 }

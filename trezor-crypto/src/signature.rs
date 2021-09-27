@@ -3,7 +3,7 @@ use std::ops;
 
 pub const SIG_LEN: usize = 64;
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug)]
 pub struct Signature<C> {
     pub(crate) bytes: [u8; SIG_LEN],
     _curve: PhantomData<C>,
@@ -34,6 +34,14 @@ impl<C> Signature<C> {
         Signature::from_bytes(self.bytes)
     }
 }
+
+impl<C, D> PartialEq<Signature<D>> for Signature<C> {
+    fn eq(&self, other: &Signature<D>) -> bool {
+        self.bytes == other.bytes
+    }
+}
+
+impl<C> Eq for Signature<C> {}
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct RecoverableSignature<C> {
