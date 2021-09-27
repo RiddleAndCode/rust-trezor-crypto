@@ -1,6 +1,6 @@
 [package]
 name = "trezor-crypto"
-version = "0.2.2"
+version = "0.2.3"
 authors = ["Julian Popescu <jpopesculian@gmail.com>"]
 edition = "2018"
 description = "Rust bindings for the trezor crypto libraries"
