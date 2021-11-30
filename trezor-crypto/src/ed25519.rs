@@ -166,6 +166,7 @@ impl Ed25519PrivateKey {
 }
 
 impl PrivateKey for Ed25519PrivateKey {
+    type SerializedSize = U32;
     #[inline]
     fn from_bytes_unchecked(bytes: [u8; HDNODE_PRIVKEY_LEN]) -> Self {
         Self::from_bytes(bytes)
@@ -173,6 +174,10 @@ impl PrivateKey for Ed25519PrivateKey {
     #[inline]
     fn to_bytes(self) -> [u8; HDNODE_PRIVKEY_LEN] {
         self.bytes
+    }
+    #[inline]
+    fn serialize(&self) -> GenericArray<u8, Self::SerializedSize> {
+        self.bytes.into()
     }
 }
 

@@ -5,7 +5,7 @@ use crate::hd_node::{HDNODE_PRIVKEY_LEN, HDNODE_PUBKEY_LEN};
 use crate::signature::{RecoverableSignature, Signature, SIG_LEN};
 use core::marker::PhantomData;
 use core::{fmt, mem, ops};
-use generic_array::typenum::{U33, U64};
+use generic_array::typenum::{U32, U33, U64};
 use generic_array::GenericArray;
 use std::os::raw::c_char;
 use std::sync::{Mutex, MutexGuard};
@@ -323,6 +323,7 @@ impl<C: EcdsaCurve> EcdsaPrivateKey<C> {
 }
 
 impl<C: EcdsaCurve> PrivateKey for EcdsaPrivateKey<C> {
+    type SerializedSize = U32;
     #[inline]
     fn from_bytes_unchecked(bytes: [u8; HDNODE_PRIVKEY_LEN]) -> Self {
         Self::from_bytes(bytes)
@@ -330,6 +331,10 @@ impl<C: EcdsaCurve> PrivateKey for EcdsaPrivateKey<C> {
     #[inline]
     fn to_bytes(self) -> [u8; HDNODE_PRIVKEY_LEN] {
         self.bytes
+    }
+    #[inline]
+    fn serialize(&self) -> GenericArray<u8, Self::SerializedSize> {
+        self.bytes.into()
     }
 }
 

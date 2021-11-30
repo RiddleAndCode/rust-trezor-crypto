@@ -24,10 +24,12 @@ pub trait PublicKey: Sized {
 }
 
 pub trait PrivateKey: Sized {
+    type SerializedSize: ArrayLength<u8>;
     #[doc(hidden)]
     fn from_bytes_unchecked(bytes: [u8; HDNODE_PRIVKEY_LEN]) -> Self;
     #[doc(hidden)]
     fn to_bytes(self) -> [u8; HDNODE_PRIVKEY_LEN];
+    fn serialize(&self) -> GenericArray<u8, Self::SerializedSize>;
 }
 
 pub trait Curve {
