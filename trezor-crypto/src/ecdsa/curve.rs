@@ -5,7 +5,7 @@ use crate::hd_node::{HDNODE_PRIVKEY_LEN, HDNODE_PUBKEY_LEN};
 use crate::signature::{RecoverableSignature, Signature, SIG_LEN};
 use core::marker::PhantomData;
 use core::{fmt, mem, ops};
-use generic_array::typenum::{U32, U33, U64};
+use generic_array::typenum::{U32, U33, U65};
 use generic_array::GenericArray;
 use std::os::raw::c_char;
 use std::sync::{Mutex, MutexGuard};
@@ -389,7 +389,7 @@ impl<C: EcdsaCurve> EcdsaPublicKey<C> {
 
 impl<C: EcdsaCurve> PublicKey for EcdsaPublicKey<C> {
     type SerializedSize = U33;
-    type UncompressedSize = U64;
+    type UncompressedSize = U65;
     #[inline]
     fn from_bytes_unchecked(bytes: [u8; HDNODE_PUBKEY_LEN]) -> Self {
         unsafe { Self::from_bytes_unchecked(bytes) }
@@ -510,6 +510,23 @@ mod tests {
         assert_eq!(
             public_key1.serialize_uncompressed(),
             public_key2.serialize_uncompressed()
+        );
+    }
+
+    #[test]
+    fn secp256k1_public_key_trait() {
+        let public_key_compressed =
+            hex::decode("02F73C65EAD01C5126F28F442D087689BFA08E12763E0CEC1D35B01751FD735ED3")
+                .unwrap();
+        let public_key_uncompressed = hex::decode("04F73C65EAD01C5126F28F442D087689BFA08E12763E0CEC1D35B01751FD735ED3F449A8376906482A84ED01479BD18882B919C140D638307F0C0934BA12590BDE").unwrap();
+        let public_key = EcdsaPublicKey::<Secp256k1>::from_slice(&public_key_compressed).unwrap();
+        assert_eq!(
+            PublicKey::serialize(&public_key).to_vec(),
+            public_key_compressed
+        );
+        assert_eq!(
+            PublicKey::serialize_uncompressed(&public_key).to_vec(),
+            public_key_uncompressed
         );
     }
 
